@@ -14,17 +14,20 @@ export default function Navigation({ onOpenApplication }: NavigationProps) {
   return (
     <header className="w-full bg-white pt-6 pb-4 px-6 sm:px-12 relative z-30 border-b border-black/10">
       <div className="max-w-[1400px] mx-auto flex items-center justify-between">
-        {/* Left Side: Crayon Logo + Nav Links */}
+        {/* Left: Crayon Logo + Nav Links */}
         <div className="flex items-center gap-6 sm:gap-10">
-          <a href="#" className="flex items-center group">
+          <a href="#" className="flex items-center gap-3 group">
             <Image
               src="/images/crayon-logo.png"
-              alt="Alternative Aesthetics Crayon"
+              alt="Dharshana Crayon"
               width={70}
               height={45}
               className="w-auto h-9 sm:h-10 object-contain transition-transform group-hover:scale-110 group-hover:-rotate-3"
               priority
             />
+            <span className="font-display text-xl sm:text-2xl text-black tracking-tight hidden md:inline-block">
+              Dharshana
+            </span>
           </a>
 
           <nav className="hidden sm:flex items-center gap-6 sm:gap-8 font-sans text-[15px] sm:text-[16px] text-black font-normal">
@@ -32,15 +35,21 @@ export default function Navigation({ onOpenApplication }: NavigationProps) {
               About
             </a>
             <a href="#work" className="hover:opacity-70 transition-opacity">
-              Shop
+              Work
             </a>
-            <a href="#capabilities" className="hover:opacity-70 transition-opacity">
+            <a href="#services" className="hover:opacity-70 transition-opacity">
               Services
+            </a>
+            <a href="#testimonials" className="hover:opacity-70 transition-opacity">
+              Testimonials
+            </a>
+            <a href="#commissions" className="hover:opacity-70 transition-opacity">
+              Commissions
             </a>
           </nav>
         </div>
 
-        {/* Center: Severed Rock-on Hand Icon */}
+        {/* Center: Rock-on Hand with Lightning Bolts */}
         <div className="absolute left-1/2 -translate-x-1/2 top-4 hidden md:block">
           <a href="#" className="block transition-transform hover:-translate-y-1 hover:rotate-3">
             <Image
@@ -54,7 +63,7 @@ export default function Navigation({ onOpenApplication }: NavigationProps) {
           </a>
         </div>
 
-        {/* Right Side: Rotated "Let's Play!" Pill Button */}
+        {/* Right: "Let's Play!" Pill Button */}
         <div className="flex items-center gap-4">
           <button
             onClick={onOpenApplication}
@@ -82,21 +91,35 @@ export default function Navigation({ onOpenApplication }: NavigationProps) {
             onClick={() => setMobileMenuOpen(false)}
             className="text-black font-medium py-1"
           >
-            About
+            About Dharshana
           </a>
           <a
             href="#work"
             onClick={() => setMobileMenuOpen(false)}
             className="text-black font-medium py-1"
           >
-            Shop & Portfolio
+            Selected Works
           </a>
           <a
-            href="#capabilities"
+            href="#services"
             onClick={() => setMobileMenuOpen(false)}
             className="text-black font-medium py-1"
           >
-            Services & Commissions
+            Services & Craft
+          </a>
+          <a
+            href="#testimonials"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-black font-medium py-1"
+          >
+            Client Testimonials
+          </a>
+          <a
+            href="#commissions"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-black font-medium py-1"
+          >
+            Commissions & Rates
           </a>
         </div>
       )}

@@ -29,225 +29,253 @@ export interface Capability {
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    id: "aura-intelligence",
-    client: "Aura Intelligence",
-    title: "Autonomous Multi-Agent Workflow Engine",
-    tagline: "Enterprise AI orchestration processing 10M+ daily events with real-time autonomous routing.",
-    category: "AI Systems & Infrastructure",
+    id: "stay-strange-mural",
+    client: "Cardiff Creative Quarter",
+    title: "Stay Strange Flagship Mural",
+    tagline: "Large-scale hand-painted brick mural celebrating counter-culture and creative resilience.",
+    category: "Murals & Environmental",
     year: "2025",
     metrics: [
-      { label: "Analyst Velocity", value: "+340%", detail: "From 4.2h to 48m per investigation cycle" },
-      { label: "Daily Event Scale", value: "10.4M+", detail: "Autonomous event routing with zero human overhead" },
-      { label: "Model Accuracy", value: "99.4%", detail: "Microsoft Medprompt CoT + multi-agent verification" }
+      { label: "Mural Scale", value: "12m × 5m", detail: "Exterior weather-resistant masonry acrylic" },
+      { label: "Organic Reach", value: "250k+", detail: "Instagram & TikTok tourist impressions" },
+      { label: "Execution Time", value: "6 Days", detail: "100% freehand painting solo on scaffolding" }
     ],
-    overview: "Aura required a production-grade multi-agent platform capable of synthesising unstructured enterprise telemetry, triaging multi-variable security anomalies, and executing stateful remediation actions within strict latency SLAs.",
+    overview: "I was commissioned by the city creative quarter to transform a stark industrial brick facade into a vibrant, high-energy cultural landmark. Painted entirely freehand with high-durability acrylics, the piece has become an iconic photo spot in Cardiff.",
     architecture: [
-      "Dynamic DAG workflow scheduler built on Rust & WebAssembly micro-kernels",
-      "Streaming SSE telemetry pipeline with client-side reactive Canvas visualizer",
-      "Multi-agent consensus mechanism utilizing specialized evaluator-critic loops",
-      "SOC-2 Type II audit logging and cryptographic audit trails"
+      "Custom vector scale grid transferred freehand to masonry surface",
+      "Multi-layered weather-seal protective clear coating against maritime moisture",
+      "Time-lapse cinematography and companion screenprint edition release",
+      "Coordinated with city planning council and pedestrian safety compliance"
     ],
     deliverables: [
-      "Autonomous Agent Runtime Engine",
-      "Executive Ops Command Deck",
-      "Zero-latency Streaming WebSocket Gateway",
-      "Custom Design System (Dark Terminal UI)"
+      "Full Exterior Architectural Mural",
+      "Limited Signed Screenprint Run (100 Ed.)",
+      "Behind-The-Scenes Production Film",
+      "Commercial License for City Tourism Promotion"
     ],
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=85",
-    tags: ["Autonomous Agents", "LLM Pipelines", "Real-Time Telemetry", "Next.js 15"]
+    image: "/images/work-1-mural.png",
+    tags: ["Mural", "Hand-Lettering", "Street Art", "Public Works"]
   },
   {
-    id: "hyperion-cloud",
-    client: "Hyperion Cloud",
-    title: "Institutional Financial Terminal & Design System",
-    tagline: "Ultra-low latency institutional trading interface and design system handling $1.2B in volume.",
-    category: "Venture Digital Product",
+    id: "look-up-hygiene",
+    client: "National Hygiene Week",
+    title: "LOOK UP — National Campaign",
+    tagline: "High-impact visual awareness campaign blending raw kinetic lettering with purposeful messaging.",
+    category: "Commercial Illustration",
     year: "2024",
     metrics: [
-      { label: "Capital Raised", value: "$24M", detail: "Series B led by top-tier Silicon Valley venture fund" },
-      { label: "Render Latency", value: "32ms", detail: "P99 interaction latency under massive WebSocket load" },
-      { label: "Conversion Lift", value: "+68%", detail: "Qualified institutional trial-to-contract closure rate" }
+      { label: "Donations Raised", value: "£45K+", detail: "Corporate hygiene products distributed" },
+      { label: "National Reach", value: "1.4M", detail: "Transit posters, universities & bus shelters" },
+      { label: "Asset Pack", value: "32 Items", detail: "Print, digital banners, animated billboards" }
     ],
-    overview: "Hyperion's legacy desktop terminal suffered from fragmentation and severe performance bottlenecks. We redesigned their core web suite from first principles, shipping a 60fps WebGL order-book and an enterprise-grade component system.",
+    overview: "I created an eye-catching campaign key visual combining bespoke hand-drawn bubble lettering with daily hygiene item doodles to break the stigma surrounding hygiene poverty and spur donations across UK universities and community centers.",
     architecture: [
-      "Hardware-accelerated WebGL canvas charting library for tick-by-tick orderbooks",
-      "Zero-runtime CSS token architecture with sub-millisecond theme transitions",
-      "Predictive prefetching and optimistic state mutation layer",
-      "Modular multi-window workspace dock with customizable layouts"
+      "Hand-drawn ink lettering digitized into scalable CMYK vector lockups",
+      "Modular illustration toolkit allowing regional teams to customize flyers",
+      "Animated kinetic typography loop for DOOH digital subway screens",
+      "Accessibility audit for colorblind legibility on bright canary yellow"
     ],
     deliverables: [
-      "Core Trading & Portfolio Terminal",
-      "Tokenized 'Hyperion DS' Component Library",
-      "WebSocket Market Data Aggregator",
-      "Enterprise Onboarding & KYC Flow"
+      "National A1 Poster Key Visual",
+      "DOOH Subway Screen Motion Graphics",
+      "Social Media Campaign Kit",
+      "Charity Merchandise T-Shirts"
     ],
-    image: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1600&q=85",
-    tags: ["High-Concurrency Web", "WebGL Terminal", "Design System", "TypeScript"]
+    image: "/images/work-3-lookup.png",
+    tags: ["Campaign Art", "Typography", "Print", "Charity"]
   },
   {
-    id: "monolith-flagship",
-    client: "Monolith Atelier",
-    title: "Luxury Digital Commerce & Spatial Configurator",
-    tagline: "Kinetic e-commerce flagship featuring real-time 3D spatial customization and editorial storytelling.",
-    category: "Luxury Flagship & 3D",
+    id: "nice-laptop-mascot",
+    client: "Game On Digital",
+    title: "NICE! Laptop Brand Mascot",
+    tagline: "Animated mischievous retro game console character built for digital dev-tool branding.",
+    category: "Character & Animation",
     year: "2024",
     metrics: [
-      { label: "Checkout Conversion", value: "+58%", detail: "Increase across luxury bespoke timepiece configurator" },
-      { label: "Average Order Value", value: "$18.4K", detail: "Direct-to-consumer high-ticket client acquisition" },
-      { label: "Global Press", value: "Awwwards SOTD", detail: "Recognized as global benchmark for luxury digital flagships" }
+      { label: "Onboarding Lift", value: "+64%", detail: "User trial-to-setup completion rate" },
+      { label: "Sticker Usage", value: "82k+", detail: "Monthly Discord and Slack reactions" },
+      { label: "Brand Recall", value: "94%", detail: "Surveyed user sentiment at DevCon 2024" }
     ],
-    overview: "Monolith required a digital flagship worthy of their six-figure bespoke horology creations. We blended high-fashion typography, seamless Three.js raytraced configurators, and an intimate concierge checkout experience.",
+    overview: "Game On needed a brand mascot to give their developer platform human warmth and humor. I designed an expressive retro PC monster with rubber-hose limbs, complete with animated UI state illustrations, error pages, and merchandise stickers.",
     architecture: [
-      "Custom Three.js PBR shader pipeline with dynamic caustics and physical reflections",
-      "Fluid scroll-driven cinematography synchronised via GSAP & Lenis inertia",
-      "Headless Shopify Storefront API integration with edge-cached GraphQL",
-      "Private VIP concierge portal with encrypted asynchronous video consultations"
+      "Vector character model sheets with 16 distinct emotion turnarounds",
+      "Lottie vector animations optimized under 45kb for web app states",
+      "Pixel-perfect SVG icon integration for React and Vue component libraries",
+      "Merchandise printing guidelines for enamel pins and embroidered caps"
     ],
     deliverables: [
-      "Real-Time 3D Material Configurator",
-      "Bespoke Editorial E-Commerce Flagship",
-      "Private Concierge Scheduling Engine",
-      "Brand Narrative & Motion Guidelines"
+      "Character Mascot Design & Model Sheets",
+      "12 Lottie UI Animation Micro-Interactions",
+      "Slack / Discord Community Sticker Pack",
+      "Developer Swag Pin & Patch Designs"
     ],
-    image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1600&q=85",
-    tags: ["Three.js / WebGL", "Headless Commerce", "Luxury Experience", "Micro-Motion"]
+    image: "/images/work-4-character.png",
+    tags: ["Character Design", "Lottie Motion", "Branding", "Mascot"]
+  },
+  {
+    id: "black-screen-records",
+    client: "Black Screen Records",
+    title: "Limited Vinyl Box Set Packaging",
+    tagline: "Custom illustrated packaging, enamel pins, slipmats, and vinyl collector unboxing sleeves.",
+    category: "Packaging & Merchandise",
+    year: "2024",
+    metrics: [
+      { label: "Units Sold", value: "50,000+", detail: "Worldwide collector unboxing deliveries" },
+      { label: "Sell-Out Time", value: "< 48 Hours", detail: "Limited numbered edition box set run" },
+      { label: "Social Shares", value: "12.4K+", detail: "Instagram unboxing user stories" }
+    ],
+    overview: "For one of Europe's premier video game vinyl soundtrack distributors, I illustrated custom kraft shipping mailers, inner sleeves, holographic sticker sets, and turntable slipmats packed with hidden gaming Easter eggs.",
+    architecture: [
+      "Full-bleed dieline engineering for multi-tier corrugated mailer boxes",
+      "Spot-gloss UV ink separation on raw kraft cardboard substrate",
+      "Die-cut vinyl sticker sheets and soft enamel collectible lapel pins",
+      "Turntable felt slipmat direct-to-garment high-contrast silk screening"
+    ],
+    deliverables: [
+      "Collector Mailer Dieline Packaging",
+      "Vinyl Inner Sleeve Double-Sided Art",
+      "Custom Die-Cut Holographic Sticker Sheet",
+      "Limited Edition Turntable Felt Slipmats"
+    ],
+    image: "/images/work-8-records.png",
+    tags: ["Packaging", "Vinyl", "Merch", "Dielines"]
   }
 ];
 
 export const CAPABILITIES: Capability[] = [
   {
-    id: "ai-systems",
+    id: "murals-environmental",
     number: "01",
-    title: "Autonomous AI Systems & Agents",
-    tagline: "Beyond conversational wrappers: deterministic, multi-agent systems designed for mission-critical enterprise autonomy.",
-    description: "We architect multi-agent systems that ingest multi-modal data, execute multi-step reasoning loops, and integrate directly with your core database and APIs with verified precision.",
+    title: "Murals & Environmental Art",
+    tagline: "Large-format freehand murals and architectural installations that turn physical spaces into cultural landmarks.",
+    description: "I paint large-scale interior and exterior murals for flagship offices, restaurants, creative venues, and public trails. Every brush stroke is done by hand with weather-resistant materials.",
     bullets: [
-      "Microsoft Medprompt & specialized Chain-of-Thought (CoT) prompting",
-      "Multi-agent consensus, evaluator-critic loops, and state machines",
-      "Deterministic tool-calling, API integration, and vector retrieval (RAG)",
-      "Zero-latency streaming UI with human-in-the-loop oversight"
+      "Exterior & interior masonry murals (up to 20m wide)",
+      "Ultraviolet and glow-in-the-dark experiential paintwork",
+      "Public fiberglass sculpture & 3D trail artwork",
+      "Custom freehand typographic environmental lettering"
     ],
-    badge: "Core Specialization"
+    badge: "Large Scale"
   },
   {
-    id: "digital-products",
+    id: "character-systems",
     number: "02",
-    title: "Venture-Scale Web Platforms",
-    tagline: "High-concurrency web applications built for founders preparing for Series A through Growth scale.",
-    description: "We don't build standard marketing templates. We construct heavy-duty, responsive software platforms with sub-50ms interaction latency, robust state synchronization, and scalable architecture.",
+    title: "Brand Mascots & Character Design",
+    tagline: "Playful, rebellious characters that give tech products, apparel, and brands an unmistakable personality.",
+    description: "I create memorable character universes and mascots that bridge the gap between street culture and commercial branding, designed to look as good on a billboard as on a tiny app icon.",
     bullets: [
-      "Next.js 15 App Router with hybrid SSR/Edge hydration",
-      "Real-time WebSockets, SSE streams, and optimistic UI mutations",
-      "Complex interactive dashboards, canvas editors, and workflow tools",
-      "Strict 100/100 Core Web Vitals performance benchmarks"
+      "Character turnarounds, expressions, and style guides",
+      "Lottie & WebGL 2D animated micro-interactions",
+      "Enamel pins, plushies, and apparel embroidery files",
+      "Full digital sticker packs for Slack, Telegram & Discord"
     ],
-    badge: "Engineering"
+    badge: "Character Art"
   },
   {
-    id: "design-systems",
+    id: "packaging-merch",
     number: "03",
-    title: "Bespoke Design Systems & Brand Flagships",
-    tagline: "World-class visual distinction that commands premium enterprise pricing.",
-    description: "First impressions dictate your enterprise pricing power. We craft bespoke visual identities, component systems, and kinetic interactions that make your company look like a market leader from day zero.",
+    title: "Packaging & Limited Editions",
+    tagline: "Tactile, collectible packaging and box sets that customers refuse to throw away.",
+    description: "From video game vinyl box sets to custom beverage cans and skateboard decks, I engineer packaging that turns unboxing into an emotional collector moment.",
     bullets: [
-      "Obsidian, editorial, and tactile dark-luxe aesthetic direction",
-      "Production-ready design tokens in Figma & Tailwind CSS",
-      "Physics-based micro-interactions with Framer Motion & GSAP",
-      "Accessible, modular React component libraries (zero tech debt)"
+      "360° repeating vector patterns for drinkware & bottles",
+      "Custom kraft mailer boxes and unboxing collateral",
+      "Screenprinted limited-run gig posters and art prints",
+      "Direct manufacturer dieline & print prepress setup"
     ],
-    badge: "Craft & Aesthetic"
+    badge: "Print & Tangible"
   },
   {
-    id: "rapid-prototyping",
+    id: "creative-tech",
     number: "04",
-    title: "0-to-1 Venture Prototyping",
-    tagline: "From concept to investor-ready, high-fidelity working prototype in under 21 days.",
-    description: "When fundraising or closing anchor enterprise customers, pitch decks are obsolete. We deliver fully interactive, beautifully engineered working products that secure term sheets.",
+    title: "Creative Engineering & Digital Flagships",
+    tagline: "High-consequence digital experiences built with Next.js, Three.js, and bespoke kinetic motion.",
+    description: "Unlike illustrators who only hand off static PNGs, I write clean, production-ready frontend code. I build interactive web flagships, WebGL configurators, and kinetic animations myself.",
     bullets: [
-      "3-week intensive sprint from napkin sketch to live demo",
-      "Realistic synthetic datasets and polished user journeys",
-      "Executive presentation and founder demo coaching",
-      "Seamless code handover to your internal engineering team"
+      "Next.js 15 App Router with Tailwind CSS & Framer Motion",
+      "Interactive SVG & Three.js canvas playgrounds",
+      "Zero-debt accessible component architecture",
+      "Strict 100/100 Core Web Vitals performance score"
     ],
-    badge: "Venture Velocity"
+    badge: "Code & Creative Tech"
   }
 ];
 
 export const ENGAGEMENT_TIERS = [
   {
-    name: "0-to-1 Venture Sprint",
-    timeline: "3 to 5 Weeks",
-    investment: "$35,000 – $50,000",
-    focus: "New product launch or venture fundraise demo",
+    name: "Key Visual & Character Sprint",
+    timeline: "2 to 3 Weeks",
+    investment: "£12,000 – £20,000",
+    focus: "Mascot design, campaign hero artwork, or editorial key visuals",
     includes: [
-      "Full Product Architecture & Tech Stack selection",
-      "Complete UI/UX & Bespoke Design System",
-      "Working Next.js / AI production MVP",
-      "Direct Senior Principal Engineer & Designer access",
-      "Deployment, CI/CD pipeline, and full IP handover"
+      "Full Character & Mascot Model Sheets with expressions",
+      "Custom hand-drawn headline typography & lettering",
+      "Print-ready CMYK vector deliverables + RGB web assets",
+      "Lottie animated micro-interactions for digital UI",
+      "Full commercial global buyout & copyright assignment"
     ],
     availability: "1 Slot Open for Q4",
     recommended: false
   },
   {
-    name: "Flagship Product & AI Build",
-    timeline: "8 to 12 Weeks",
-    investment: "$65,000 – $110,000",
-    focus: "Complete platform build, multi-agent AI system, or total legacy overhaul",
+    name: "Flagship Mural & Experiential",
+    timeline: "3 to 5 Weeks",
+    investment: "£22,000 – £40,000",
+    focus: "Physical office, venue, retail storefront, or festival installation",
     includes: [
-      "Deep Domain & Architectural Systems Modeling",
-      "Enterprise Multi-Agent AI Runtime integration",
-      "Full Design System with comprehensive component tokenization",
-      "P99 latency optimization & WebGL / kinetic motion",
-      "Security audit readiness, SOC-2 alignment, and test suite",
-      "30 days post-launch hypercare & engineer training"
+      "On-site freehand painting by Dharshana",
+      "High-durability weather-resistant acrylics & primers",
+      "Time-lapse 4K production video & behind-the-scenes content",
+      "Companion limited-edition screenprint or merchandise run",
+      "PR coordination & local artist media interviews"
     ],
-    availability: "Limited: 2 Partnerships per Quarter",
+    availability: "Booking Q4 / Q1",
     recommended: true
   },
   {
-    name: "Executive Technical Advisory Retainer",
-    timeline: "Quarterly (6-month commitment)",
-    investment: "$25,000 / month",
-    focus: "Continuous high-leverage product direction and senior execution",
+    name: "Complete Brand Universe & Digital Flagship",
+    timeline: "6 to 8 Weeks",
+    investment: "£35,000 – £65,000",
+    focus: "Full visual identity, character world, packaging, and custom Next.js web build",
     includes: [
-      "Direct executive Slack & weekly syncs with Studio Principals",
-      "Continuous feature engineering and architecture reviews",
-      "AI model evaluation, prompt optimization, and guardrails",
-      "Priority bandwidth with guaranteed 24h turnaround SLAs"
+      "Complete Brand Identity, Illustration System & Mascots",
+      "Custom packaging dielines, mailers, and merchandise specs",
+      "Production-ready Next.js 15 interactive web flagship build",
+      "Kinetic micro-motion, Lottie stickers, and sound design sync",
+      "Exclusive category lock-out & direct WhatsApp access"
     ],
-    availability: "Currently 1 Seat Reserved",
+    availability: "Selective: 1 Brand per Quarter",
     recommended: false
   }
 ];
 
 export const SOCIAL_PROOF = [
   {
-    quote: "Aether didn't just build our software; they redefined our entire market perception. Their obsession with speed and aesthetic excellence helped us close our $24M Series B three months ahead of schedule.",
+    quote: "Dharshana didn't just illustrate our brand; she gave our entire startup an attitude and soul that customers fall in love with. Our onboarding completion skyrocketed by 64% after launching her mascot.",
     author: "Elena Rostova",
     title: "Chief Product Officer",
-    company: "Hyperion Cloud",
+    company: "Game On Digital",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
   },
   {
-    quote: "Most agencies give you junior contractors hiding behind account managers. With Aether, you get senior engineering artists who understand vector databases as deeply as typography and micro-interactions.",
+    quote: "Finding an artist who can paint a 12-meter exterior brick mural freehand on scaffolding and then write clean, production-grade Next.js code is virtually impossible. Dharshana is an absolute powerhouse.",
     author: "Marcus Vance",
-    title: "Co-Founder & CEO",
-    company: "Aura Intelligence",
+    title: "Creative Director",
+    company: "Cardiff Creative Quarter",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"
   },
   {
-    quote: "The luxury market is ruthless: if your digital flagship doesn't feel like a physical masterpiece, high-net-worth clients bounce. Aether crafted something that won Site of the Day and increased our conversions by 58%.",
-    author: "Claire De La Tour",
-    title: "Creative Director",
-    company: "Monolith Atelier",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80"
+    quote: "Our vinyl collectors are obsessive about quality. Dharshana designed unboxing packaging that sold out 50,000 units and flooded our feeds with praise. She is the first person we call for every flagship release.",
+    author: "Kevin Schmidt",
+    title: "Founder & Label Head",
+    company: "Black Screen Records",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80"
   }
 ];
 
 export const STATS = [
-  { number: "$140M+", label: "Client Venture Capital Raised", note: "Across our portfolio partners" },
-  { number: "99.8%", label: "Average Core Web Vitals Score", note: "Sub-50ms interaction latency" },
-  { number: "100%", label: "Senior Staff Execution", note: "Zero outsourced or junior devs" },
-  { number: "14", label: "Industry Awards & Honors", note: "Awwwards, FWA & CSSDA recognized" }
+  { number: "50K+", label: "Collector Vinyls & Merch Shipped", note: "Distributed worldwide to fans" },
+  { number: "100%", label: "Solo Principal Execution", note: "Zero account managers or outsourced juniors" },
+  { number: "£140K+", label: "Raised for Partner Charities", note: "Through public art & charity auctions" },
+  { number: "14+", label: "International Honors & Press", note: "Featured in exhibitions & cultural archives" }
 ];

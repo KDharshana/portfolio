@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { CASE_STUDIES, CaseStudy } from '@/lib/data';
 import { X, ArrowUpRight, CheckCircle } from 'lucide-react';
 
 interface CaseStudiesProps {
@@ -29,19 +30,19 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: 'Murals',
     image: '/images/work-1-mural.png',
     tagline: 'Large-scale hand-painted brick mural celebrating counter-culture and creative resilience.',
-    description: 'Commissioned to transform a blank industrial brick wall into a vibrant landmark for the Cardiff creative district. Painted entirely freehand with high-durability weather-resistant acrylics.',
-    deliverables: ['12m x 5m Exterior Mural', 'Behind-The-Scenes Video', 'Limited Screenprint Run'],
+    description: 'I was commissioned to transform a blank industrial brick wall into a vibrant landmark for the Cardiff creative district. Painted entirely freehand on scaffolding with high-durability weather-resistant acrylics.',
+    deliverables: ['12m x 5m Exterior Mural', 'Behind-The-Scenes Film', 'Limited Signed Screenprint Edition'],
     impact: '+250k organic social impressions, official tourist photography landmark'
   },
   {
     id: 'doodle-bottle',
     title: 'Repeating Character Bottle',
-    client: 'Alternative Aesthetics Shop',
+    client: 'Dharshana Shop',
     category: '2D',
     image: '/images/work-2-bottle.png',
     tagline: '360° seamless monster doodle pattern wrapped around matte-black insulated stainless steel.',
-    description: 'Engineered a seamless repeating pattern of Colin Kersley’s signature dungeon characters, vectorised and laser-etched directly onto high-performance drinkware.',
-    deliverables: ['Seamless 360° Pattern Vector', 'Packaging Box Design', 'Product Mockup Photography'],
+    description: 'I illustrated a seamless repeating pattern of mischievous dungeon characters, vectorised and laser-etched directly onto high-performance drinkware.',
+    deliverables: ['Seamless 360° Vector Pattern', 'Packaging Box Design', 'Product Mockup Photography'],
     impact: 'Sold out 3 limited batches in under 48 hours'
   },
   {
@@ -51,7 +52,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: '2D',
     image: '/images/work-3-lookup.png',
     tagline: 'High-impact awareness campaign poster blending raw kinetic lettering with purposeful messaging.',
-    description: 'Created an eye-catching campaign key visual combining bespoke bubble lettering with hand-drawn daily hygiene item icons to encourage donations across universities and public centers.',
+    description: 'I created an eye-catching campaign key visual combining bespoke bubble lettering with hand-drawn daily hygiene item icons to encourage donations across universities and public centers.',
     deliverables: ['National A1 Poster Series', 'Social Media Asset Pack', 'Bus Stop Outdoor Billboards'],
     impact: 'Raised £45,000+ in corporate hygiene supplies'
   },
@@ -62,7 +63,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: 'Animation',
     image: '/images/work-4-character.png',
     tagline: 'Animated mischievous retro game console character built for digital dev agency branding.',
-    description: 'Designed a lively brand mascot with expressive rubber-hose limbs, holding an 8-bit laptop while accidentally spilling coffee. Rigged for 2D animated stickers and onboarding states.',
+    description: 'I designed a lively brand mascot with expressive rubber-hose limbs, holding an 8-bit laptop while accidentally spilling coffee. Rigged for 2D animated stickers and onboarding states.',
     deliverables: ['Character Model Sheets', 'Lottie UI Animations', 'Slack & Discord Sticker Pack'],
     impact: '+64% user onboarding completion for partner dev-tool'
   },
@@ -73,7 +74,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: '2D',
     image: '/images/work-5-cymru.png',
     tagline: 'Iconic Welsh phrase translated into a skate-punk character wearing a dragon helmet and flat cap.',
-    description: 'A celebration of modern Welsh street culture and colloquial tongue. Blends Cardiff streetwear sensibilities with classic cartoon illustration.',
+    description: 'A personal celebration of modern Welsh street culture and colloquial tongue. Blends Cardiff streetwear sensibilities with classic cartoon illustration.',
     deliverables: ['Screenprinted T-Shirts & Hoodies', 'Skate Deck Graphic', 'Risograph Prints'],
     impact: 'Featured in Welsh National Gallery store'
   },
@@ -84,7 +85,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: '3D',
     image: '/images/work-6-snoopy.png',
     tagline: 'Life-sized custom Snoopy sculpture painted with gold lightning bolts and intricate black lineart.',
-    description: 'Selected as one of the featured UK artists to paint a life-size fiberglass Snoopy statue displayed prominently on Cardiff High Street. Featured a black-and-gold lightning mask with hidden doodle creatures.',
+    description: 'I was selected as one of the featured UK artists to paint a life-size fiberglass Snoopy statue displayed on Cardiff High Street. Featured a black-and-gold lightning mask with hidden doodle creatures.',
     deliverables: ['Custom Hand-Painted Fiberglass Sculpture', 'Charity Auction Piece', 'Public Trail Map Art'],
     impact: 'Auctioned for £12,500 with 100% of proceeds to rescue dogs'
   },
@@ -106,7 +107,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: '2D',
     image: '/images/work-8-records.png',
     tagline: 'Limited edition illustrated mailer boxes, enamel pins, slipmats, and vinyl art sleeves.',
-    description: 'Created a full merchandise and shipping unboxing experience for one of Europe’s premier video game vinyl soundtrack labels, covered in video game doodling Easter eggs.',
+    description: 'I created a full merchandise and shipping unboxing experience for one of Europe’s premier video game vinyl soundtrack labels, covered in video game doodling Easter eggs.',
     deliverables: ['Custom Kraft Mailer Box Art', 'Enamel Pin Sets', 'Collectible Holographic Stickers'],
     impact: 'Over 50,000 collectors received the custom unboxing experience'
   }
@@ -123,7 +124,22 @@ export default function CaseStudies({ onOpenApplication }: CaseStudiesProps) {
     : PORTFOLIO_ITEMS.filter((item) => item.category === selectedCategory);
 
   return (
-    <section id="work" className="w-full bg-white pt-12 pb-24 border-t border-black/10">
+    <section id="work" className="w-full bg-white pt-16 pb-24 border-t border-black/10">
+      {/* Section Headline */}
+      <div className="max-w-[1224px] mx-auto px-4 sm:px-6 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <div className="inline-block border-2 border-black rounded-[8px] px-3 py-1 text-xs font-bold bg-[#f5f5f5] mb-3 shadow-[2px_2px_0px_0px_#000000]">
+            PORTFOLIO & COMMISSIONS
+          </div>
+          <h2 className="font-display text-3xl sm:text-5xl text-black">
+            Selected Works.
+          </h2>
+        </div>
+        <p className="text-sm sm:text-base text-[#424242] max-w-md font-light">
+          A collection of commercial murals, packaging universes, character mascots, and high-impact visual campaigns created for brands and cultural institutions.
+        </p>
+      </div>
+
       {/* Category Tabs with Crossed Pencils */}
       <div className="flex flex-col items-center justify-center mb-12 px-4">
         {/* Crossed Pencils Icon */}
@@ -196,7 +212,7 @@ export default function CaseStudies({ onOpenApplication }: CaseStudiesProps) {
                     {item.tagline}
                   </p>
                   <div className="inline-flex items-center gap-1 text-xs font-bold text-white underline underline-offset-4">
-                    <span>View Case Study</span>
+                    <span>View Project Breakdown</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
@@ -222,7 +238,7 @@ export default function CaseStudies({ onOpenApplication }: CaseStudiesProps) {
             {/* Modal Box */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               className="relative w-full max-w-2xl bg-white border-2 border-black rounded-[8px] p-6 sm:p-8 shadow-[8px_8px_0px_0px_#000000] z-10 my-8 overflow-hidden max-h-[90vh] overflow-y-auto"
             >
@@ -260,7 +276,7 @@ export default function CaseStudies({ onOpenApplication }: CaseStudiesProps) {
               {/* Shipped deliverables */}
               <div className="mb-6">
                 <div className="font-bold text-xs uppercase tracking-wider text-black mb-2">
-                  Scope of Delivery:
+                  Delivered by Dharshana:
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {activeItem.deliverables.map((d, i) => (
@@ -274,13 +290,13 @@ export default function CaseStudies({ onOpenApplication }: CaseStudiesProps) {
 
               {/* Impact callout */}
               <div className="p-4 rounded-[8px] bg-[#f5f5f5] border-2 border-black mb-6">
-                <div className="text-[11px] font-mono font-bold uppercase text-[#7f7f7f]">Verified Outcome</div>
+                <div className="text-[11px] font-mono font-bold uppercase text-[#7f7f7f]">Project Outcome</div>
                 <div className="text-sm font-bold text-black mt-1">{activeItem.impact}</div>
               </div>
 
               {/* CTA */}
               <div className="pt-4 border-t-2 border-black/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-                <span className="text-xs text-[#7f7f7f]">Commission a similar engagement</span>
+                <span className="text-xs text-[#7f7f7f]">Want to commission a similar project?</span>
                 <button
                   onClick={() => {
                     setActiveItem(null);

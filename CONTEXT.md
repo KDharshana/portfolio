@@ -1,29 +1,25 @@
-# Aether Studio
+# Dharshana Portfolio
 
-A high-end digital product and AI engineering studio delivering venture-scale web applications, bespoke AI agents, and flagship digital products for high-growth enterprises and venture-backed founders.
+Personal portfolio and commercial practice of Dharshana — independent visual artist, commercial illustrator, and creative digital product engineer crafting bold, playful pictures and venture-scale software on behalf of ambitious founders, record labels, and global brands.
 
 ## Language
 
-**Studio**:
-The collective entity delivering specialized digital product and AI engineering craft.
-_Avoid_: Agency, dev house, vendor, software shop
+**Dharshana**:
+Independent creative technologist, illustrator, and principal engineer.
+_Avoid_: Agency, dev shop, agency team, contractor
 
-**Partner**:
-An enterprise leader, founder, or executive investing in a high-ticket engagement ($25k–$100k+) with the studio.
-_Avoid_: Client, customer, buyer, user, account
+**Collaborator / Partner**:
+A founder, creative director, or brand executive commissioning or retaining Dharshana for high-impact work.
+_Avoid_: Boss, employer, client, buyer
 
-**Engagement**:
-A dedicated, high-leverage partnership block (project-based or executive retainer) with fixed capacity and guaranteed senior execution.
-_Avoid_: Gig, contract, job, order
+**Commission**:
+A dedicated, fixed-scope milestone engagement (such as a commercial mural, mascot universe, key visual sprint, or flagship product build).
+_Avoid_: Gig, job, task, ticket
 
-**Application**:
-The selective intake questionnaire submitted by a prospective partner to evaluate mutual fit, timeline, and investment tier.
-_Avoid_: Contact form, lead form, inquiry, message
+**Inquiry**:
+The structured qualification questionnaire submitted by prospective collaborators to explore availability, timeline, and investment tier.
+_Avoid_: Generic contact form, lead form
 
 **Case Study**:
-An exhaustive proof breakdown showcasing architectural decisions, benchmarked performance gains, and measurable business impact.
-_Avoid_: Portfolio item, work sample, mock
-
-**Artifact**:
-A production-grade system deliverable (such as an autonomous AI agent, high-conversion web platform, or bespoke design system) shipped during an engagement.
-_Avoid_: Feature, ticket, deliverable
+An in-depth breakdown of creative direction, illustrated deliverables, systems architecture, and business outcomes achieved for a partner.
+_Avoid_: Dribbble shot, mock, sample

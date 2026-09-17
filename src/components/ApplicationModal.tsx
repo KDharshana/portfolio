@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { X, CheckCircle, ArrowRight, Shield, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -17,9 +17,9 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
     email: '',
     company: '',
     website: '',
-    budget: preselectedTier || '$65,000 – $110,000 (Flagship Build)',
+    budget: preselectedTier || '£25,000 – £45,000 (Full Scale Mural)',
     timeline: 'Within 30 Days',
-    scope: 'Autonomous AI Agents & Systems',
+    scope: 'Commercial Murals & Experiential',
     notes: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -44,23 +44,23 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
   };
 
   const budgetOptions = [
-    '$35,000 – $50,000 (0-to-1 Sprint)',
-    '$65,000 – $110,000 (Flagship Build)',
-    '$25,000 / month (Executive Advisory)',
-    '$110,000+ (Custom Enterprise Systems)'
+    '£15,000 – £25,000 (Key Visual / Mascot)',
+    '£25,000 – £45,000 (Full Scale Mural)',
+    '£45,000 – £85,000 (Global Campaign & Universe)',
+    '£85,000+ (Comprehensive Brand Retainer)'
   ];
 
   const scopeOptions = [
-    'Autonomous AI Agents & Systems',
-    'Venture-Scale Web Platform (Next.js)',
-    'High-End Design System & Flagship',
-    '0-to-1 Venture Prototype'
+    'Commercial Murals & Experiential',
+    'Brand Mascots & Character Systems',
+    'Packaging & Limited Editions',
+    'Creative Engineering & Web Flagship'
   ];
 
   const timelineOptions = [
     'Immediate (Next 7–14 Days)',
     'Within 30 Days',
-    'Next Quarter (Q1 2026)',
+    'Next Quarter (Q4 / Q1)',
     'Flexible / Exploring'
   ];
 
@@ -85,7 +85,7 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 border-2 border-black rounded-[8px] bg-white hover:bg-[#f5f5f5] text-black shadow-[2px_2px_0px_0px_#000000]"
+          className="absolute top-6 right-6 p-2 border-2 border-black rounded-[8px] bg-white hover:bg-[#f5f5f5] text-black shadow-[2px_2px_0px_0px_#000000] cursor-pointer"
           aria-label="Close"
         >
           <X className="w-5 h-5" />
@@ -94,15 +94,15 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
         {!isSubmitted ? (
           <div>
             <div className="mb-8">
-              <div className="aa-badge text-xs font-bold uppercase mb-3 bg-[#f5f5f5]">
-                <Sparkles className="w-3.5 h-3.5 mr-1.5" />
-                Partner Application Questionnaire
+              <div className="inline-flex items-center gap-1.5 border-2 border-black rounded-[8px] px-3 py-1 text-xs font-bold uppercase mb-3 bg-[#f5f5f5] shadow-[2px_2px_0px_0px_#000000]">
+                <Sparkles className="w-3.5 h-3.5" />
+                Commission Inquiry
               </div>
               <h3 className="font-display text-3xl sm:text-4xl text-black">
-                Apply for an Engagement.
+                Commission Dharshana.
               </h3>
               <p className="text-[#424242] text-xs sm:text-sm font-light mt-1">
-                We accept strictly 2 to 3 partnerships per quarter to protect senior execution quality.
+                I accept strictly 2 to 3 major commissions per quarter to ensure dedicated, world-class execution on every single project.
               </p>
             </div>
 
@@ -118,7 +118,7 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Colin Kersley"
+                    placeholder="Jane Doe"
                     className="w-full px-4 py-3 rounded-[8px] border-2 border-black focus:bg-[#fafafa] text-black text-sm font-medium focus:outline-none shadow-[2px_2px_0px_0px_#000000]"
                   />
                 </div>
@@ -131,7 +131,7 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="colin@company.com"
+                    placeholder="jane@company.com"
                     className="w-full px-4 py-3 rounded-[8px] border-2 border-black focus:bg-[#fafafa] text-black text-sm font-medium focus:outline-none shadow-[2px_2px_0px_0px_#000000]"
                   />
                 </div>
@@ -141,26 +141,26 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-black uppercase mb-1.5">
-                    Company / Venture *
+                    Company / Brand *
                   </label>
                   <input
                     required
                     type="text"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    placeholder="Alternative Aesthetics"
+                    placeholder="Acme Records or Studio"
                     className="w-full px-4 py-3 rounded-[8px] border-2 border-black focus:bg-[#fafafa] text-black text-sm font-medium focus:outline-none shadow-[2px_2px_0px_0px_#000000]"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-black uppercase mb-1.5">
-                    Website / Deck URL
+                    Website / Reference URL
                   </label>
                   <input
                     type="url"
                     value={formData.website}
                     onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                    placeholder="https://alternativeaesthetics.co.uk"
+                    placeholder="https://yourbrand.com"
                     className="w-full px-4 py-3 rounded-[8px] border-2 border-black focus:bg-[#fafafa] text-black text-sm font-medium focus:outline-none shadow-[2px_2px_0px_0px_#000000]"
                   />
                 </div>
@@ -169,7 +169,7 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
               {/* Primary Scope */}
               <div>
                 <label className="block text-xs font-bold text-black uppercase mb-1.5">
-                  Primary Scope of Engagement
+                  Primary Scope of Commission
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {scopeOptions.map((opt) => (
@@ -177,7 +177,7 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
                       type="button"
                       key={opt}
                       onClick={() => setFormData({ ...formData, scope: opt })}
-                      className={`text-left px-3.5 py-2.5 rounded-[8px] text-xs font-bold transition-all border-2 border-black ${
+                      className={`text-left px-3.5 py-2.5 rounded-[8px] text-xs font-bold transition-all border-2 border-black cursor-pointer ${
                         formData.scope === opt
                           ? 'bg-black text-white shadow-[2px_2px_0px_0px_#424242]'
                           : 'bg-white text-black hover:bg-[#f5f5f5] shadow-[2px_2px_0px_0px_#000000]'
@@ -192,7 +192,7 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
               {/* Budget Qualification */}
               <div>
                 <label className="block text-xs font-bold text-black uppercase mb-1.5">
-                  Allocated Capital / Budget Tier *
+                  Allocated Budget Tier *
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {budgetOptions.map((opt) => (
@@ -200,7 +200,7 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
                       type="button"
                       key={opt}
                       onClick={() => setFormData({ ...formData, budget: opt })}
-                      className={`text-left px-3.5 py-2.5 rounded-[8px] text-xs font-bold font-mono transition-all border-2 border-black ${
+                      className={`text-left px-3.5 py-2.5 rounded-[8px] text-xs font-bold font-mono transition-all border-2 border-black cursor-pointer ${
                         formData.budget === opt
                           ? 'bg-black text-white shadow-[2px_2px_0px_0px_#424242]'
                           : 'bg-white text-black hover:bg-[#f5f5f5] shadow-[2px_2px_0px_0px_#000000]'
@@ -223,7 +223,7 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
                       type="button"
                       key={opt}
                       onClick={() => setFormData({ ...formData, timeline: opt })}
-                      className={`px-3 py-1.5 rounded-[8px] text-xs font-bold border-2 border-black ${
+                      className={`px-3 py-1.5 rounded-[8px] text-xs font-bold border-2 border-black cursor-pointer ${
                         formData.timeline === opt
                           ? 'bg-black text-white'
                           : 'bg-white text-black hover:bg-[#f5f5f5]'
@@ -238,13 +238,13 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
               {/* Summary */}
               <div>
                 <label className="block text-xs font-bold text-black uppercase mb-1.5">
-                  Brief Executive Summary (Optional)
+                  Project Notes or Creative Vision (Optional)
                 </label>
                 <textarea
                   rows={2}
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  placeholder="Key goals, deliverables, or bottlenecks..."
+                  placeholder="Tell Dharshana about your vision, wall dimensions, launch date, or ideas..."
                   className="w-full px-4 py-3 rounded-[8px] border-2 border-black text-black text-sm font-medium focus:outline-none shadow-[2px_2px_0px_0px_#000000] resize-none"
                 />
               </div>
@@ -253,19 +253,19 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-2 text-xs text-[#7f7f7f] font-mono">
                   <Shield className="w-4 h-4 text-black" />
-                  <span>Mutual NDA executed prior to discovery</span>
+                  <span>Mutual NDA executed upon discovery</span>
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="aa-button-primary w-full sm:w-auto px-8 py-3.5 text-xs uppercase font-bold tracking-wider flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full sm:w-auto px-8 py-3.5 text-xs uppercase font-bold tracking-wider flex items-center justify-center gap-2 bg-black text-white rounded-[8px] border-2 border-black hover:bg-[#424242] shadow-[3px_3px_0px_0px_#424242] transition-all disabled:opacity-50 cursor-pointer"
                 >
                   {isSubmitting ? (
-                    <span>Evaluating Parameters...</span>
+                    <span>Transmitting Inquiry...</span>
                   ) : (
                     <>
-                      <span>Transmit Application</span>
+                      <span>Transmit Commission Inquiry</span>
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}
@@ -280,28 +280,28 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
               <CheckCircle className="w-8 h-8" />
             </div>
 
-            <div className="aa-badge text-xs font-bold uppercase mb-3 bg-[#f5f5f5]">
-              Application Transmitted
+            <div className="inline-block border-2 border-black rounded-[8px] px-3 py-1 text-xs font-bold uppercase mb-3 bg-[#f5f5f5] shadow-[2px_2px_0px_0px_#000000]">
+              Inquiry Transmitted
             </div>
 
             <h3 className="font-display text-3xl sm:text-4xl text-black mb-4">
-              Thank you, {formData.name}.
+              Thank you, {formData.name}!
             </h3>
 
             <p className="text-[#424242] text-sm max-w-md mx-auto leading-relaxed mb-8">
-              Our Studio Principals review applications within 24 hours. Because your budget aligns with our{' '}
-              <span className="font-bold text-black">{formData.budget}</span> qualification criteria, we will reach out directly to schedule a private executive briefing.
+              Dharshana reviews commission requests within 24 hours. Because your project aligns with the{' '}
+              <span className="font-bold text-black">{formData.budget}</span> tier, Dharshana will reach out directly to schedule a private creative briefing.
             </p>
 
             <div className="p-4 rounded-[8px] bg-[#f5f5f5] border-2 border-black max-w-sm mx-auto text-left mb-8 font-mono text-xs text-[#424242] space-y-1.5 shadow-[2px_2px_0px_0px_#000000]">
               <div>Partner: <span className="text-black font-bold">{formData.company}</span></div>
               <div>Timeline: <span className="text-black font-bold">{formData.timeline}</span></div>
-              <div>Primary Scope: <span className="text-black font-bold">{formData.scope}</span></div>
+              <div>Scope: <span className="text-black font-bold">{formData.scope}</span></div>
             </div>
 
             <button
               onClick={onClose}
-              className="aa-button-secondary px-8 py-3 text-xs uppercase font-bold tracking-wider"
+              className="px-8 py-3 rounded-[8px] bg-white text-black font-bold text-xs uppercase tracking-wider border-2 border-black hover:bg-[#f5f5f5] shadow-[3px_3px_0px_0px_#000000] cursor-pointer"
             >
               Return to Portfolio
             </button>

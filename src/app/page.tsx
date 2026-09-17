@@ -5,6 +5,7 @@ import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import CaseStudies from '@/components/CaseStudies';
 import Capabilities from '@/components/Capabilities';
+import Testimonials from '@/components/Testimonials';
 import EngagementModel from '@/components/EngagementModel';
 import Footer from '@/components/Footer';
 import ApplicationModal from '@/components/ApplicationModal';
@@ -29,6 +30,7 @@ export default function Home() {
       <Hero onOpenApplication={() => handleOpenApplication()} />
       <CaseStudies onOpenApplication={handleOpenApplication} />
       <Capabilities onOpenApplication={() => handleOpenApplication()} />
+      <Testimonials />
       <EngagementModel onOpenApplication={handleOpenApplication} />
       <Footer onOpenApplication={() => handleOpenApplication()} />
 

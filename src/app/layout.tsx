@@ -16,12 +16,12 @@ const heebo = Heebo({
 });
 
 export const metadata: Metadata = {
-  title: 'Dharshana Studio | Bold Digital Product, Illustration & Creative Engineering',
-  description: 'Playful, bold, high-consequence digital products and illustrations. Built for founders and enterprises that refuse mediocrity.',
-  keywords: ['Dharshana Studio', 'Creative Agency', 'Illustration', 'Digital Product', 'Bento Grid'],
+  title: 'Dharshana | Commercial Illustrator, Muralist & Creative Technologist',
+  description: 'Personal portfolio of Dharshana. Playful pictures, large-scale murals, brand mascots, vinyl packaging, and creative engineering for brands that refuse mediocrity.',
+  keywords: ['Dharshana', 'Commercial Illustrator', 'Muralist', 'Creative Technologist', 'Personal Portfolio', 'Character Design', 'Cardiff Art', 'Bento Grid'],
   openGraph: {
-    title: 'Dharshana Studio | Bold Digital Products & Creative Engineering',
-    description: 'Playful pictures, bold code, and venture-scale systems engineered on your behalf.',
+    title: 'Dharshana | Commercial Illustrator, Muralist & Creative Technologist',
+    description: 'Playful pictures, bold code, and category-defining visual worlds created on your behalf.',
     type: 'website',
   },
 };

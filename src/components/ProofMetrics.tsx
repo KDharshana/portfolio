@@ -2,25 +2,25 @@
 
 import { motion } from 'framer-motion';
 import { STATS } from '@/lib/data';
-import { TrendingUp, Award, Zap, Users } from 'lucide-react';
+import { PackageCheck, UserCheck, HeartHandshake, Trophy } from 'lucide-react';
 
 export default function ProofMetrics() {
-  const icons = [TrendingUp, Zap, Users, Award];
+  const icons = [PackageCheck, UserCheck, HeartHandshake, Trophy];
 
   return (
     <section id="proof" className="py-20 border-b-2 border-black bg-[#fafafa]">
       <div className="max-w-[1224px] mx-auto px-4 sm:px-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
           <div>
-            <div className="aa-badge text-xs font-bold uppercase mb-3 bg-white">
-              01 // VERIFIABLE RECORD
+            <div className="inline-block border-2 border-black rounded-[8px] px-3 py-1 text-xs font-bold uppercase mb-3 bg-white shadow-[2px_2px_0px_0px_#000000]">
+              VERIFIABLE TRACK RECORD
             </div>
             <h2 className="font-display text-3xl sm:text-4xl text-black">
-              Proof Over Posturing.
+              Proven Craft & Cultural Impact.
             </h2>
           </div>
           <p className="text-sm sm:text-base text-[#424242] max-w-md font-light">
-            We measure success in enterprise scale, venture fundraises, and benchmarked operational velocity.
+            Measured in thousands of collector unboxings, iconic public murals, and zero outsourced middlemen.
           </p>
         </div>
 
@@ -35,12 +35,12 @@ export default function ProofMetrics() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className="aa-card p-6 flex flex-col justify-between"
+                className="bg-white border-2 border-black rounded-[8px] p-6 shadow-[4px_4px_0px_0px_#000000] flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="font-mono text-xs font-bold text-[#7f7f7f]">
-                      // METRIC_0{idx + 1}
+                      // RECORD_0{idx + 1}
                     </span>
                     <div className="w-8 h-8 rounded-[8px] border-2 border-black bg-[#f0f0f0] flex items-center justify-center text-black">
                       <Icon className="w-4 h-4" />

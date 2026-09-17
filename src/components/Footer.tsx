@@ -12,7 +12,7 @@ export default function Footer({ onOpenApplication }: FooterProps) {
       <div className="max-w-[700px] mx-auto flex flex-col items-center justify-center">
         {/* Call to action heading */}
         <h3 className="font-sans text-xl sm:text-2xl text-black font-normal mb-8">
-          Want to create something fun together?
+          Want to create something fun with Dharshana?
         </h3>
 
         {/* Rotated Let's Play! Button */}
@@ -37,8 +37,8 @@ export default function Footer({ onOpenApplication }: FooterProps) {
         {/* Copyright notice */}
         <div className="text-xs sm:text-sm text-black/80 font-normal leading-relaxed">
           <p>All content © Dharshana. All rights reserved.</p>
-          <p className="mt-1">
-            For more details view the <a href="#" className="font-bold hover:underline">Terms & Conditions</a>
+          <p className="mt-1 text-xs text-[#7f7f7f] font-mono">
+            Commercial Murals • Mascots & Characters • Packaging • Creative Engineering
           </p>
         </div>
       </div>
