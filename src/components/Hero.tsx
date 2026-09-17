@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
 
@@ -66,19 +67,19 @@ export default function Hero({ onOpenApplication }: HeroProps) {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-wrap items-center justify-center gap-4 mt-6"
         >
-          <button
-            onClick={scrollToWork}
+          <Link
+            href="/project"
             className="px-6 py-3 rounded-[8px] bg-black text-white text-xs sm:text-sm font-bold uppercase tracking-wider border-2 border-black hover:bg-[#424242] transition-all shadow-[3px_3px_0px_0px_#424242] flex items-center gap-2 cursor-pointer"
           >
-            <span>Explore Works</span>
+            <span>Explore Projects</span>
             <ArrowRight className="w-4 h-4" />
-          </button>
-          <button
-            onClick={onOpenApplication}
+          </Link>
+          <Link
+            href="/contact"
             className="px-6 py-3 rounded-[8px] bg-white text-black text-xs sm:text-sm font-bold uppercase tracking-wider border-2 border-black hover:bg-[#f5f5f5] transition-all shadow-[3px_3px_0px_0px_#000000] cursor-pointer"
           >
             Commission Dharshana
-          </button>
+          </Link>
         </motion.div>
       </div>
 
