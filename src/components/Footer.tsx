@@ -8,7 +8,7 @@ interface FooterProps {
 
 export default function Footer({ onOpenApplication }: FooterProps) {
   return (
-    <footer className="w-full bg-white pt-24 pb-20 px-4 text-center">
+    <footer className="w-full bg-white pt-24 pb-20 px-4 text-center border-t border-black/10">
       <div className="max-w-[700px] mx-auto flex flex-col items-center justify-center">
         {/* Call to action heading */}
         <h3 className="font-sans text-xl sm:text-2xl text-black font-normal mb-8">
@@ -23,19 +23,20 @@ export default function Footer({ onOpenApplication }: FooterProps) {
           Let&apos;s Play!
         </button>
 
-        {/* Hand-drawn Social Doodles */}
-        <div className="relative w-64 h-16 mb-12 flex items-center justify-center">
+        {/* Hand-drawn Social Doodles - strictly constrained */}
+        <div className="w-[260px] max-w-full h-auto mb-12 mx-auto flex items-center justify-center">
           <Image
             src="/images/social-doodles.png"
             alt="Social doodles: butterfly, linkedin sticky note, paper airplane"
-            fill
-            className="object-contain"
+            width={260}
+            height={64}
+            className="w-[260px] max-w-full h-auto object-contain mx-auto"
           />
         </div>
 
         {/* Copyright notice */}
         <div className="text-xs sm:text-sm text-black/80 font-normal leading-relaxed">
-          <p>All content © Colin Kersley. All rights reserved.</p>
+          <p>All content © Dharshana. All rights reserved.</p>
           <p className="mt-1">
             For more details view the <a href="#" className="font-bold hover:underline">Terms & Conditions</a>
           </p>

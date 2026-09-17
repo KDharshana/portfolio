@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
 
 interface CapabilitiesProps {
@@ -63,33 +62,35 @@ export default function Capabilities({ onOpenApplication }: CapabilitiesProps) {
         <div id="about" className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16">
           <div className="lg:col-span-8">
             <div className="inline-block border-2 border-black rounded-[8px] px-3 py-1 text-xs font-bold bg-white mb-3 shadow-[2px_2px_0px_0px_#000000]">
-              ABOUT ALTERNATIVE AESTHETICS
+              ABOUT DHARSHANA STUDIO
             </div>
             <h2 className="font-display text-3xl sm:text-5xl text-black leading-tight mb-4">
               Playful pictures that are bold on your behalf!
             </h2>
             <p className="text-base sm:text-lg text-[#424242] leading-relaxed font-light max-w-2xl">
-              Created by Colin Kersley from the depths of his drawing dungeon in Cardiff, UK. 
-              We work with global record labels, forward-thinking tech ventures, cultural institutions, and ambitious brands who want artwork with an unmistakable soul.
+              Created by Dharshana from the depths of the creative drawing dungeon. 
+              We work with global record labels, forward-thinking tech ventures, cultural institutions, and ambitious brands who want artwork and software with an unmistakable soul.
             </p>
           </div>
 
           {/* Doodles Showcase */}
-          <div className="lg:col-span-4 flex items-center justify-center gap-6">
-            <div className="relative w-28 h-36">
+          <div className="lg:col-span-4 flex items-center justify-center gap-8">
+            <div className="w-28 h-auto flex items-center justify-center">
               <Image
                 src="/images/art-breathe.png"
                 alt="Breathe plant illustration"
-                fill
-                className="object-contain hover:scale-105 transition-transform"
+                width={112}
+                height={144}
+                className="w-28 h-auto object-contain hover:scale-105 transition-transform"
               />
             </div>
-            <div className="relative w-28 h-36">
+            <div className="w-28 h-auto flex items-center justify-center">
               <Image
                 src="/images/art-hot-damn.png"
                 alt="Hot Damn illustration"
-                fill
-                className="object-contain hover:scale-105 transition-transform"
+                width={112}
+                height={144}
+                className="w-28 h-auto object-contain hover:scale-105 transition-transform"
               />
             </div>
           </div>
@@ -130,7 +131,7 @@ export default function Capabilities({ onOpenApplication }: CapabilitiesProps) {
                 <span className="text-xs font-mono text-[#7f7f7f]">Direct Commission</span>
                 <button
                   onClick={onOpenApplication}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:underline"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:underline cursor-pointer"
                 >
                   <span>Request Scope</span>
                   <ArrowRight className="w-3.5 h-3.5" />

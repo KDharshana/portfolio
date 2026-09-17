@@ -16,11 +16,11 @@ const heebo = Heebo({
 });
 
 export const metadata: Metadata = {
-  title: 'Alternative Aesthetics | Bold Digital Product & AI Engineering Studio',
-  description: 'Playful, bold, high-consequence digital products and autonomous AI systems. Built for founders and enterprises that refuse mediocrity.',
-  keywords: ['Bespoke Agency', 'Alternative Aesthetics', 'AI Systems', 'Next.js', 'Bento Grid', 'Venture Products'],
+  title: 'Dharshana Studio | Bold Digital Product, Illustration & Creative Engineering',
+  description: 'Playful, bold, high-consequence digital products and illustrations. Built for founders and enterprises that refuse mediocrity.',
+  keywords: ['Dharshana Studio', 'Creative Agency', 'Illustration', 'Digital Product', 'Bento Grid'],
   openGraph: {
-    title: 'Alternative Aesthetics | Bold Digital Products & AI Systems',
+    title: 'Dharshana Studio | Bold Digital Products & Creative Engineering',
     description: 'Playful pictures, bold code, and venture-scale systems engineered on your behalf.',
     type: 'website',
   },

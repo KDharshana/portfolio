@@ -12,20 +12,19 @@ export default function Navigation({ onOpenApplication }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="w-full bg-white pt-6 pb-2 px-6 sm:px-12 relative z-30">
+    <header className="w-full bg-white pt-6 pb-4 px-6 sm:px-12 relative z-30 border-b border-black/10">
       <div className="max-w-[1400px] mx-auto flex items-center justify-between">
         {/* Left Side: Crayon Logo + Nav Links */}
         <div className="flex items-center gap-6 sm:gap-10">
           <a href="#" className="flex items-center group">
-            <div className="relative w-14 h-9 sm:w-16 sm:h-10 transition-transform group-hover:scale-110 group-hover:-rotate-3">
-              <Image
-                src="/images/crayon-logo.png"
-                alt="Alternative Aesthetics Crayon"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
+            <Image
+              src="/images/crayon-logo.png"
+              alt="Alternative Aesthetics Crayon"
+              width={70}
+              height={45}
+              className="w-auto h-9 sm:h-10 object-contain transition-transform group-hover:scale-110 group-hover:-rotate-3"
+              priority
+            />
           </a>
 
           <nav className="hidden sm:flex items-center gap-6 sm:gap-8 font-sans text-[15px] sm:text-[16px] text-black font-normal">
@@ -44,15 +43,14 @@ export default function Navigation({ onOpenApplication }: NavigationProps) {
         {/* Center: Severed Rock-on Hand Icon */}
         <div className="absolute left-1/2 -translate-x-1/2 top-4 hidden md:block">
           <a href="#" className="block transition-transform hover:-translate-y-1 hover:rotate-3">
-            <div className="relative w-9 h-14">
-              <Image
-                src="/images/rock-hand.png"
-                alt="Rock on Hand"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
+            <Image
+              src="/images/rock-hand.png"
+              alt="Rock on Hand"
+              width={36}
+              height={56}
+              className="w-auto h-12 object-contain"
+              priority
+            />
           </a>
         </div>
 

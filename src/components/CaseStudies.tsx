@@ -127,12 +127,13 @@ export default function CaseStudies({ onOpenApplication }: CaseStudiesProps) {
       {/* Category Tabs with Crossed Pencils */}
       <div className="flex flex-col items-center justify-center mb-12 px-4">
         {/* Crossed Pencils Icon */}
-        <div className="relative w-12 h-12 mb-4">
+        <div className="w-12 h-12 mb-4 flex items-center justify-center">
           <Image
             src="/images/crossed-pencils.png"
             alt="Crossed Pencils"
-            fill
-            className="object-contain"
+            width={48}
+            height={48}
+            className="w-12 h-12 object-contain"
           />
         </div>
 
