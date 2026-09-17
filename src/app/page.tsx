@@ -3,42 +3,32 @@
 import { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import CaseStudies from '@/components/CaseStudies';
-import Capabilities from '@/components/Capabilities';
+import AboutSection from '@/components/AboutSection';
+import SkillsSection from '@/components/SkillsSection';
+import ProjectsSection from '@/components/ProjectsSection';
 import Testimonials from '@/components/Testimonials';
 import EngagementModel from '@/components/EngagementModel';
+import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
-import ApplicationModal from '@/components/ApplicationModal';
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTier, setSelectedTier] = useState<string | undefined>(undefined);
 
-  const handleOpenApplication = (preselectedTier?: string) => {
-    setSelectedTier(preselectedTier);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseApplication = () => {
-    setIsModalOpen(false);
-    setSelectedTier(undefined);
+  const handleSelectTier = (tierName: string) => {
+    setSelectedTier(tierName);
   };
 
   return (
     <main className="relative min-h-screen bg-white text-black selection:bg-black selection:text-white">
-      <Navigation onOpenApplication={() => handleOpenApplication()} />
-      <Hero onOpenApplication={() => handleOpenApplication()} />
-      <CaseStudies onOpenApplication={handleOpenApplication} />
-      <Capabilities onOpenApplication={() => handleOpenApplication()} />
+      <Navigation />
+      <Hero />
+      <AboutSection />
+      <SkillsSection />
+      <ProjectsSection />
       <Testimonials />
-      <EngagementModel onOpenApplication={handleOpenApplication} />
-      <Footer onOpenApplication={() => handleOpenApplication()} />
-
-      <ApplicationModal
-        isOpen={isModalOpen}
-        onClose={handleCloseApplication}
-        preselectedTier={selectedTier}
-      />
+      <EngagementModel onSelectTier={handleSelectTier} />
+      <ContactSection preselectedTier={selectedTier} />
+      <Footer />
     </main>
   );
 }

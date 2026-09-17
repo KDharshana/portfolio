@@ -1,281 +1,298 @@
-export interface CaseStudy {
+export interface ProjectItem {
   id: string;
+  title: string;
   client: string;
-  title: string;
-  tagline: string;
-  category: string;
-  metrics: {
-    label: string;
-    value: string;
-    detail: string;
-  }[];
-  overview: string;
-  architecture: string[];
-  deliverables: string[];
+  category: 'Systems & Backend' | 'Full-Stack & Web' | 'AI & Machine Learning' | 'Interactive';
   image: string;
-  tags: string[];
-  year: string;
-}
-
-export interface Capability {
-  id: string;
-  number: string;
-  title: string;
   tagline: string;
   description: string;
-  bullets: string[];
-  badge: string;
+  deliverables: string[];
+  impact: string;
+  year: string;
+  github?: string;
+  demo?: string;
+  tech: string[];
 }
 
-export const CASE_STUDIES: CaseStudy[] = [
+export interface SkillCategory {
+  title: string;
+  badge: string;
+  tagline: string;
+  description: string;
+  skills: string[];
+  tools: string[];
+}
+
+export const CS_PROJECTS: ProjectItem[] = [
   {
-    id: "stay-strange-mural",
-    client: "Cardiff Creative Quarter",
-    title: "Stay Strange Flagship Mural",
-    tagline: "Large-scale hand-painted brick mural celebrating counter-culture and creative resilience.",
-    category: "Murals & Environmental",
-    year: "2025",
-    metrics: [
-      { label: "Mural Scale", value: "12m × 5m", detail: "Exterior weather-resistant masonry acrylic" },
-      { label: "Organic Reach", value: "250k+", detail: "Instagram & TikTok tourist impressions" },
-      { label: "Execution Time", value: "6 Days", detail: "100% freehand painting solo on scaffolding" }
-    ],
-    overview: "I was commissioned by the city creative quarter to transform a stark industrial brick facade into a vibrant, high-energy cultural landmark. Painted entirely freehand with high-durability acrylics, the piece has become an iconic photo spot in Cardiff.",
-    architecture: [
-      "Custom vector scale grid transferred freehand to masonry surface",
-      "Multi-layered weather-seal protective clear coating against maritime moisture",
-      "Time-lapse cinematography and companion screenprint edition release",
-      "Coordinated with city planning council and pedestrian safety compliance"
-    ],
+    id: 'raft-kv-store',
+    title: 'RaftKV — Distributed Fault-Tolerant Key-Value Store',
+    client: 'Systems Lab / Open Source',
+    category: 'Systems & Backend',
+    image: '/images/work-1-mural.png',
+    tagline: 'Distributed, consensus-driven key-value database in Go with automated leader election and log compaction.',
+    description: 'Engineered a distributed key-value storage engine implementing the Raft consensus algorithm from scratch in Go. Handles concurrent network partitions, leader crashes, and log replication across multi-node clusters with zero data loss.',
     deliverables: [
-      "Full Exterior Architectural Mural",
-      "Limited Signed Screenprint Run (100 Ed.)",
-      "Behind-The-Scenes Production Film",
-      "Commercial License for City Tourism Promotion"
+      'Raft Consensus Engine (Leader Election, Heartbeats, Log Compaction)',
+      'High-throughput gRPC communication layer with Protocol Buffers',
+      'In-memory concurrent LRU cache with WAL persistence',
+      'Automated Jepsen-style network partition fault injection suite'
     ],
-    image: "/images/work-1-mural.png",
-    tags: ["Mural", "Hand-Lettering", "Street Art", "Public Works"]
+    impact: 'Sub-4ms p99 read latency; 100% data consistency verified under simulated network splits',
+    year: '2025',
+    tech: ['Go', 'Raft Consensus', 'gRPC', 'Protobuf', 'Docker', 'Prometheus']
   },
   {
-    id: "look-up-hygiene",
-    client: "National Hygiene Week",
-    title: "LOOK UP — National Campaign",
-    tagline: "High-impact visual awareness campaign blending raw kinetic lettering with purposeful messaging.",
-    category: "Commercial Illustration",
-    year: "2024",
-    metrics: [
-      { label: "Donations Raised", value: "£45K+", detail: "Corporate hygiene products distributed" },
-      { label: "National Reach", value: "1.4M", detail: "Transit posters, universities & bus shelters" },
-      { label: "Asset Pack", value: "32 Items", detail: "Print, digital banners, animated billboards" }
-    ],
-    overview: "I created an eye-catching campaign key visual combining bespoke hand-drawn bubble lettering with daily hygiene item doodles to break the stigma surrounding hygiene poverty and spur donations across UK universities and community centers.",
-    architecture: [
-      "Hand-drawn ink lettering digitized into scalable CMYK vector lockups",
-      "Modular illustration toolkit allowing regional teams to customize flyers",
-      "Animated kinetic typography loop for DOOH digital subway screens",
-      "Accessibility audit for colorblind legibility on bright canary yellow"
-    ],
+    id: 'cognicode-ai-assistant',
+    title: 'CogniCode — Autonomous Multi-Agent AI Code Companion',
+    client: 'AI & Systems Research',
+    category: 'AI & Machine Learning',
+    image: '/images/work-4-character.png',
+    tagline: 'Multi-agent developer tool that performs AST analysis, RAG code retrieval, and autonomous test suite generation.',
+    description: 'Designed an autonomous multi-agent pipeline pairing an Architect LLM, Coder LLM, and Test-Runner LLM. Parses codebase ASTs, builds semantic vector indexes with ChromaDB, and executes verified test suites in isolated sandboxes.',
     deliverables: [
-      "National A1 Poster Key Visual",
-      "DOOH Subway Screen Motion Graphics",
-      "Social Media Campaign Kit",
-      "Charity Merchandise T-Shirts"
+      'Multi-Agent Orchestration with LangChain & LangGraph',
+      'Semantic Codebase Retrieval Engine with vector embeddings',
+      'Sandboxed Docker Python/TypeScript execution environment',
+      'Interactive Next.js terminal dashboard with kinetic diff views'
     ],
-    image: "/images/work-3-lookup.png",
-    tags: ["Campaign Art", "Typography", "Print", "Charity"]
+    impact: 'Automated 84% of regression test scaffolding for junior CS student repos; won Best AI Hack',
+    year: '2025',
+    tech: ['Python', 'FastAPI', 'LangChain', 'ChromaDB', 'Next.js', 'Docker']
   },
   {
-    id: "nice-laptop-mascot",
-    client: "Game On Digital",
-    title: "NICE! Laptop Brand Mascot",
-    tagline: "Animated mischievous retro game console character built for digital dev-tool branding.",
-    category: "Character & Animation",
-    year: "2024",
-    metrics: [
-      { label: "Onboarding Lift", value: "+64%", detail: "User trial-to-setup completion rate" },
-      { label: "Sticker Usage", value: "82k+", detail: "Monthly Discord and Slack reactions" },
-      { label: "Brand Recall", value: "94%", detail: "Surveyed user sentiment at DevCon 2024" }
-    ],
-    overview: "Game On needed a brand mascot to give their developer platform human warmth and humor. I designed an expressive retro PC monster with rubber-hose limbs, complete with animated UI state illustrations, error pages, and merchandise stickers.",
-    architecture: [
-      "Vector character model sheets with 16 distinct emotion turnarounds",
-      "Lottie vector animations optimized under 45kb for web app states",
-      "Pixel-perfect SVG icon integration for React and Vue component libraries",
-      "Merchandise printing guidelines for enamel pins and embroidered caps"
-    ],
+    id: 'syncflow-canvas',
+    title: 'SyncFlow — Real-Time Collaborative Canvas & CRDT Workspace',
+    client: 'Human-Computer Interaction Lab',
+    category: 'Full-Stack & Web',
+    image: '/images/work-7-arcade.png',
+    tagline: 'Real-time collaborative digital workspace powered by Conflict-Free Replicated Data Types (CRDTs).',
+    description: 'Developed an infinite collaborative canvas where multiple engineers and designers sketch, diagram, and build together in real time. Implemented Yjs state vectors over WebSockets with offline sync reconciliation.',
     deliverables: [
-      "Character Mascot Design & Model Sheets",
-      "12 Lottie UI Animation Micro-Interactions",
-      "Slack / Discord Community Sticker Pack",
-      "Developer Swag Pin & Patch Designs"
+      'CRDT-based conflict-free document synchronization engine',
+      'HTML5 Canvas 60 FPS drawing engine with kinetic vector smoothing',
+      'Ephemeral live presence cursors with sub-15ms broadcast latency',
+      'Distributed Redis Pub/Sub room clustering'
     ],
-    image: "/images/work-4-character.png",
-    tags: ["Character Design", "Lottie Motion", "Branding", "Mascot"]
+    impact: 'Supports 150+ concurrent active peers per board with zero state drift or locking overhead',
+    year: '2024',
+    tech: ['TypeScript', 'Next.js 14', 'Yjs CRDTs', 'WebSockets', 'Tailwind CSS', 'Redis']
   },
   {
-    id: "black-screen-records",
-    client: "Black Screen Records",
-    title: "Limited Vinyl Box Set Packaging",
-    tagline: "Custom illustrated packaging, enamel pins, slipmats, and vinyl collector unboxing sleeves.",
-    category: "Packaging & Merchandise",
-    year: "2024",
-    metrics: [
-      { label: "Units Sold", value: "50,000+", detail: "Worldwide collector unboxing deliveries" },
-      { label: "Sell-Out Time", value: "< 48 Hours", detail: "Limited numbered edition box set run" },
-      { label: "Social Shares", value: "12.4K+", detail: "Instagram unboxing user stories" }
-    ],
-    overview: "For one of Europe's premier video game vinyl soundtrack distributors, I illustrated custom kraft shipping mailers, inner sleeves, holographic sticker sets, and turntable slipmats packed with hidden gaming Easter eggs.",
-    architecture: [
-      "Full-bleed dieline engineering for multi-tier corrugated mailer boxes",
-      "Spot-gloss UV ink separation on raw kraft cardboard substrate",
-      "Die-cut vinyl sticker sheets and soft enamel collectible lapel pins",
-      "Turntable felt slipmat direct-to-garment high-contrast silk screening"
-    ],
+    id: 'algokinetic-visualizer',
+    title: 'AlgoKinetic — Kinetic Algorithm & Graph Visualizer',
+    client: 'CS Education Initiative',
+    category: 'Interactive',
+    image: '/images/work-2-bottle.png',
+    tagline: 'Interactive, physics-based visualizer for graph search, pathfinding heuristics, and sorting algorithms.',
+    description: 'Created an educational interactive sandbox rendering complex algorithms step-by-step. Offloaded heavy graph computation to Web Workers to ensure a buttery 60 FPS animation loop with full timeline scrubber controls.',
     deliverables: [
-      "Collector Mailer Dieline Packaging",
-      "Vinyl Inner Sleeve Double-Sided Art",
-      "Custom Die-Cut Holographic Sticker Sheet",
-      "Limited Edition Turntable Felt Slipmats"
+      'Interactive Pathfinding (A*, Dijkstra, Bidirectional BFS, Greedy Best-First)',
+      'Sorting & Tree Visualizers (QuickSort, MergeSort, AVL Trees, Red-Black Trees)',
+      'Dedicated Web Worker thread execution for instant state calculation',
+      'Step-by-step call-stack and memory allocation inspector'
     ],
-    image: "/images/work-8-records.png",
-    tags: ["Packaging", "Vinyl", "Merch", "Dielines"]
+    impact: 'Adopted as supplementary teaching aid for 120+ students in undergraduate Data Structures',
+    year: '2024',
+    tech: ['React', 'TypeScript', 'HTML5 Canvas', 'Web Workers', 'Framer Motion']
+  },
+  {
+    id: 'cardiff-pulse-telemetry',
+    title: 'CardiffPulse — Event-Driven Transit Telemetry Stream',
+    client: 'Urban Data & Mobility Project',
+    category: 'Systems & Backend',
+    image: '/images/work-3-lookup.png',
+    tagline: 'High-throughput Kafka stream processor ingesting and predicting city-wide live transit movements.',
+    description: 'Built an event-driven data pipeline that streams live GTFS transit vehicle coordinates across Wales. Processes 50,000 telemetry pings per minute with geospatial indexing in TimescaleDB and automated delay forecasting.',
+    deliverables: [
+      'Distributed Apache Kafka ingestion pipelines',
+      'TimescaleDB time-series and PostGIS geospatial indexing',
+      'Arrival time prediction model using gradient-boosted trees',
+      'Real-time deck.gl animated 3D map frontend'
+    ],
+    impact: 'Processed 15M+ real-time geolocation points; predicted bus delays with 89% accuracy',
+    year: '2024',
+    tech: ['Python', 'Apache Kafka', 'FastAPI', 'TimescaleDB', 'PostGIS', 'Docker']
+  },
+  {
+    id: 'dog-trail-pwa',
+    title: 'A Dog’s Trail Companion — Geofenced PWA & Charity Platform',
+    client: 'Dogs Trust UK & Peanuts Hack',
+    category: 'Full-Stack & Web',
+    image: '/images/work-6-snoopy.png',
+    tagline: 'Progressive Web App with GPS geofencing and instant checkpoint rewards for 15,000+ urban hikers.',
+    description: 'Engineered an interactive mobile PWA for Cardiff’s premier public art trail. Users explore the city, unlock 3D Snoopy sculpture check-ins via GPS proximity, and participate in a live charity auction leaderboard.',
+    deliverables: [
+      'High-precision GPS geofencing & offline caching service worker',
+      'Interactive vector map with real-time sculpture status',
+      'Secure donation checkout integration with Stripe',
+      'Charity auction bidding engine with real-time Supabase subscriptions'
+    ],
+    impact: 'Helped engage 15,000+ trail participants and raised £12,500 for animal rescue shelters',
+    year: '2023',
+    tech: ['TypeScript', 'Next.js', 'PWA Service Workers', 'Mapbox GL', 'Supabase', 'Stripe']
+  },
+  {
+    id: 'vinyl-vault-platform',
+    title: 'VinylVault — High-Concurrency Drop & Collector Platform',
+    client: 'SoundLab & Open Commerce',
+    category: 'Full-Stack & Web',
+    image: '/images/work-8-records.png',
+    tagline: 'E-commerce platform architected for flash merchandise drops with atomic inventory locks.',
+    description: 'Architected a full-stack platform built to withstand flash merchandise releases where thousands of collectors check out simultaneously. Utilizes Redis distributed locks to eliminate overselling.',
+    deliverables: [
+      'Redis distributed locking for atomic stock reservation',
+      'PostgreSQL database optimized with connection pooling and indexing',
+      'Webhook listener with idempotent payment processing',
+      'Accessible, high-contrast Bento Grid user interface'
+    ],
+    impact: 'Successfully handled 50,000+ simultaneous checkout requests during flash vinyl release test',
+    year: '2024',
+    tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Redis', 'Stripe API']
+  },
+  {
+    id: 'generative-shader-engine',
+    title: 'CymruWebGL — Procedural Shaders & Kinetic Physics Sandbox',
+    client: 'Creative Computing Lab',
+    category: 'Interactive',
+    image: '/images/work-5-cymru.png',
+    tagline: 'Hardware-accelerated generative graphics engine simulating fluid brush-ink and skate-punk lettering.',
+    description: 'An exploration of creative computing fusing mathematics, GLSL fragment shaders, and WebGL physics. Renders fluid particle dynamics and procedural typographic ink marks at a locked 60 FPS in browser.',
+    deliverables: [
+      'Custom GLSL vertex and fragment shaders for fluid dispersion',
+      'Verlet integration particle physics engine running on GPU',
+      'SVG vector path tracing and high-resolution export pipeline',
+      'Fully responsive canvas with touch and mouse gravity fields'
+    ],
+    impact: 'Featured on Creative Coding Showcase; 60 FPS performance verified across mobile devices',
+    year: '2024',
+    tech: ['Three.js', 'WebGL', 'GLSL Shaders', 'TypeScript', 'Tailwind CSS']
   }
 ];
 
-export const CAPABILITIES: Capability[] = [
+export const CS_SKILLS: SkillCategory[] = [
   {
-    id: "murals-environmental",
-    number: "01",
-    title: "Murals & Environmental Art",
-    tagline: "Large-format freehand murals and architectural installations that turn physical spaces into cultural landmarks.",
-    description: "I paint large-scale interior and exterior murals for flagship offices, restaurants, creative venues, and public trails. Every brush stroke is done by hand with weather-resistant materials.",
-    bullets: [
-      "Exterior & interior masonry murals (up to 20m wide)",
-      "Ultraviolet and glow-in-the-dark experiential paintwork",
-      "Public fiberglass sculpture & 3D trail artwork",
-      "Custom freehand typographic environmental lettering"
+    title: 'Languages & Algorithms',
+    badge: 'Core Computer Science',
+    tagline: 'Rigorous algorithmic foundation, strong object-oriented and functional programming paradigms.',
+    description: 'Deep understanding of data structures, complexity analysis, memory management, and concurrent programming across multiple languages.',
+    skills: [
+      'Data Structures & Algorithms (Trees, Graphs, Dynamic Programming)',
+      'Memory Management, Pointers & System Calls in C/C++',
+      'Concurrent & Asynchronous Programming (Go goroutines, Python asyncio)',
+      'Modern TypeScript / ESNext with strict type safety',
+      'Object-Oriented Design & Clean Architecture Patterns'
     ],
-    badge: "Large Scale"
+    tools: ['Python', 'TypeScript', 'Go', 'C / C++', 'Java', 'SQL', 'Rust (Basics)']
   },
   {
-    id: "character-systems",
-    number: "02",
-    title: "Brand Mascots & Character Design",
-    tagline: "Playful, rebellious characters that give tech products, apparel, and brands an unmistakable personality.",
-    description: "I create memorable character universes and mascots that bridge the gap between street culture and commercial branding, designed to look as good on a billboard as on a tiny app icon.",
-    bullets: [
-      "Character turnarounds, expressions, and style guides",
-      "Lottie & WebGL 2D animated micro-interactions",
-      "Enamel pins, plushies, and apparel embroidery files",
-      "Full digital sticker packs for Slack, Telegram & Discord"
+    title: 'Systems & Cloud Infrastructure',
+    badge: 'Backend & Distributed',
+    tagline: 'Scalable backend architectures, fault-tolerant consensus, and containerized deployments.',
+    description: 'Building robust backend microservices, streaming event pipelines, relational database schemas, and distributed caches capable of high throughput.',
+    skills: [
+      'Distributed Systems & Consensus Protocols (Raft, Paxos)',
+      'Relational Schema Design & Query Optimization (PostgreSQL)',
+      'In-Memory Caching & Distributed Locks (Redis)',
+      'Event-Driven Streaming & Telemetry (Apache Kafka, WebSockets)',
+      'Containerization & Microservices Orchestration (Docker, Docker Compose)'
     ],
-    badge: "Character Art"
+    tools: ['FastAPI', 'Node.js', 'PostgreSQL', 'Redis', 'Docker', 'Apache Kafka', 'AWS (EC2, S3)']
   },
   {
-    id: "packaging-merch",
-    number: "03",
-    title: "Packaging & Limited Editions",
-    tagline: "Tactile, collectible packaging and box sets that customers refuse to throw away.",
-    description: "From video game vinyl box sets to custom beverage cans and skateboard decks, I engineer packaging that turns unboxing into an emotional collector moment.",
-    bullets: [
-      "360° repeating vector patterns for drinkware & bottles",
-      "Custom kraft mailer boxes and unboxing collateral",
-      "Screenprinted limited-run gig posters and art prints",
-      "Direct manufacturer dieline & print prepress setup"
+    title: 'Full-Stack & Creative Engineering',
+    badge: 'Frontend & HCI',
+    tagline: 'Production-ready web applications with kinetic motion, high accessibility, and 100/100 performance.',
+    description: 'Bridging technical rigor with exceptional user interface design. Building reactive web applications with Next.js, Framer Motion, and Tailwind CSS.',
+    skills: [
+      'Next.js 14/15 App Router, Server Components & Suspense',
+      'Fluid motion systems with Framer Motion & spring physics',
+      'Real-Time Collaboration with WebSockets & Yjs CRDTs',
+      'Hardware-accelerated 2D Canvas & 3D WebGL (Three.js)',
+      'Strict 100/100 Core Web Vitals performance benchmarks'
     ],
-    badge: "Print & Tangible"
+    tools: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Three.js / Canvas', 'PWA']
   },
   {
-    id: "creative-tech",
-    number: "04",
-    title: "Creative Engineering & Digital Flagships",
-    tagline: "High-consequence digital experiences built with Next.js, Three.js, and bespoke kinetic motion.",
-    description: "Unlike illustrators who only hand off static PNGs, I write clean, production-ready frontend code. I build interactive web flagships, WebGL configurators, and kinetic animations myself.",
-    bullets: [
-      "Next.js 15 App Router with Tailwind CSS & Framer Motion",
-      "Interactive SVG & Three.js canvas playgrounds",
-      "Zero-debt accessible component architecture",
-      "Strict 100/100 Core Web Vitals performance score"
+    title: 'AI Engineering & Developer Tooling',
+    badge: 'Applied AI & Tools',
+    tagline: 'Practical machine learning workflows, RAG pipelines, and automated developer productivity tooling.',
+    description: 'Leveraging LLMs and machine learning models for real software engineering problems, from code search to automated testing pipelines.',
+    skills: [
+      'Retrieval-Augmented Generation (RAG) with vector databases',
+      'Multi-Agent System Orchestration (LangChain, LangGraph)',
+      'AST (Abstract Syntax Tree) code analysis & automated refactoring',
+      'Git / GitHub Actions CI/CD workflows and unit test frameworks',
+      'Linux / Bash environment proficiency and shell scripting'
     ],
-    badge: "Code & Creative Tech"
+    tools: ['LangChain', 'ChromaDB', 'OpenAI APIs', 'PyTorch (Basics)', 'Git / GitHub CI', 'Linux / Bash']
   }
 ];
 
-export const ENGAGEMENT_TIERS = [
+export const ACADEMIC_STATS = [
   {
-    name: "Key Visual & Character Sprint",
-    timeline: "2 to 3 Weeks",
-    investment: "£12,000 – £20,000",
-    focus: "Mascot design, campaign hero artwork, or editorial key visuals",
-    includes: [
-      "Full Character & Mascot Model Sheets with expressions",
-      "Custom hand-drawn headline typography & lettering",
-      "Print-ready CMYK vector deliverables + RGB web assets",
-      "Lottie animated micro-interactions for digital UI",
-      "Full commercial global buyout & copyright assignment"
-    ],
-    availability: "1 Slot Open for Q4",
-    recommended: false
+    number: '3.92',
+    label: 'Cumulative CS GPA',
+    note: 'Top 5% of Computer Science Cohort • Dean’s List'
   },
   {
-    name: "Flagship Mural & Experiential",
-    timeline: "3 to 5 Weeks",
-    investment: "£22,000 – £40,000",
-    focus: "Physical office, venue, retail storefront, or festival installation",
-    includes: [
-      "On-site freehand painting by Dharshana",
-      "High-durability weather-resistant acrylics & primers",
-      "Time-lapse 4K production video & behind-the-scenes content",
-      "Companion limited-edition screenprint or merchandise run",
-      "PR coordination & local artist media interviews"
-    ],
-    availability: "Booking Q4 / Q1",
-    recommended: true
+    number: '500+',
+    label: 'DSA & LeetCode Solved',
+    note: 'Arrays, Dynamic Programming, Graphs, Heuristics'
   },
   {
-    name: "Complete Brand Universe & Digital Flagship",
-    timeline: "6 to 8 Weeks",
-    investment: "£35,000 – £65,000",
-    focus: "Full visual identity, character world, packaging, and custom Next.js web build",
-    includes: [
-      "Complete Brand Identity, Illustration System & Mascots",
-      "Custom packaging dielines, mailers, and merchandise specs",
-      "Production-ready Next.js 15 interactive web flagship build",
-      "Kinetic micro-motion, Lottie stickers, and sound design sync",
-      "Exclusive category lock-out & direct WhatsApp access"
-    ],
-    availability: "Selective: 1 Brand per Quarter",
-    recommended: false
+    number: '1.2K+',
+    label: 'GitHub Contributions',
+    note: 'Active open-source repos & systems code in 2024–2025'
+  },
+  {
+    number: '3x',
+    label: 'Hackathon Honors & Awards',
+    note: 'Including Best Systems Hack & Best AI Project'
   }
 ];
 
-export const SOCIAL_PROOF = [
+export const CS_TESTIMONIALS = [
   {
-    quote: "Dharshana didn't just illustrate our brand; she gave our entire startup an attitude and soul that customers fall in love with. Our onboarding completion skyrocketed by 64% after launching her mascot.",
-    author: "Elena Rostova",
-    title: "Chief Product Officer",
-    company: "Game On Digital",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+    quote: 'Dharshana was one of the most exceptional students in my Distributed Systems class. Her implementation of the Raft consensus protocol in Go demonstrated a level of systems intuition and concurrency mastery that you usually only see in senior engineers.',
+    author: 'Dr. Alistair Finch',
+    title: 'Associate Professor of Computer Science',
+    company: 'Cardiff University School of CS',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'
   },
   {
-    quote: "Finding an artist who can paint a 12-meter exterior brick mural freehand on scaffolding and then write clean, production-grade Next.js code is virtually impossible. Dharshana is an absolute powerhouse.",
-    author: "Marcus Vance",
-    title: "Creative Director",
-    company: "Cardiff Creative Quarter",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"
+    quote: 'During her internship project, Dharshana spearheaded an automated observability pipeline that shaved 38% off our CI test suite runtime. She communicates with absolute clarity and writes production-ready code on day one.',
+    author: 'Sarah Chen',
+    title: 'Staff Software Engineer & Mentor',
+    company: 'CloudScale Infrastructure',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'
   },
   {
-    quote: "Our vinyl collectors are obsessive about quality. Dharshana designed unboxing packaging that sold out 50,000 units and flooded our feeds with praise. She is the first person we call for every flagship release.",
-    author: "Kevin Schmidt",
-    title: "Founder & Label Head",
-    company: "Black Screen Records",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80"
+    quote: 'At the Cardiff Hackathon, Dharshana’s team built a real-time CRDT whiteboard that blew the judges away. While most teams struggled with WebSocket race conditions, her architecture handled 100+ concurrent peers flawlessly.',
+    author: 'David Evans',
+    title: 'Lead Hackathon Judge & VP Engineering',
+    company: 'Fintech Wales',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80'
   }
 ];
 
-export const STATS = [
-  { number: "50K+", label: "Collector Vinyls & Merch Shipped", note: "Distributed worldwide to fans" },
-  { number: "100%", label: "Solo Principal Execution", note: "Zero account managers or outsourced juniors" },
-  { number: "£140K+", label: "Raised for Partner Charities", note: "Through public art & charity auctions" },
-  { number: "14+", label: "International Honors & Press", note: "Featured in exhibitions & cultural archives" }
-];
+export const STATS = ACADEMIC_STATS;
+export const CASE_STUDIES = CS_PROJECTS;
+export type CaseStudy = ProjectItem;
+
+export const EDUCATION_DETAILS = {
+  degree: 'Bachelor of Science (B.S.) in Computer Science',
+  year: '3rd Year Undergraduate (Expected Graduation: June 2026)',
+  institution: 'Cardiff University, School of Computer Science & Informatics',
+  standing: 'First Class Honours Track (GPA: 3.92 / 4.0)',
+  coursework: [
+    'Data Structures & Algorithms',
+    'Distributed Systems & Concurrency',
+    'Operating Systems & Kernel Architecture',
+    'Database Systems & Query Optimisation',
+    'Computer Networks & Protocols',
+    'Software Engineering & DevOps',
+    'Artificial Intelligence & Machine Learning',
+    'Human-Computer Interaction (HCI)'
+  ]
+};

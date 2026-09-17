@@ -16,12 +16,12 @@ const heebo = Heebo({
 });
 
 export const metadata: Metadata = {
-  title: 'Dharshana | Commercial Illustrator, Muralist & Creative Technologist',
-  description: 'Personal portfolio of Dharshana. Playful pictures, large-scale murals, brand mascots, vinyl packaging, and creative engineering for brands that refuse mediocrity.',
-  keywords: ['Dharshana', 'Commercial Illustrator', 'Muralist', 'Creative Technologist', 'Personal Portfolio', 'Character Design', 'Cardiff Art', 'Bento Grid'],
+  title: 'Dharshana | 3rd Year Computer Science Student & Software Engineer',
+  description: 'Personal portfolio of Dharshana. 3rd year Computer Science undergraduate specialising in Distributed Systems, Full-Stack Web, and AI Engineering. Seeking SWE internships.',
+  keywords: ['Dharshana', 'Computer Science Student', 'Software Engineering Intern', 'Full Stack Developer', 'Distributed Systems', 'Next.js', 'Go', 'Cardiff University'],
   openGraph: {
-    title: 'Dharshana | Commercial Illustrator, Muralist & Creative Technologist',
-    description: 'Playful pictures, bold code, and category-defining visual worlds created on your behalf.',
+    title: 'Dharshana | 3rd Year Computer Science Student & Software Engineer',
+    description: 'High-performance distributed systems, creative frontend applications, and AI pipelines. Bold code that works on your behalf.',
     type: 'website',
   },
 };
