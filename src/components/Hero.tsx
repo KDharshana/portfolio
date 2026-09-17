@@ -18,12 +18,12 @@ export default function Hero() {
       <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
         <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-black text-white text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_#424242]">
           <Terminal className="w-3.5 h-3.5" />
-          <span>3rd Year Computer Science Undergrad</span>
+          <span>3rd Year CS Undergrad • Salem, Tamil Nadu</span>
         </div>
 
         <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-[#f5f5f5] text-black text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_#000000]">
           <span className="w-2 h-2 rounded-full bg-black animate-pulse"></span>
-          <span>Seeking Summer / Fall SWE Internships</span>
+          <span>Published on F-Droid • Seeking SWE Internships</span>
         </div>
       </div>
 
@@ -53,7 +53,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mt-4 text-center text-sm sm:text-base md:text-lg text-[#424242] font-light max-w-2xl leading-relaxed"
         >
-          Building high-performance distributed systems, reactive full-stack web applications, and applied AI tools. Bold code and rigorous CS fundamentals that work on your behalf.
+          Creator of Tonarc (published on F-Droid), architect of Bun 1.3 &amp; React 19 web platforms, and builder of local GraphRAG AI agents. Rigorous CS fundamentals meets real-world open source.
         </motion.p>
 
         {/* Action Buttons */}

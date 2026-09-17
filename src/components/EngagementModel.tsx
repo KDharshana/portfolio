@@ -13,14 +13,14 @@ export default function EngagementModel({ onSelectTier }: EngagementModelProps) 
       name: 'Summer Software Engineering Internship',
       timeline: '10 to 12 Weeks (Summer 2025/2026)',
       type: 'Full-Time Internship',
-      focus: 'Backend, Distributed Systems, Full-Stack Web, or Applied AI Engineering',
+      focus: 'Android Engineering, Full-Stack Web (Bun / React 19), or Applied AI & GraphRAG',
       availability: 'Open for Summer 2025 & 2026',
       includes: [
         '40 Hours / week dedicated full-time engineering execution',
-        'Rapid ramp-up across Go, Python, TypeScript, C++, or Java',
-        'Strong algorithmic foundation (Trees, Graphs, Concurrency, Big-O)',
+        'Proven shipping record: published Tonarc Android app on F-Droid',
+        'Mastery in Kotlin, Jetpack Compose, Bun 1.3, React 19, Python & Rust',
         'Eagerness to pair-program, receive critique, and learn from staff engineers',
-        'Eligible to work in the UK • Open to remote, hybrid & relocation'
+        'Open to remote global roles, hybrid positions, and relocation'
       ],
       recommended: true
     },
@@ -28,29 +28,29 @@ export default function EngagementModel({ onSelectTier }: EngagementModelProps) 
       name: 'Part-Time Co-Op & Student Software Engineer',
       timeline: '3 to 6 Months (Academic Term)',
       type: '15 to 20 Hours / Week',
-      focus: 'Internal developer tooling, CI/CD automation, testing suites, or data pipelines',
+      focus: 'Mobile development, internal developer tooling, or GraphRAG AI pipelines',
       availability: 'Available Academic Year 2025–2026',
       includes: [
-        'Consistent weekly sprint contributions and PR reviews',
-        'Experience building with Next.js, FastAPI, PostgreSQL, and Docker',
+        '15 to 20 Hours / week consistent sprint contributions and PR reviews',
+        'Experience shipping with Bun, Next.js, FastAPI, Neo4j, and Docker',
         'High asynchronous autonomy and clear engineering documentation',
-        'Balanced alongside high-academic First Class Honours coursework',
+        'Balanced alongside 3rd-year CS coursework',
         'Direct communication via Slack, GitHub, or Discord'
       ],
       recommended: false
     },
     {
-      name: 'Startup MVP & Research Prototyping Sprint',
+      name: 'Full-Stack / Mobile MVP Prototyping Sprint',
       timeline: '2 to 4 Weeks Sprint',
       type: 'Technical Contract / Hackathon Project',
-      focus: '0-to-1 full-stack product prototypes, vector RAG pipelines, or interactive visual tools',
+      focus: '0-to-1 Android apps in Jetpack Compose, Bun/React 19 platforms, or local LLM prototypes',
       availability: 'Selective: 1 Project per Term',
       includes: [
-        'Complete Next.js 14 App Router full-stack web application',
-        'PostgreSQL / Supabase schema design and authentication flows',
-        'FastAPI or Node.js microservice layer with vector search',
-        'Kinetic micro-motion with Framer Motion and 100/100 Core Web Vitals',
-        'Full clean GitHub repository transfer with zero technical debt'
+        'Complete native Android app or Next.js / Bun full-stack web application',
+        'Offline-first architecture, background media session, or REST API',
+        'Local LLM integration (Ollama) or GraphRAG (Neo4j) reasoning',
+        'Clean GitHub repository transfer with zero technical debt',
+        'Interactive UI with 100/100 performance benchmarks'
       ],
       recommended: false
     }

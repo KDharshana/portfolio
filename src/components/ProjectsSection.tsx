@@ -12,10 +12,10 @@ export default function ProjectsSection() {
 
   const categories = [
     'All',
-    'Systems & Backend',
+    'Android & Mobile',
     'Full-Stack & Web',
     'AI & Machine Learning',
-    'Interactive'
+    'Systems & Backend'
   ];
 
   const filteredItems = selectedCategory === 'All'
@@ -37,7 +37,7 @@ export default function ProjectsSection() {
         <div className="mb-14">
           <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-white text-black text-xs font-bold uppercase tracking-wider mb-4 shadow-[2px_2px_0px_0px_#000000]">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>03 // Selected CS Projects</span>
+            <span>03 // Scraped &amp; Verified CS Projects</span>
           </div>
 
           <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-black leading-tight mb-6 max-w-4xl">
@@ -45,7 +45,7 @@ export default function ProjectsSection() {
           </h2>
 
           <p className="text-base sm:text-lg text-[#424242] font-light leading-relaxed max-w-3xl mb-8">
-            A showcase of distributed consensus systems, autonomous multi-agent AI pipelines, real-time collaborative applications, and algorithmic visualizers.
+            A showcase of production Android applications on F-Droid, full-stack Bun 1.3 &amp; React 19 platforms, autonomous local GraphRAG AI agents, and systems tooling.
           </p>
 
           {/* Category Tabs with Crossed Pencils */}
@@ -231,10 +231,35 @@ export default function ProjectsSection() {
               </div>
 
               <div className="pt-4 border-t-2 border-black/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-                <span className="text-xs text-[#7f7f7f]">Interested in discussing this architecture?</span>
+                <div className="flex flex-wrap items-center gap-2">
+                  {activeItem.github && (
+                    <a
+                      href={activeItem.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-[8px] bg-white text-black font-bold text-xs uppercase tracking-wider border-2 border-black hover:bg-[#f5f5f5] shadow-[2px_2px_0px_0px_#000000] transition-transform"
+                    >
+                      <Code className="w-4 h-4" />
+                      <span>GitHub Repo</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                  {activeItem.demo && (
+                    <a
+                      href={activeItem.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-[8px] bg-[#f5f5f5] text-black font-bold text-xs uppercase tracking-wider border-2 border-black hover:bg-white shadow-[2px_2px_0px_0px_#000000] transition-transform"
+                    >
+                      <Sparkles className="w-4 h-4" />
+                      <span>F-Droid Release</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
                 <button
                   onClick={scrollToContact}
-                  className="bg-black text-white px-6 py-2.5 rounded-[8px] font-bold text-xs uppercase tracking-wider -rotate-1 hover:rotate-0 transition-transform shadow-[3px_3px_0px_0px_#424242] cursor-pointer"
+                  className="bg-black text-white px-6 py-2.5 rounded-[8px] font-bold text-xs uppercase tracking-wider -rotate-1 hover:rotate-0 transition-transform shadow-[3px_3px_0px_0px_#424242] cursor-pointer shrink-0"
                 >
                   Contact Dharshana
                 </button>

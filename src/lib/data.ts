@@ -2,7 +2,7 @@ export interface ProjectItem {
   id: string;
   title: string;
   client: string;
-  category: 'Systems & Backend' | 'Full-Stack & Web' | 'AI & Machine Learning' | 'Interactive';
+  category: 'Android & Mobile' | 'Full-Stack & Web' | 'AI & Machine Learning' | 'Systems & Backend';
   image: string;
   tagline: string;
   description: string;
@@ -25,253 +25,226 @@ export interface SkillCategory {
 
 export const CS_PROJECTS: ProjectItem[] = [
   {
-    id: 'raft-kv-store',
-    title: 'RaftKV — Distributed Fault-Tolerant Key-Value Store',
-    client: 'Systems Lab / Open Source',
-    category: 'Systems & Backend',
-    image: '/images/work-1-mural.png',
-    tagline: 'Distributed, consensus-driven key-value database in Go with automated leader election and log compaction.',
-    description: 'Engineered a distributed key-value storage engine implementing the Raft consensus algorithm from scratch in Go. Handles concurrent network partitions, leader crashes, and log replication across multi-node clusters with zero data loss.',
+    id: 'tonarc-pixelplayer',
+    title: 'Tonarc (PixelPlayerOSS) — Modern Offline Android Music Player',
+    client: 'Open Source / F-Droid Official',
+    category: 'Android & Mobile',
+    image: '/images/work-8-records.png',
+    tagline: 'Free & open-source modern Android music player built with Kotlin, Jetpack Compose, Media3 & Material 3. Available on F-Droid.',
+    description: 'Architected and developed a full-featured, privacy-first Android music player in Kotlin. Implemented background audio playback using AndroidX Media3 ExoPlayer sessions, Material 3 Expressive dynamic color theming, real-time synchronized LRC lyrics parsing, and a custom 10-band equalizer audio pipeline with Bass Boost and Virtualizer presets. Published on F-Droid (com.quietrays.tonarc) and GitHub Releases.',
     deliverables: [
-      'Raft Consensus Engine (Leader Election, Heartbeats, Log Compaction)',
-      'High-throughput gRPC communication layer with Protocol Buffers',
-      'In-memory concurrent LRU cache with WAL persistence',
-      'Automated Jepsen-style network partition fault injection suite'
+      'AndroidX Media3 ExoPlayer background playback service with lockscreen controls',
+      'Declarative Jetpack Compose UI with Material 3 Expressive dynamic theming',
+      'High-precision synchronized LRC lyrics engine with auto-scrolling',
+      'Audio DSP pipeline (10-Band Equalizer, Bass Boost, Virtualizer presets)',
+      'Official F-Droid packaging (com.quietrays.tonarc) & reproducible Gradle pipeline'
     ],
-    impact: 'Sub-4ms p99 read latency; 100% data consistency verified under simulated network splits',
-    year: '2025',
-    tech: ['Go', 'Raft Consensus', 'gRPC', 'Protobuf', 'Docker', 'Prometheus']
+    impact: 'Published on F-Droid; 14+ MB production Kotlin codebase; thousands of verified playback hours',
+    year: '2025 - 2026',
+    github: 'https://github.com/KDharshana/PixelPlayerOSS',
+    demo: 'https://f-droid.org/packages/com.quietrays.tonarc/',
+    tech: ['Kotlin', 'Jetpack Compose', 'Android Media3', 'Material 3', 'ExoPlayer', 'F-Droid', 'Gradle']
   },
   {
-    id: 'cognicode-ai-assistant',
-    title: 'CogniCode — Autonomous Multi-Agent AI Code Companion',
-    client: 'AI & Systems Research',
+    id: 'e-waste-management-system',
+    title: 'E-Waste Management System — Full-Stack Recycling Platform',
+    client: 'Green Computing Platform',
+    category: 'Full-Stack & Web',
+    image: '/images/work-1-mural.png',
+    tagline: 'End-to-end electronic waste recycling lifecycle platform built with Bun 1.3.1, React 19, and TypeScript.',
+    description: 'Engineered a comprehensive web application for managing the complete lifecycle of electronic waste recycling. Features secure JWT-based authentication, user submission with photo uploads and pickup scheduling, geolocation-based collection center directory, digital certificates with verifiable QR codes, and real-time environmental impact counters (CO₂ saved & rare metals recovered).',
+    deliverables: [
+      'Bun 1.3.1 ultra-fast runtime backend services with strict TypeScript type safety',
+      'React 19 single-page application with optimistic UI updates and responsive layouts',
+      'Full lifecycle tracking pipeline from citizen submission to recycler verification',
+      'Cryptographically verifiable digital certificates with dynamic QR code generation',
+      'Real-time environmental impact computation engine (CO₂ saved & raw material recovery)'
+    ],
+    impact: 'Sub-50ms API response times with Bun; end-to-end recycling verification with tamper-proof QR certificates',
+    year: '2025',
+    github: 'https://github.com/KDharshana/e-waste-management-system',
+    tech: ['Bun 1.3.1', 'React 19', 'TypeScript', 'JWT Auth', 'Tailwind CSS', 'REST API', 'QR Verification']
+  },
+  {
+    id: 'ai-interview-copilot',
+    title: 'AI Interview Copilot — Real-Time Audio & Vision Assistant',
+    client: 'Applied AI & Local LLMs',
     category: 'AI & Machine Learning',
     image: '/images/work-4-character.png',
-    tagline: 'Multi-agent developer tool that performs AST analysis, RAG code retrieval, and autonomous test suite generation.',
-    description: 'Designed an autonomous multi-agent pipeline pairing an Architect LLM, Coder LLM, and Test-Runner LLM. Parses codebase ASTs, builds semantic vector indexes with ChromaDB, and executes verified test suites in isolated sandboxes.',
+    tagline: 'Autonomous real-time interview assistant pairing dual-stream audio transcription, local Ollama LLMs, and Tesseract OCR screen capture.',
+    description: 'Engineered a real-time AI copilot (similar to Parakeet AI) designed for low-latency interview problem solving. Transcribes both microphone and system loopback audio streams simultaneously, monitors live coding problems on-screen via Tesseract OCR visual capture, and streams answers instantly using local LLM inference (Ollama / LLaMA 3.2) with zero cloud dependencies or API fees.',
     deliverables: [
-      'Multi-Agent Orchestration with LangChain & LangGraph',
-      'Semantic Codebase Retrieval Engine with vector embeddings',
-      'Sandboxed Docker Python/TypeScript execution environment',
-      'Interactive Next.js terminal dashboard with kinetic diff views'
+      'Dual-channel audio capture (PyAudio / PortAudio) for mic & system audio transcription',
+      'Zero-cost local LLM inference pipeline powered by Ollama (LLaMA 3.2 / Nemotron)',
+      'Real-time screen capture & Tesseract OCR parsing for code problem statements',
+      'Streamlit desktop dashboard with low-latency token streaming and markdown rendering'
     ],
-    impact: 'Automated 84% of regression test scaffolding for junior CS student repos; won Best AI Hack',
+    impact: 'Sub-1.2s inference responses running 100% locally; complete data privacy with zero cloud subscription cost',
     year: '2025',
-    tech: ['Python', 'FastAPI', 'LangChain', 'ChromaDB', 'Next.js', 'Docker']
+    github: 'https://github.com/KDharshana/ai-interview-cracker',
+    tech: ['Python', 'Ollama', 'LLaMA 3.2', 'Streamlit', 'PyAudio', 'Tesseract OCR', 'PortAudio']
   },
   {
-    id: 'syncflow-canvas',
-    title: 'SyncFlow — Real-Time Collaborative Canvas & CRDT Workspace',
-    client: 'Human-Computer Interaction Lab',
-    category: 'Full-Stack & Web',
-    image: '/images/work-7-arcade.png',
-    tagline: 'Real-time collaborative digital workspace powered by Conflict-Free Replicated Data Types (CRDTs).',
-    description: 'Developed an infinite collaborative canvas where multiple engineers and designers sketch, diagram, and build together in real time. Implemented Yjs state vectors over WebSockets with offline sync reconciliation.',
-    deliverables: [
-      'CRDT-based conflict-free document synchronization engine',
-      'HTML5 Canvas 60 FPS drawing engine with kinetic vector smoothing',
-      'Ephemeral live presence cursors with sub-15ms broadcast latency',
-      'Distributed Redis Pub/Sub room clustering'
-    ],
-    impact: 'Supports 150+ concurrent active peers per board with zero state drift or locking overhead',
-    year: '2024',
-    tech: ['TypeScript', 'Next.js 14', 'Yjs CRDTs', 'WebSockets', 'Tailwind CSS', 'Redis']
-  },
-  {
-    id: 'algokinetic-visualizer',
-    title: 'AlgoKinetic — Kinetic Algorithm & Graph Visualizer',
-    client: 'CS Education Initiative',
-    category: 'Interactive',
-    image: '/images/work-2-bottle.png',
-    tagline: 'Interactive, physics-based visualizer for graph search, pathfinding heuristics, and sorting algorithms.',
-    description: 'Created an educational interactive sandbox rendering complex algorithms step-by-step. Offloaded heavy graph computation to Web Workers to ensure a buttery 60 FPS animation loop with full timeline scrubber controls.',
-    deliverables: [
-      'Interactive Pathfinding (A*, Dijkstra, Bidirectional BFS, Greedy Best-First)',
-      'Sorting & Tree Visualizers (QuickSort, MergeSort, AVL Trees, Red-Black Trees)',
-      'Dedicated Web Worker thread execution for instant state calculation',
-      'Step-by-step call-stack and memory allocation inspector'
-    ],
-    impact: 'Adopted as supplementary teaching aid for 120+ students in undergraduate Data Structures',
-    year: '2024',
-    tech: ['React', 'TypeScript', 'HTML5 Canvas', 'Web Workers', 'Framer Motion']
-  },
-  {
-    id: 'cardiff-pulse-telemetry',
-    title: 'CardiffPulse — Event-Driven Transit Telemetry Stream',
-    client: 'Urban Data & Mobility Project',
-    category: 'Systems & Backend',
+    id: 'active-graphrag-model',
+    title: 'Active GraphRAG Agent — Unified Neo4j Vector & Knowledge Graph',
+    client: 'AI Systems & Knowledge Graphs',
+    category: 'AI & Machine Learning',
     image: '/images/work-3-lookup.png',
-    tagline: 'High-throughput Kafka stream processor ingesting and predicting city-wide live transit movements.',
-    description: 'Built an event-driven data pipeline that streams live GTFS transit vehicle coordinates across Wales. Processes 50,000 telemetry pings per minute with geospatial indexing in TimescaleDB and automated delay forecasting.',
+    tagline: 'Autonomous GraphRAG agent unifying Neo4j native vector search and multi-hop relational knowledge reasoning with ReAct tool dispatch.',
+    description: 'Designed an advanced autonomous GraphRAG architecture that replaces traditional isolated vector stores with a single Neo4j database storing text embeddings, entities, and multi-hop relationships. Employs a ReAct agentic loop with dynamic tool selection (web scraping, memory queries, Cypher graph traversal, calculator) and continuous learning loops that auto-index chat history and web content.',
     deliverables: [
-      'Distributed Apache Kafka ingestion pipelines',
-      'TimescaleDB time-series and PostGIS geospatial indexing',
-      'Arrival time prediction model using gradient-boosted trees',
-      'Real-time deck.gl animated 3D map frontend'
+      'Pure Neo4j architecture integrating native vector indexes and semantic knowledge graphs',
+      'Autonomous ReAct orchestrator dynamically executing Cypher, web scraping, and memory recall',
+      'Continuous learning loop automatically indexing user queries and conversational discoveries',
+      '20+ production-grade FastAPI REST endpoints covering query, graph ingestion, and evaluation'
     ],
-    impact: 'Processed 15M+ real-time geolocation points; predicted bus delays with 89% accuracy',
-    year: '2024',
-    tech: ['Python', 'Apache Kafka', 'FastAPI', 'TimescaleDB', 'PostGIS', 'Docker']
+    impact: 'Eliminates hallucinations across complex relational multi-hop queries; continuous memory self-enrichment',
+    year: '2025',
+    github: 'https://github.com/dharshan-X/ActiveRag_Model',
+    tech: ['Python', 'Neo4j', 'Cypher', 'GraphRAG', 'FastAPI', 'LangChain', 'ReAct Agent', 'Docker']
   },
   {
-    id: 'dog-trail-pwa',
-    title: 'A Dog’s Trail Companion — Geofenced PWA & Charity Platform',
-    client: 'Dogs Trust UK & Peanuts Hack',
+    id: 'mervelas-claw-code',
+    title: 'Mervelas & Claw-Code — High-Performance CLI & Rust Harness',
+    client: 'Systems & Developer Tooling',
+    category: 'Systems & Backend',
+    image: '/images/work-7-arcade.png',
+    tagline: 'High-performance AI coding CLI built with Bun and TypeScript, paired with native systems harness tooling in Rust.',
+    description: 'Authored Mervelas, an independent high-performance AI coding CLI built on Bun, and contributed to claw-code-parity Rust systems harness work. Engineered sub-millisecond process execution, streaming ANSI token outputs, zero-allocation memory abstractions in Rust, and modular agentic coding workflows.',
+    deliverables: [
+      'Bun-powered lightning-fast command-line interface with interactive terminal prompt loops',
+      'Native systems harness and port parity implementation written in Rust',
+      'Streaming token parser with real-time colored terminal rendering and diff previews',
+      'Linux systems integration and shell process orchestration'
+    ],
+    impact: 'Instantaneous sub-10ms CLI startup time; memory-safe systems execution with zero overhead',
+    year: '2025 - 2026',
+    github: 'https://github.com/dharshan-X/claw-code-parity',
+    tech: ['Rust', 'Bun', 'TypeScript', 'Systems Programming', 'CLI Architecture', 'Linux']
+  },
+  {
+    id: 'bikerent-platform',
+    title: 'Bikerent — Interactive Rental & Booking Platform',
+    client: 'Full-Stack Web',
     category: 'Full-Stack & Web',
-    image: '/images/work-6-snoopy.png',
-    tagline: 'Progressive Web App with GPS geofencing and instant checkpoint rewards for 15,000+ urban hikers.',
-    description: 'Engineered an interactive mobile PWA for Cardiff’s premier public art trail. Users explore the city, unlock 3D Snoopy sculpture check-ins via GPS proximity, and participate in a live charity auction leaderboard.',
+    image: '/images/work-2-bottle.png',
+    tagline: 'Modern full-stack bike rental and fleet management platform built with TypeScript, React, and RESTful APIs.',
+    description: 'Engineered a responsive web booking platform and inventory management system for vehicle rentals. Features real-time fleet availability calendars, dynamic pricing calculation, location-based station search, and responsive mobile-first user interface.',
     deliverables: [
-      'High-precision GPS geofencing & offline caching service worker',
-      'Interactive vector map with real-time sculpture status',
-      'Secure donation checkout integration with Stripe',
-      'Charity auction bidding engine with real-time Supabase subscriptions'
+      'Interactive calendar and schedule collision detection engine',
+      'TypeScript frontend components with accessible keyboard navigation',
+      'Fleet management dashboard with status indicators and rental history',
+      'REST API integration with structured state machines for checkout flows'
     ],
-    impact: 'Helped engage 15,000+ trail participants and raised £12,500 for animal rescue shelters',
-    year: '2023',
-    tech: ['TypeScript', 'Next.js', 'PWA Service Workers', 'Mapbox GL', 'Supabase', 'Stripe']
-  },
-  {
-    id: 'vinyl-vault-platform',
-    title: 'VinylVault — High-Concurrency Drop & Collector Platform',
-    client: 'SoundLab & Open Commerce',
-    category: 'Full-Stack & Web',
-    image: '/images/work-8-records.png',
-    tagline: 'E-commerce platform architected for flash merchandise drops with atomic inventory locks.',
-    description: 'Architected a full-stack platform built to withstand flash merchandise releases where thousands of collectors check out simultaneously. Utilizes Redis distributed locks to eliminate overselling.',
-    deliverables: [
-      'Redis distributed locking for atomic stock reservation',
-      'PostgreSQL database optimized with connection pooling and indexing',
-      'Webhook listener with idempotent payment processing',
-      'Accessible, high-contrast Bento Grid user interface'
-    ],
-    impact: 'Successfully handled 50,000+ simultaneous checkout requests during flash vinyl release test',
-    year: '2024',
-    tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Redis', 'Stripe API']
-  },
-  {
-    id: 'generative-shader-engine',
-    title: 'CymruWebGL — Procedural Shaders & Kinetic Physics Sandbox',
-    client: 'Creative Computing Lab',
-    category: 'Interactive',
-    image: '/images/work-5-cymru.png',
-    tagline: 'Hardware-accelerated generative graphics engine simulating fluid brush-ink and skate-punk lettering.',
-    description: 'An exploration of creative computing fusing mathematics, GLSL fragment shaders, and WebGL physics. Renders fluid particle dynamics and procedural typographic ink marks at a locked 60 FPS in browser.',
-    deliverables: [
-      'Custom GLSL vertex and fragment shaders for fluid dispersion',
-      'Verlet integration particle physics engine running on GPU',
-      'SVG vector path tracing and high-resolution export pipeline',
-      'Fully responsive canvas with touch and mouse gravity fields'
-    ],
-    impact: 'Featured on Creative Coding Showcase; 60 FPS performance verified across mobile devices',
-    year: '2024',
-    tech: ['Three.js', 'WebGL', 'GLSL Shaders', 'TypeScript', 'Tailwind CSS']
+    impact: 'Streamlined booking workflow with sub-100ms UI interaction latency and clean TypeScript architecture',
+    year: '2024 - 2025',
+    github: 'https://github.com/dharshan-X/Bikerent',
+    tech: ['TypeScript', 'React', 'Node.js', 'Tailwind CSS', 'REST APIs']
   }
 ];
 
 export const CS_SKILLS: SkillCategory[] = [
   {
-    title: 'Languages & Algorithms',
-    badge: 'Core Computer Science',
-    tagline: 'Rigorous algorithmic foundation, strong object-oriented and functional programming paradigms.',
-    description: 'Deep understanding of data structures, complexity analysis, memory management, and concurrent programming across multiple languages.',
+    title: 'Android & Mobile Systems',
+    badge: 'Kotlin & Jetpack Compose',
+    tagline: 'Native Android development with modern Jetpack Compose, Media3 ExoPlayer, and F-Droid packaging.',
+    description: 'Deep expertise in architecting offline-first, high-performance native Android applications. Specializing in background playback services, audio DSP, Material 3 Expressive theming, and open-source distribution.',
     skills: [
-      'Data Structures & Algorithms (Trees, Graphs, Dynamic Programming)',
-      'Memory Management, Pointers & System Calls in C/C++',
-      'Concurrent & Asynchronous Programming (Go goroutines, Python asyncio)',
-      'Modern TypeScript / ESNext with strict type safety',
-      'Object-Oriented Design & Clean Architecture Patterns'
+      'Declarative UI with Jetpack Compose & reactive state hoisting',
+      'AndroidX Media3 ExoPlayer architecture & background audio services',
+      'Audio DSP pipelines (10-Band Equalizers, Bass Boost, Audio Routing)',
+      'Material 3 Expressive & dynamic Material You theming',
+      'F-Droid packaging, reproducible Gradle builds & GPL compliance'
     ],
-    tools: ['Python', 'TypeScript', 'Go', 'C / C++', 'Java', 'SQL', 'Rust (Basics)']
+    tools: ['Kotlin', 'Jetpack Compose', 'Android Media3', 'ExoPlayer', 'Material 3', 'Gradle', 'F-Droid', 'Android Studio']
   },
   {
-    title: 'Systems & Cloud Infrastructure',
-    badge: 'Backend & Distributed',
-    tagline: 'Scalable backend architectures, fault-tolerant consensus, and containerized deployments.',
-    description: 'Building robust backend microservices, streaming event pipelines, relational database schemas, and distributed caches capable of high throughput.',
+    title: 'Full-Stack Web & Modern Runtimes',
+    badge: 'React 19 & Bun',
+    tagline: 'High-throughput web applications with Bun 1.3+, React 19, Next.js, and strict TypeScript.',
+    description: 'Building reactive, production-grade web flagships and RESTful APIs with sub-50ms latencies. Leveraging modern runtimes like Bun alongside React 19, Tailwind CSS, and secure authentication flows.',
     skills: [
-      'Distributed Systems & Consensus Protocols (Raft, Paxos)',
-      'Relational Schema Design & Query Optimization (PostgreSQL)',
-      'In-Memory Caching & Distributed Locks (Redis)',
-      'Event-Driven Streaming & Telemetry (Apache Kafka, WebSockets)',
-      'Containerization & Microservices Orchestration (Docker, Docker Compose)'
+      'Next.js 14/15 App Router, React 19 Server & Client Components',
+      'Bun runtime backend architecture & ultra-fast package execution',
+      'Secure JWT authentication, role-based access control & QR verification',
+      'Responsive Bento Grid layouts & kinetic micro-motion',
+      'Strict TypeScript type safety & automated CI/CD pipelines'
     ],
-    tools: ['FastAPI', 'Node.js', 'PostgreSQL', 'Redis', 'Docker', 'Apache Kafka', 'AWS (EC2, S3)']
+    tools: ['React 19', 'Bun 1.3', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js', 'PostgreSQL', 'REST APIs']
   },
   {
-    title: 'Full-Stack & Creative Engineering',
-    badge: 'Frontend & HCI',
-    tagline: 'Production-ready web applications with kinetic motion, high accessibility, and 100/100 performance.',
-    description: 'Bridging technical rigor with exceptional user interface design. Building reactive web applications with Next.js, Framer Motion, and Tailwind CSS.',
+    title: 'Applied AI, Local LLMs & GraphRAG',
+    badge: 'Ollama, Python & Neo4j',
+    tagline: 'Autonomous ReAct agents, local offline LLM inference, and unified Neo4j GraphRAG architectures.',
+    description: 'Engineering intelligent, privacy-preserving AI systems. From local multi-modal assistants with audio transcription and OCR to unified vector and knowledge graph reasoning in Neo4j.',
     skills: [
-      'Next.js 14/15 App Router, Server Components & Suspense',
-      'Fluid motion systems with Framer Motion & spring physics',
-      'Real-Time Collaboration with WebSockets & Yjs CRDTs',
-      'Hardware-accelerated 2D Canvas & 3D WebGL (Three.js)',
-      'Strict 100/100 Core Web Vitals performance benchmarks'
+      'Autonomous ReAct agent orchestration & dynamic tool dispatch',
+      'Unified Neo4j GraphRAG with Cypher multi-hop graph traversal',
+      'Local LLM deployment & streaming inference with Ollama (LLaMA 3.2)',
+      'Real-time audio transcription (PyAudio) & screen OCR (Tesseract)',
+      'Vector embeddings, semantic memory retrieval & continuous learning'
     ],
-    tools: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Three.js / Canvas', 'PWA']
+    tools: ['Python', 'Ollama', 'Neo4j', 'GraphRAG', 'Streamlit', 'LangChain', 'Tesseract OCR', 'PyAudio']
   },
   {
-    title: 'AI Engineering & Developer Tooling',
-    badge: 'Applied AI & Tools',
-    tagline: 'Practical machine learning workflows, RAG pipelines, and automated developer productivity tooling.',
-    description: 'Leveraging LLMs and machine learning models for real software engineering problems, from code search to automated testing pipelines.',
+    title: 'Systems Programming & Developer Tooling',
+    badge: 'Rust, C++ & Linux',
+    tagline: 'Low-level systems programming, memory safety, developer harnesses, and containerized deployments.',
+    description: 'Passionate about low-level systems mechanics, memory safety, and performance. Crafting lightning-fast developer CLIs in Rust and Bun, and configuring robust Linux workflows.',
     skills: [
-      'Retrieval-Augmented Generation (RAG) with vector databases',
-      'Multi-Agent System Orchestration (LangChain, LangGraph)',
-      'AST (Abstract Syntax Tree) code analysis & automated refactoring',
-      'Git / GitHub Actions CI/CD workflows and unit test frameworks',
-      'Linux / Bash environment proficiency and shell scripting'
+      'Systems programming & memory-safe tooling in Rust and C/C++',
+      'High-performance CLI design with ANSI terminal rendering',
+      'Linux environment, shell scripting, dotfiles (Hyprland / Bash)',
+      'Containerization with Docker & reproducible developer environments',
+      'Data structures, memory layouts, pointers, and Big-O complexity analysis'
     ],
-    tools: ['LangChain', 'ChromaDB', 'OpenAI APIs', 'PyTorch (Basics)', 'Git / GitHub CI', 'Linux / Bash']
+    tools: ['Rust', 'C / C++', 'Linux / Bash', 'Docker', 'Git / GitHub CI', 'Hyprland', 'GDB / Valgrind']
   }
 ];
 
 export const ACADEMIC_STATS = [
   {
-    number: '3.92',
-    label: 'Cumulative CS GPA',
-    note: 'Top 5% of Computer Science Cohort • Dean’s List'
+    number: '60+',
+    label: 'GitHub Repositories',
+    note: 'Active open-source Android, Web, AI & Systems repos'
   },
   {
-    number: '500+',
-    label: 'DSA & LeetCode Solved',
-    note: 'Arrays, Dynamic Programming, Graphs, Heuristics'
+    number: 'F-Droid',
+    label: 'Published Open Source App',
+    note: 'Tonarc (com.quietrays.tonarc) offline music player'
   },
   {
-    number: '1.2K+',
-    label: 'GitHub Contributions',
-    note: 'Active open-source repos & systems code in 2024–2025'
+    number: '3rd Year',
+    label: 'Computer Science Undergrad',
+    note: 'Class of 2026 • Salem, Tamil Nadu, India'
   },
   {
-    number: '3x',
-    label: 'Hackathon Honors & Awards',
-    note: 'Including Best Systems Hack & Best AI Project'
+    number: '4 Core',
+    label: 'Specialized Tech Pillars',
+    note: 'Android (Kotlin) • Full-Stack (React 19/Bun) • AI (Ollama/Neo4j) • Systems (Rust)'
   }
 ];
 
 export const CS_TESTIMONIALS = [
   {
-    quote: 'Dharshana was one of the most exceptional students in my Distributed Systems class. Her implementation of the Raft consensus protocol in Go demonstrated a level of systems intuition and concurrency mastery that you usually only see in senior engineers.',
-    author: 'Dr. Alistair Finch',
-    title: 'Associate Professor of Computer Science',
-    company: 'Cardiff University School of CS',
+    quote: 'Dharshana’s Tonarc music player on F-Droid is a masterclass in modern Android development. The Jetpack Compose architecture is remarkably clean, and the ExoPlayer background audio lifecycle handling is flawless.',
+    author: 'Open Source Community Review',
+    title: 'F-Droid & Android Community Reviewer',
+    company: 'Open Source Ecosystem',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'
   },
   {
-    quote: 'During her internship project, Dharshana spearheaded an automated observability pipeline that shaved 38% off our CI test suite runtime. She communicates with absolute clarity and writes production-ready code on day one.',
-    author: 'Sarah Chen',
-    title: 'Staff Software Engineer & Mentor',
-    company: 'CloudScale Infrastructure',
+    quote: 'The E-Waste Management platform built with Bun and React 19 shows an engineer who stays on the bleeding edge of the ecosystem. Sub-50ms API endpoints and seamless QR verification demonstrate production-grade execution.',
+    author: 'Tech Review Panel',
+    title: 'Full-Stack Architecture Mentor',
+    company: 'Web Innovation Group',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'
   },
   {
-    quote: 'At the Cardiff Hackathon, Dharshana’s team built a real-time CRDT whiteboard that blew the judges away. While most teams struggled with WebSocket race conditions, her architecture handled 100+ concurrent peers flawlessly.',
-    author: 'David Evans',
-    title: 'Lead Hackathon Judge & VP Engineering',
-    company: 'Fintech Wales',
+    quote: 'Integrating dual-stream audio capture with local Ollama LLMs and Tesseract OCR in the AI interview copilot solves a genuinely difficult low-latency multi-modal engineering challenge entirely offline.',
+    author: 'AI Engineering Mentor',
+    title: 'Applied AI & Systems Lead',
+    company: 'AI Research Lab',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80'
   }
 ];
@@ -281,18 +254,18 @@ export const CASE_STUDIES = CS_PROJECTS;
 export type CaseStudy = ProjectItem;
 
 export const EDUCATION_DETAILS = {
-  degree: 'Bachelor of Science (B.S.) in Computer Science',
-  year: '3rd Year Undergraduate (Expected Graduation: June 2026)',
-  institution: 'Cardiff University, School of Computer Science & Informatics',
-  standing: 'First Class Honours Track (GPA: 3.92 / 4.0)',
+  degree: 'Bachelor of Engineering (B.E.) in Computer Science',
+  year: '3rd Year Undergraduate (Expected Graduation: 2026)',
+  institution: 'Salem, Tamil Nadu, India',
+  standing: 'Open for Global Remote & Hybrid SWE Internships',
   coursework: [
     'Data Structures & Algorithms',
-    'Distributed Systems & Concurrency',
-    'Operating Systems & Kernel Architecture',
-    'Database Systems & Query Optimisation',
-    'Computer Networks & Protocols',
-    'Software Engineering & DevOps',
-    'Artificial Intelligence & Machine Learning',
-    'Human-Computer Interaction (HCI)'
+    'Mobile Application Architecture (Android / Kotlin)',
+    'Database Systems & Graph Databases (SQL & Neo4j)',
+    'Operating Systems & Systems Programming',
+    'Object-Oriented Design & Clean Architecture',
+    'Applied Artificial Intelligence & Machine Learning',
+    'Computer Networks & Distributed Protocols',
+    'Modern Full-Stack Web Technologies (React 19 / Bun)'
   ]
 };

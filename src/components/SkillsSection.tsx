@@ -2,57 +2,58 @@
 
 import {
   Sparkles,
-  Terminal,
-  Server,
-  Layers,
+  Smartphone,
+  Globe,
   Bot,
+  Terminal,
   CheckCircle,
-  Cpu
+  Cpu,
+  Layers
 } from 'lucide-react';
 import { CS_SKILLS } from '@/lib/data';
 
 export default function SkillsSection() {
-  const icons = [Terminal, Server, Layers, Bot];
+  const icons = [Smartphone, Globe, Bot, Terminal];
 
   const toolsMatrix = [
     {
-      category: 'Languages & Core',
-      items: ['Python (FastAPI, NumPy)', 'Go (Goroutines, gRPC)', 'C / C++ (Pointers, Memory)', 'TypeScript / ESNext', 'Java (OOP)', 'SQL (PostgreSQL)']
+      category: 'Android & Mobile',
+      items: ['Kotlin 2.4', 'Jetpack Compose', 'Android Media3 / ExoPlayer', 'Material 3 Expressive', 'F-Droid Packaging', 'Gradle Build System']
     },
     {
-      category: 'Systems & Backend',
-      items: ['Distributed Raft Consensus', 'In-Memory Redis Caching', 'Apache Kafka Streams', 'WebSockets & CRDTs', 'Docker & Docker Compose', 'Linux Kernel Basics']
+      category: 'Full-Stack & Web',
+      items: ['Bun 1.3+ Runtime', 'React 19', 'Next.js 14/15 App Router', 'TypeScript / ESNext', 'Tailwind CSS', 'JWT Auth & QR Codes']
     },
     {
-      category: 'Databases & Cloud',
-      items: ['PostgreSQL & TimescaleDB', 'Prisma ORM & Supabase', 'MongoDB NoSQL', 'AWS EC2 & S3 Basics', 'Git & GitHub Actions', 'REST & GraphQL APIs']
+      category: 'Applied AI & GraphRAG',
+      items: ['Python (FastAPI, Streamlit)', 'Ollama (LLaMA 3.2)', 'Neo4j & Cypher GraphRAG', 'Tesseract OCR Vision', 'PyAudio Audio Streams', 'LangChain ReAct Agents']
     },
     {
-      category: 'Frontend & Applied AI',
-      items: ['Next.js 14/15 App Router', 'React & Tailwind CSS', 'Framer Motion Physics', 'Three.js / HTML5 Canvas', 'LangChain & ChromaDB RAG', 'OpenAI & LLM APIs']
+      category: 'Systems & Tooling',
+      items: ['Rust (CLIs & Harnesses)', 'C / C++ (Memory, Pointers)', 'Linux / Bash (Hyprland)', 'Docker & Containers', 'Git & GitHub Actions CI', 'Terminal ANSI Parsers']
     }
   ];
 
   const devWorkflow = [
     {
       step: '01',
-      title: 'Algorithmic Complexity & Schema Design',
-      desc: 'Formulate Big-O time/space constraints, edge-case bounds, and relational database schema normalization before touching code.'
+      title: 'Algorithmic Foundation & State Hoisting',
+      desc: 'Formulate Big-O bounds, unidirectional state flows (Jetpack Compose / React 19), and clear service contracts before coding.'
     },
     {
       step: '02',
-      title: 'Modular Architecture & Strict Types',
-      desc: 'Enforce strict type systems (TypeScript/Go/C++), clear module seams, and separation of concerns across service boundaries.'
+      title: 'Bleeding-Edge Runtimes & Type Safety',
+      desc: 'Leverage ultra-fast execution with Bun 1.3 and Kotlin 2.4, backed by strict TypeScript types and rust memory-safety guarantees.'
     },
     {
       step: '03',
-      title: 'Concurrency & Network Profiling',
-      desc: 'Verify race-free concurrency, profile memory allocation with pprof/valgrind, and minimize network packet serialization overhead.'
+      title: 'Local Privacy-First AI Integration',
+      desc: 'Deploy local Ollama LLMs and pure Neo4j GraphRAG pipelines to eliminate cloud lock-in, recurring API fees, and privacy leaks.'
     },
     {
       step: '04',
-      title: 'Automated CI/CD & Test Verification',
-      desc: 'Write unit tests, regression suites, and integration tests running automatically on GitHub Actions with reproducible Docker containers.'
+      title: 'Open Source Packaging & Verification',
+      desc: 'Ship reproducible builds to F-Droid and GitHub with automated regression tests, QR verification, and clean documentation.'
     }
   ];
 
@@ -63,7 +64,7 @@ export default function SkillsSection() {
         <div className="mb-14">
           <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-[#f5f5f5] text-black text-xs font-bold uppercase tracking-wider mb-4 shadow-[2px_2px_0px_0px_#000000]">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>02 // Technical Skills &amp; Stack</span>
+            <span>02 // Scraped Technical Skills &amp; Stack</span>
           </div>
 
           <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-black leading-tight mb-6 max-w-4xl">
@@ -71,7 +72,7 @@ export default function SkillsSection() {
           </h2>
 
           <p className="text-base sm:text-lg text-[#424242] font-light leading-relaxed max-w-3xl">
-            From low-level systems programming and distributed consensus in Go to production-grade Next.js full-stack development and applied AI engineering.
+            From production Android engineering with Kotlin and Jetpack Compose on F-Droid, to high-throughput web systems in Bun and React 19, and autonomous local GraphRAG AI agents.
           </p>
         </div>
 

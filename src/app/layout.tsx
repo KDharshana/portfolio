@@ -17,11 +17,11 @@ const heebo = Heebo({
 
 export const metadata: Metadata = {
   title: 'Dharshana | 3rd Year Computer Science Student & Software Engineer',
-  description: 'Personal portfolio of Dharshana. 3rd year Computer Science undergraduate specialising in Distributed Systems, Full-Stack Web, and AI Engineering. Seeking SWE internships.',
-  keywords: ['Dharshana', 'Computer Science Student', 'Software Engineering Intern', 'Full Stack Developer', 'Distributed Systems', 'Next.js', 'Go', 'Cardiff University'],
+  description: 'Personal portfolio of Dharshana (KDharshana / Dharshan Balaji). 3rd year Computer Science undergraduate based in Salem, Tamil Nadu. Creator of Tonarc on F-Droid, full-stack Bun/React 19 engineer, and local GraphRAG AI developer.',
+  keywords: ['Dharshana', 'KDharshana', 'Dharshan Balaji', 'Computer Science Student', 'Software Engineering Intern', 'Android Developer', 'Kotlin', 'Jetpack Compose', 'F-Droid', 'Bun', 'React 19', 'Next.js', 'Neo4j', 'Ollama', 'Salem Tamil Nadu'],
   openGraph: {
     title: 'Dharshana | 3rd Year Computer Science Student & Software Engineer',
-    description: 'High-performance distributed systems, creative frontend applications, and AI pipelines. Bold code that works on your behalf.',
+    description: 'Modern Android apps on F-Droid, Bun 1.3 & React 19 full-stack platforms, and local GraphRAG AI agents.',
     type: 'website',
   },
 };

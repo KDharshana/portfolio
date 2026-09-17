@@ -60,10 +60,38 @@ export default function Footer() {
 
         {/* Copyright notice */}
         <div className="text-xs sm:text-sm text-black/80 font-normal leading-relaxed border-t border-black/10 pt-8 w-full">
-          <p>All content © Dharshana. 3rd Year Computer Science Undergrad @ Cardiff University.</p>
+          <p>All content © Dharshana. 3rd Year Computer Science Undergrad • Salem, Tamil Nadu, India.</p>
           <p className="mt-1 text-xs text-[#7f7f7f] font-mono">
-            Distributed Systems • Full-Stack Web • Applied AI • Seeking SWE Internships
+            Android (Kotlin / Jetpack Compose) • Bun 1.3 &amp; React 19 • Local AI &amp; GraphRAG • Systems (Rust)
           </p>
+          <div className="mt-3 flex items-center justify-center gap-4 text-xs font-mono font-bold">
+            <a
+              href="https://github.com/KDharshana"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black hover:underline underline-offset-2"
+            >
+              github.com/KDharshana
+            </a>
+            <span className="text-[#7f7f7f]">•</span>
+            <a
+              href="https://github.com/dharshan-X"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black hover:underline underline-offset-2"
+            >
+              github.com/dharshan-X
+            </a>
+            <span className="text-[#7f7f7f]">•</span>
+            <a
+              href="https://f-droid.org/packages/com.quietrays.tonarc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black hover:underline underline-offset-2"
+            >
+              Tonarc on F-Droid
+            </a>
+          </div>
         </div>
       </div>
     </footer>

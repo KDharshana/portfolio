@@ -37,15 +37,15 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
   const roleOptions = [
     'Summer Software Engineering Internship',
     'Part-Time Co-Op / Student SWE',
-    'Startup Technical MVP Project',
-    'Research / Open Source Collaboration'
+    'Full-Stack / Mobile App Development',
+    'AI & GraphRAG Collaboration'
   ];
 
   const focusOptions = [
-    'Backend & Distributed Systems',
-    'Full-Stack Web (Next.js / TypeScript)',
-    'Applied AI & Machine Learning Tools',
-    'Systems Programming & DevOps'
+    'Android Engineering (Kotlin / Compose)',
+    'Full-Stack Web (Bun / React 19 / Next.js)',
+    'Applied AI & Local LLMs (Ollama / Neo4j)',
+    'Systems Tooling & Rust Programming'
   ];
 
   const timelineOptions = [
@@ -57,20 +57,20 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
 
   const faqs = [
     {
-      q: 'Are you eligible to work in the UK / open to relocation?',
-      a: 'Yes! Fully authorized to work in the UK. I am based in Cardiff and open to in-person roles in London/UK, hybrid positions, and remote global internships.'
+      q: 'Where are you located and what are your work preferences?',
+      a: 'Based in Salem, Tamil Nadu, India. Fully set up for high-velocity remote engineering across international timezones, and open to hybrid or relocation opportunities.'
     },
     {
       q: 'What dates are you available for internships?',
-      a: 'Available full-time (40 hrs/week) from June to late September. Also available 15–20 hrs/week for part-time co-ops during the academic term.'
+      a: 'Available full-time (40 hrs/week) during Summer/semester breaks, and 15–20 hrs/week for part-time remote co-ops during the academic year.'
     },
     {
-      q: 'What are your primary programming languages?',
-      a: 'Go and Python for backend microservices and distributed consensus; TypeScript and Next.js for reactive frontend and full-stack web; C and C++ for systems and OS coursework.'
+      q: 'What is your primary technical arsenal?',
+      a: 'Kotlin and Jetpack Compose for Android (published on F-Droid); Bun 1.3, React 19, and TypeScript for web; Python, Ollama, and Neo4j for local AI/GraphRAG; and Rust for systems harnesses.'
     },
     {
-      q: 'Can I inspect your code and test suites?',
-      a: 'Absolutely! All featured projects have active GitHub repositories with architecture diagrams, unit tests, benchmarks, and reproducible Docker environments.'
+      q: 'Can I inspect your open-source code and apps?',
+      a: 'Yes! Check out my GitHub profiles at github.com/KDharshana and github.com/dharshan-X, including Tonarc (F-Droid), E-Waste System, AI Interview Copilot, and Active GraphRAG.'
     }
   ];
 
@@ -118,24 +118,24 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
               <div className="flex items-center gap-2 mb-4">
                 <span className="w-2.5 h-2.5 rounded-full bg-black animate-pulse"></span>
                 <span className="text-xs font-bold uppercase tracking-wider text-black">
-                  Actively Seeking Summer SWE Internships
+                  Actively Seeking SWE Internships &amp; Roles
                 </span>
               </div>
               <h3 className="font-display text-2xl text-black mb-3">
                 Dharshana
               </h3>
               <p className="text-xs sm:text-sm text-[#424242] leading-relaxed font-light mb-6">
-                3rd Year Computer Science Undergrad @ Cardiff University. Always excited to discuss systems architecture, distributed protocols, or team openings.
+                3rd Year Computer Science Undergrad based in Salem, Tamil Nadu. Creator of Tonarc on F-Droid, full-stack Bun/React 19 developer, and local GraphRAG AI builder.
               </p>
 
               <div className="space-y-3 pt-4 border-t-2 border-black/10 text-xs">
                 <div className="flex items-center gap-3 text-black">
                   <GraduationCap className="w-4 h-4 text-black shrink-0" />
-                  <span>Cardiff University — Class of 2026</span>
+                  <span>B.E. in Computer Science — Class of 2026</span>
                 </div>
                 <div className="flex items-center gap-3 text-black">
                   <MapPin className="w-4 h-4 text-black shrink-0" />
-                  <span>Cardiff, Wales, UK (Open to Relocation &amp; Remote)</span>
+                  <span>Salem, Tamil Nadu, India (Remote &amp; Relocation Ready)</span>
                 </div>
                 <div className="flex items-center gap-3 text-black">
                   <Mail className="w-4 h-4 text-black shrink-0" />
@@ -143,7 +143,7 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
                 </div>
                 <div className="flex items-center gap-3 text-black">
                   <Clock className="w-4 h-4 text-black shrink-0" />
-                  <span>Response Time: Usually Under 12 Hours</span>
+                  <span>Response Time: Usually Under 6 Hours</span>
                 </div>
               </div>
 
@@ -157,11 +157,13 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
                   <span>Email Me</span>
                 </a>
                 <a
-                  href="#contact"
+                  href="https://github.com/KDharshana"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-3.5 py-1.5 rounded-[6px] border-2 border-black bg-[#f5f5f5] text-black text-xs font-bold flex items-center gap-1.5 hover:bg-white transition-colors"
                 >
-                  <FileText className="w-3.5 h-3.5" />
-                  <span>Resume Available on Request</span>
+                  <Terminal className="w-3.5 h-3.5" />
+                  <span>github.com/KDharshana</span>
                 </a>
               </div>
             </div>
@@ -177,8 +179,33 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
                   className="w-full h-auto object-contain mx-auto"
                 />
               </div>
-              <div className="text-xs font-mono text-[#7f7f7f]">
-                GitHub • LinkedIn • LeetCode • Discord
+              <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-mono font-bold">
+                <a
+                  href="https://github.com/KDharshana"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-black hover:underline underline-offset-2"
+                >
+                  KDharshana (GitHub)
+                </a>
+                <span className="text-[#7f7f7f]">•</span>
+                <a
+                  href="https://github.com/dharshan-X"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-black hover:underline underline-offset-2"
+                >
+                  dharshan-X (GitHub)
+                </a>
+                <span className="text-[#7f7f7f]">•</span>
+                <a
+                  href="https://f-droid.org/packages/com.quietrays.tonarc/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-black hover:underline underline-offset-2"
+                >
+                  Tonarc (F-Droid)
+                </a>
               </div>
             </div>
 
