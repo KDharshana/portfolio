@@ -2,9 +2,7 @@
 
 import { useState } from 'react';
 import Navigation from '@/components/Navigation';
-import CursorGlow from '@/components/CursorGlow';
 import Hero from '@/components/Hero';
-import ProofMetrics from '@/components/ProofMetrics';
 import CaseStudies from '@/components/CaseStudies';
 import Capabilities from '@/components/Capabilities';
 import EngagementModel from '@/components/EngagementModel';
@@ -26,16 +24,12 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen bg-[#08090d] text-[#f4f4f6] selection:bg-[#d0ab86] selection:text-[#08090d]">
-      <CursorGlow />
-      <Navigation onOpenApplication={handleOpenApplication} />
-      
+    <main className="relative min-h-screen bg-white text-black selection:bg-black selection:text-white">
+      <Navigation onOpenApplication={() => handleOpenApplication()} />
       <Hero onOpenApplication={() => handleOpenApplication()} />
-      <ProofMetrics />
-      <CaseStudies onOpenApplication={() => handleOpenApplication()} />
+      <CaseStudies onOpenApplication={handleOpenApplication} />
       <Capabilities onOpenApplication={() => handleOpenApplication()} />
       <EngagementModel onOpenApplication={handleOpenApplication} />
-      
       <Footer onOpenApplication={() => handleOpenApplication()} />
 
       <ApplicationModal

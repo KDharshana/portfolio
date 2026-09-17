@@ -8,40 +8,57 @@ export default function ProofMetrics() {
   const icons = [TrendingUp, Zap, Users, Award];
 
   return (
-    <section id="proof" className="py-24 border-y border-white/[0.06] bg-[#090b10] relative">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+    <section id="proof" className="py-20 border-b-2 border-black bg-[#fafafa]">
+      <div className="max-w-[1224px] mx-auto px-4 sm:px-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+          <div>
+            <div className="aa-badge text-xs font-bold uppercase mb-3 bg-white">
+              01 // VERIFIABLE RECORD
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl text-black">
+              Proof Over Posturing.
+            </h2>
+          </div>
+          <p className="text-sm sm:text-base text-[#424242] max-w-md font-light">
+            We measure success in enterprise scale, venture fundraises, and benchmarked operational velocity.
+          </p>
+        </div>
+
+        {/* Bento Grid Metrics */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {STATS.map((stat, idx) => {
             const Icon = icons[idx % icons.length];
             return (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-panel glass-panel-hover rounded-2xl p-7 relative overflow-hidden group"
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
+                className="aa-card p-6 flex flex-col justify-between"
               >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-[#d0ab86]/[0.03] rounded-full blur-xl group-hover:bg-[#d0ab86]/[0.08] transition-colors" />
-                
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-xs text-[#d0ab86] tracking-wider uppercase">
-                    0{idx + 1} // METRIC
-                  </span>
-                  <Icon className="w-4 h-4 text-white/30 group-hover:text-[#d0ab86] transition-colors" />
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="font-mono text-xs font-bold text-[#7f7f7f]">
+                      // METRIC_0{idx + 1}
+                    </span>
+                    <div className="w-8 h-8 rounded-[8px] border-2 border-black bg-[#f0f0f0] flex items-center justify-center text-black">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                  <div className="font-display text-4xl sm:text-5xl text-black mb-2">
+                    {stat.number}
+                  </div>
+
+                  <div className="text-base font-bold text-black mb-1">
+                    {stat.label}
+                  </div>
                 </div>
 
-                <div className="text-4xl lg:text-5xl font-semibold tracking-tight text-white font-mono mb-2 group-hover:text-[#e2c5a8] transition-colors">
-                  {stat.number}
-                </div>
-
-                <div className="text-sm font-medium text-white/90 mb-1">
-                  {stat.label}
-                </div>
-
-                <p className="text-xs text-white/50 leading-relaxed font-light">
+                <div className="text-xs text-[#7f7f7f] pt-4 border-t-2 border-black/10 mt-4">
                   {stat.note}
-                </p>
+                </div>
               </motion.div>
             );
           })}

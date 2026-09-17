@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle, ArrowRight, Shield, Clock, Sparkles } from 'lucide-react';
+import { X, CheckCircle, ArrowRight, Shield, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface ApplicationModalProps {
@@ -12,7 +12,6 @@ interface ApplicationModalProps {
 }
 
 export default function ApplicationModal({ isOpen, onClose, preselectedTier }: ApplicationModalProps) {
-  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -36,12 +35,12 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
       setIsSubmitting(false);
       setIsSubmitted(true);
       confetti({
-        particleCount: 80,
-        spread: 70,
+        particleCount: 70,
+        spread: 60,
         origin: { y: 0.6 },
-        colors: ['#d0ab86', '#ffffff', '#e2c5a8']
+        colors: ['#000000', '#424242', '#7f7f7f', '#bcbcbc']
       });
-    }, 900);
+    }, 700);
   };
 
   const budgetOptions = [
@@ -67,29 +66,26 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-      {/* Dark overlay backdrop */}
+      {/* Backdrop */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="fixed inset-0 bg-black/85 backdrop-blur-md"
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm"
       />
 
-      {/* Modal Card */}
+      {/* Modal */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 15 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 15 }}
-        className="relative w-full max-w-2xl bg-[#0e1017] border border-white/[0.12] rounded-3xl p-7 sm:p-10 shadow-2xl z-10 my-8 overflow-hidden"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        className="relative w-full max-w-2xl bg-white border-2 border-black rounded-[8px] p-6 sm:p-10 shadow-[8px_8px_0px_0px_#000000] z-10 my-8 overflow-hidden max-h-[90vh] overflow-y-auto"
       >
-        {/* Glow corner */}
-        <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#d0ab86]/[0.08] rounded-full blur-3xl pointer-events-none" />
-
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-white/50 hover:text-white transition-colors"
+          className="absolute top-6 right-6 p-2 border-2 border-black rounded-[8px] bg-white hover:bg-[#f5f5f5] text-black shadow-[2px_2px_0px_0px_#000000]"
           aria-label="Close"
         >
           <X className="w-5 h-5" />
@@ -97,17 +93,16 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
 
         {!isSubmitted ? (
           <div>
-            {/* Header */}
             <div className="mb-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#d0ab86]/10 border border-[#d0ab86]/20 text-[#d0ab86] text-[11px] font-mono uppercase tracking-wider mb-3">
-                <Sparkles className="w-3 h-3" />
-                <span>Partner Intake Questionnaire</span>
+              <div className="aa-badge text-xs font-bold uppercase mb-3 bg-[#f5f5f5]">
+                <Sparkles className="w-3.5 h-3.5 mr-1.5" />
+                Partner Application Questionnaire
               </div>
-              <h3 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight">
+              <h3 className="font-display text-3xl sm:text-4xl text-black">
                 Apply for an Engagement.
               </h3>
-              <p className="text-white/60 text-xs sm:text-sm font-light mt-1">
-                We accept 2 to 3 partnerships per quarter to protect senior execution quality.
+              <p className="text-[#424242] text-xs sm:text-sm font-light mt-1">
+                We accept strictly 2 to 3 partnerships per quarter to protect senior execution quality.
               </p>
             </div>
 
@@ -115,7 +110,7 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
               {/* Contact Info */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-mono text-white/60 uppercase mb-1.5">
+                  <label className="block text-xs font-bold text-black uppercase mb-1.5">
                     Your Name *
                   </label>
                   <input
@@ -123,12 +118,12 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Marcus Vance"
-                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] focus:border-[#d0ab86] text-white text-sm focus:outline-none transition-colors"
+                    placeholder="Colin Kersley"
+                    className="w-full px-4 py-3 rounded-[8px] border-2 border-black focus:bg-[#fafafa] text-black text-sm font-medium focus:outline-none shadow-[2px_2px_0px_0px_#000000]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-mono text-white/60 uppercase mb-1.5">
+                  <label className="block text-xs font-bold text-black uppercase mb-1.5">
                     Work Email *
                   </label>
                   <input
@@ -136,8 +131,8 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="marcus@company.com"
-                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] focus:border-[#d0ab86] text-white text-sm focus:outline-none transition-colors"
+                    placeholder="colin@company.com"
+                    className="w-full px-4 py-3 rounded-[8px] border-2 border-black focus:bg-[#fafafa] text-black text-sm font-medium focus:outline-none shadow-[2px_2px_0px_0px_#000000]"
                   />
                 </div>
               </div>
@@ -145,7 +140,7 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
               {/* Company & URL */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-mono text-white/60 uppercase mb-1.5">
+                  <label className="block text-xs font-bold text-black uppercase mb-1.5">
                     Company / Venture *
                   </label>
                   <input
@@ -153,27 +148,27 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
                     type="text"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    placeholder="Aura Intelligence"
-                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] focus:border-[#d0ab86] text-white text-sm focus:outline-none transition-colors"
+                    placeholder="Alternative Aesthetics"
+                    className="w-full px-4 py-3 rounded-[8px] border-2 border-black focus:bg-[#fafafa] text-black text-sm font-medium focus:outline-none shadow-[2px_2px_0px_0px_#000000]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-mono text-white/60 uppercase mb-1.5">
-                    Website / Pitch Deck URL
+                  <label className="block text-xs font-bold text-black uppercase mb-1.5">
+                    Website / Deck URL
                   </label>
                   <input
                     type="url"
                     value={formData.website}
                     onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                    placeholder="https://company.com"
-                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] focus:border-[#d0ab86] text-white text-sm focus:outline-none transition-colors"
+                    placeholder="https://alternativeaesthetics.co.uk"
+                    className="w-full px-4 py-3 rounded-[8px] border-2 border-black focus:bg-[#fafafa] text-black text-sm font-medium focus:outline-none shadow-[2px_2px_0px_0px_#000000]"
                   />
                 </div>
               </div>
 
               {/* Primary Scope */}
               <div>
-                <label className="block text-[11px] font-mono text-white/60 uppercase mb-1.5">
+                <label className="block text-xs font-bold text-black uppercase mb-1.5">
                   Primary Scope of Engagement
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -182,10 +177,10 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
                       type="button"
                       key={opt}
                       onClick={() => setFormData({ ...formData, scope: opt })}
-                      className={`text-left px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all ${
+                      className={`text-left px-3.5 py-2.5 rounded-[8px] text-xs font-bold transition-all border-2 border-black ${
                         formData.scope === opt
-                          ? 'bg-[#d0ab86]/15 border border-[#d0ab86] text-[#d0ab86]'
-                          : 'bg-white/[0.02] border border-white/[0.06] text-white/60 hover:text-white'
+                          ? 'bg-black text-white shadow-[2px_2px_0px_0px_#424242]'
+                          : 'bg-white text-black hover:bg-[#f5f5f5] shadow-[2px_2px_0px_0px_#000000]'
                       }`}
                     >
                       {opt}
@@ -196,7 +191,7 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
 
               {/* Budget Qualification */}
               <div>
-                <label className="block text-[11px] font-mono text-white/60 uppercase mb-1.5">
+                <label className="block text-xs font-bold text-black uppercase mb-1.5">
                   Allocated Capital / Budget Tier *
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -205,10 +200,10 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
                       type="button"
                       key={opt}
                       onClick={() => setFormData({ ...formData, budget: opt })}
-                      className={`text-left px-3.5 py-2.5 rounded-xl text-xs font-mono transition-all ${
+                      className={`text-left px-3.5 py-2.5 rounded-[8px] text-xs font-bold font-mono transition-all border-2 border-black ${
                         formData.budget === opt
-                          ? 'bg-[#d0ab86] text-black font-semibold'
-                          : 'bg-white/[0.02] border border-white/[0.06] text-white/70 hover:text-white'
+                          ? 'bg-black text-white shadow-[2px_2px_0px_0px_#424242]'
+                          : 'bg-white text-black hover:bg-[#f5f5f5] shadow-[2px_2px_0px_0px_#000000]'
                       }`}
                     >
                       {opt}
@@ -219,7 +214,7 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
 
               {/* Timeline */}
               <div>
-                <label className="block text-[11px] font-mono text-white/60 uppercase mb-1.5">
+                <label className="block text-xs font-bold text-black uppercase mb-1.5">
                   Target Kickoff Timeline
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -228,10 +223,10 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
                       type="button"
                       key={opt}
                       onClick={() => setFormData({ ...formData, timeline: opt })}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
+                      className={`px-3 py-1.5 rounded-[8px] text-xs font-bold border-2 border-black ${
                         formData.timeline === opt
-                          ? 'bg-white text-black font-semibold'
-                          : 'bg-white/[0.03] border border-white/[0.06] text-white/50 hover:text-white'
+                          ? 'bg-black text-white'
+                          : 'bg-white text-black hover:bg-[#f5f5f5]'
                       }`}
                     >
                       {opt}
@@ -240,31 +235,31 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
                 </div>
               </div>
 
-              {/* Brief context */}
+              {/* Summary */}
               <div>
-                <label className="block text-[11px] font-mono text-white/60 uppercase mb-1.5">
+                <label className="block text-xs font-bold text-black uppercase mb-1.5">
                   Brief Executive Summary (Optional)
                 </label>
                 <textarea
                   rows={2}
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  placeholder="Key deliverables, timeline bottlenecks, or specific technologies required..."
-                  className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] focus:border-[#d0ab86] text-white text-sm focus:outline-none transition-colors resize-none"
+                  placeholder="Key goals, deliverables, or bottlenecks..."
+                  className="w-full px-4 py-3 rounded-[8px] border-2 border-black text-black text-sm font-medium focus:outline-none shadow-[2px_2px_0px_0px_#000000] resize-none"
                 />
               </div>
 
-              {/* Reassurance & Submit */}
+              {/* Submit Button */}
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-2 text-[11px] text-white/40 font-mono">
-                  <Shield className="w-3.5 h-3.5 text-[#d0ab86]" />
-                  <span>NDA signed prior to discovery sync</span>
+                <div className="flex items-center gap-2 text-xs text-[#7f7f7f] font-mono">
+                  <Shield className="w-4 h-4 text-black" />
+                  <span>Mutual NDA executed prior to discovery</span>
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#d0ab86] hover:bg-[#e2c5a8] text-black font-semibold text-xs uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-[#d0ab86]/20 disabled:opacity-50"
+                  className="aa-button-primary w-full sm:w-auto px-8 py-3.5 text-xs uppercase font-bold tracking-wider flex items-center justify-center gap-2 disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <span>Evaluating Parameters...</span>
@@ -279,34 +274,34 @@ export default function ApplicationModal({ isOpen, onClose, preselectedTier }: A
             </form>
           </div>
         ) : (
-          /* Confirmation state */
-          <div className="text-center py-10">
-            <div className="w-16 h-16 rounded-full bg-[#d0ab86]/15 border border-[#d0ab86]/30 flex items-center justify-center mx-auto mb-6 text-[#d0ab86]">
+          /* Confirmation */
+          <div className="text-center py-8">
+            <div className="w-16 h-16 rounded-[8px] bg-black text-white border-2 border-black flex items-center justify-center mx-auto mb-6 shadow-[4px_4px_0px_0px_#424242]">
               <CheckCircle className="w-8 h-8" />
             </div>
 
-            <div className="font-mono text-xs text-[#d0ab86] tracking-widest uppercase mb-2">
+            <div className="aa-badge text-xs font-bold uppercase mb-3 bg-[#f5f5f5]">
               Application Transmitted
             </div>
 
-            <h3 className="text-3xl font-semibold text-white tracking-tight mb-4">
+            <h3 className="font-display text-3xl sm:text-4xl text-black mb-4">
               Thank you, {formData.name}.
             </h3>
 
-            <p className="text-white/70 text-sm max-w-md mx-auto leading-relaxed mb-8">
+            <p className="text-[#424242] text-sm max-w-md mx-auto leading-relaxed mb-8">
               Our Studio Principals review applications within 24 hours. Because your budget aligns with our{' '}
-              <span className="text-[#d0ab86] font-mono">{formData.budget}</span> qualification criteria, we will reach out directly to schedule a private executive briefing.
+              <span className="font-bold text-black">{formData.budget}</span> qualification criteria, we will reach out directly to schedule a private executive briefing.
             </p>
 
-            <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] max-w-sm mx-auto text-left mb-8 font-mono text-xs text-white/60 space-y-1">
-              <div>Partner: <span className="text-white">{formData.company}</span></div>
-              <div>Timeline: <span className="text-white">{formData.timeline}</span></div>
-              <div>Primary Scope: <span className="text-white">{formData.scope}</span></div>
+            <div className="p-4 rounded-[8px] bg-[#f5f5f5] border-2 border-black max-w-sm mx-auto text-left mb-8 font-mono text-xs text-[#424242] space-y-1.5 shadow-[2px_2px_0px_0px_#000000]">
+              <div>Partner: <span className="text-black font-bold">{formData.company}</span></div>
+              <div>Timeline: <span className="text-black font-bold">{formData.timeline}</span></div>
+              <div>Primary Scope: <span className="text-black font-bold">{formData.scope}</span></div>
             </div>
 
             <button
               onClick={onClose}
-              className="px-8 py-3 rounded-full bg-white/[0.08] hover:bg-white/[0.14] text-white text-xs uppercase tracking-wider font-semibold transition-colors"
+              className="aa-button-secondary px-8 py-3 text-xs uppercase font-bold tracking-wider"
             >
               Return to Portfolio
             </button>

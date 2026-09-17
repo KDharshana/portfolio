@@ -6,51 +6,40 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: "class",
   theme: {
     extend: {
+      maxWidth: {
+        container: "1224px",
+      },
       colors: {
-        background: "#08090d",
-        foreground: "#f4f4f6",
-        obsidian: {
-          950: "#050608",
-          900: "#08090d",
-          850: "#0d0f15",
-          800: "#131620",
-          700: "#1c202e",
-          600: "#272c3f",
-        },
-        luxe: {
-          gold: "#d0ab86",
-          amber: "#e5a968",
-          bronze: "#ab8749",
-          muted: "#948b78",
-        },
-        surface: {
-          base: "rgba(13, 15, 21, 0.75)",
-          border: "rgba(255, 255, 255, 0.08)",
-          hover: "rgba(255, 255, 255, 0.04)",
-          highlight: "rgba(208, 171, 134, 0.15)",
+        aa: {
+          black: "#000000",
+          white: "#ffffff",
+          accent: "#424242",
+          support1: "#7f7f7f",
+          support2: "#7c7c7c",
+          muted: "#b4b4b4",
+          light: "#bcbcbc",
+          darkGrey: "#9b9b9b",
+          paper: "#fafafa",
+          card: "#ffffff",
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"],
+        display: ["var(--font-titan)", "cursive", "sans-serif"],
+        sans: ["var(--font-heebo)", "sans-serif"],
       },
-      backgroundImage: {
-        "radial-gradient-glow": "radial-gradient(circle at 50% 0%, rgba(208, 171, 134, 0.12) 0%, rgba(8, 9, 13, 0) 70%)",
-        "radial-subtle-cyan": "radial-gradient(circle at 100% 50%, rgba(56, 189, 248, 0.06) 0%, rgba(8, 9, 13, 0) 60%)",
+      borderRadius: {
+        aa: "8px",
       },
-      animation: {
-        "pulse-slow": "pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        "shimmer": "shimmer 2.5s linear infinite",
+      borderWidth: {
+        aa: "2px",
       },
-      keyframes: {
-        shimmer: {
-          from: { backgroundPosition: "0 0" },
-          to: { backgroundPosition: "-200% 0" },
-        },
+      boxShadow: {
+        brutal: "4px 4px 0px 0px #000000",
+        "brutal-lg": "6px 6px 0px 0px #000000",
+        "brutal-sm": "2px 2px 0px 0px #000000",
+        "brutal-active": "1px 1px 0px 0px #000000",
       },
     },
   },

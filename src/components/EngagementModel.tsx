@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ENGAGEMENT_TIERS, SOCIAL_PROOF } from '@/lib/data';
-import { Check, ShieldCheck, ArrowRight, Quote } from 'lucide-react';
+import { Check, ArrowRight, Quote } from 'lucide-react';
 import Image from 'next/image';
 
 interface EngagementModelProps {
@@ -10,72 +9,116 @@ interface EngagementModelProps {
 }
 
 export default function EngagementModel({ onOpenApplication }: EngagementModelProps) {
+  const tiers = [
+    {
+      name: 'Brand Key Visual & Mascot Sprint',
+      timeline: '2 to 3 Weeks',
+      investment: '£15,000 – £25,000',
+      focus: 'New product launch, mascot development, or campaign hero artwork',
+      availability: '1 Slot Available',
+      includes: [
+        'Complete Character & Mascot Model Sheets',
+        '2D Turnarounds and Expression Sheets',
+        'Bespoke Hand-Lettered Headline System',
+        'Social Media & Outdoor Vector Assets',
+        'Commercial Buyout & Global Licensing'
+      ],
+      recommended: false
+    },
+    {
+      name: 'Full Scale Mural & Experiential',
+      timeline: '3 to 5 Weeks',
+      investment: '£25,000 – £45,000',
+      focus: 'Flagship office, venue, retail space, or public installation',
+      availability: 'Booking Q4 / Q1',
+      includes: [
+        'Freehand On-Site Exterior or Interior Painting',
+        'High-Durability Weather-Resistant Material Sourcing',
+        'Ultraviolet / Glow Experimental Treatments',
+        'Behind-The-Scenes Video & Social Promotion',
+        'Companion Print & Merchandise Edition'
+      ],
+      recommended: true
+    },
+    {
+      name: 'Global Campaign & 3D Universe',
+      timeline: '6 to 10 Weeks',
+      investment: '£45,000 – £85,000',
+      focus: 'Full multimedia advertising campaign, 3D assets, and packaging line',
+      availability: 'Selective: 1 Brand per Quarter',
+      includes: [
+        'Multi-Format Packaging & Box Set Engineering',
+        'Rigged 2D / 3D Animated Commercial Characters',
+        'Full Outdoor Billboard & Digital Screen Renders',
+        'Direct Creative Direction with Colin Kersley',
+        'Exclusive Category Lockout Agreement'
+      ],
+      recommended: false
+    }
+  ];
+
   return (
-    <section id="engagement-model" className="py-32 relative">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+    <section id="engagement-model" className="w-full bg-white py-24 border-b border-black/10">
+      <div className="max-w-[1224px] mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-[#d0ab86] tracking-widest uppercase mb-3">
-            <span>04 // PARTNERSHIP TERMS</span>
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="inline-block border-2 border-black rounded-[8px] px-3 py-1 text-xs font-bold bg-[#f5f5f5] mb-3 shadow-[2px_2px_0px_0px_#000000]">
+            PARTNERSHIP TIERS & COMMISSIONS
           </div>
-          <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6">
-            Transparent Engagement Architecture.
+          <h2 className="font-display text-4xl sm:text-5xl text-black mb-4">
+            Clear Scopes. Zero Fluff.
           </h2>
-          <p className="text-white/60 text-sm sm:text-base font-light leading-relaxed">
-            We operate with strict capacity limits to guarantee partner velocity. No hidden billable hours, no outsourced juniors.
+          <p className="text-sm sm:text-base text-[#424242] font-light leading-relaxed">
+            We work directly with founders, brand directors, and creative heads. Fixed delivery windows and complete transparent licensing.
           </p>
         </div>
 
-        {/* Engagement Tiers */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-28">
-          {ENGAGEMENT_TIERS.map((tier, idx) => (
-            <motion.div
+        {/* Tiers Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
+          {tiers.map((tier) => (
+            <div
               key={tier.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative transition-all duration-300 ${
+              className={`border-2 border-black rounded-[8px] p-8 flex flex-col justify-between relative transition-all ${
                 tier.recommended
-                  ? 'bg-[#10131d] border-2 border-[#d0ab86]/60 shadow-2xl shadow-[#d0ab86]/10 lg:-translate-y-4'
-                  : 'glass-panel glass-panel-hover'
+                  ? 'bg-[#f5f5f5] shadow-[6px_6px_0px_0px_#000000] lg:-translate-y-2'
+                  : 'bg-white shadow-[4px_4px_0px_0px_#000000]'
               }`}
             >
               {tier.recommended && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#d0ab86] text-black font-mono text-[11px] font-bold uppercase tracking-widest">
-                  Flagship Selection
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-[8px] bg-black text-white font-display text-xs uppercase tracking-wider border-2 border-black">
+                  Most Popular Engagement
                 </div>
               )}
 
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-xs text-[#d0ab86] tracking-wider uppercase">
+                  <span className="font-mono text-xs font-bold text-[#7f7f7f]">
                     {tier.timeline}
                   </span>
-                  <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-[6px] border border-black bg-white text-black">
                     {tier.availability}
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-semibold text-white tracking-tight mb-2">
+                <h3 className="font-display text-2xl text-black mb-2 leading-snug">
                   {tier.name}
                 </h3>
 
-                <div className="text-3xl sm:text-4xl font-mono font-bold text-white mb-3">
+                <div className="font-display text-3xl sm:text-4xl text-black mb-3">
                   {tier.investment}
                 </div>
 
-                <p className="text-xs text-white/60 mb-8 font-light leading-relaxed">
+                <p className="text-xs text-[#424242] mb-6 font-light leading-relaxed">
                   {tier.focus}
                 </p>
 
-                <div className="space-y-3 pt-6 border-t border-white/[0.08] mb-8">
-                  <p className="text-[11px] font-mono uppercase tracking-widest text-white/40">
-                    Scope of Delivery:
+                <div className="space-y-2.5 pt-6 border-t-2 border-black/10 mb-8">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-black">
+                    Included in delivery:
                   </p>
                   {tier.includes.map((item, i) => (
-                    <div key={i} className="flex items-start gap-2.5 text-xs text-white/80 font-light">
-                      <Check className="w-3.5 h-3.5 text-[#d0ab86] shrink-0 mt-0.5" />
+                    <div key={i} className="flex items-start gap-2 text-xs text-black font-medium">
+                      <Check className="w-4 h-4 text-black shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -84,65 +127,17 @@ export default function EngagementModel({ onOpenApplication }: EngagementModelPr
 
               <button
                 onClick={() => onOpenApplication(tier.name)}
-                className={`w-full py-4 rounded-full font-semibold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 ${
+                className={`w-full py-3.5 rounded-[8px] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 border-2 border-black transition-all ${
                   tier.recommended
-                    ? 'bg-[#d0ab86] text-black hover:bg-[#e2c5a8] shadow-lg shadow-[#d0ab86]/20 hover:scale-[1.02]'
-                    : 'bg-white/[0.05] hover:bg-white/[0.1] text-white border border-white/[0.1] hover:border-white/[0.2]'
+                    ? 'bg-black text-white hover:bg-[#424242] shadow-[3px_3px_0px_0px_#424242]'
+                    : 'bg-white text-black hover:bg-[#f5f5f5] shadow-[3px_3px_0px_0px_#000000]'
                 }`}
               >
                 <span>Apply for this Tier</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-4 h-4" />
               </button>
-            </motion.div>
+            </div>
           ))}
-        </div>
-
-        {/* Social Proof & Executive Testimonials */}
-        <div className="pt-20 border-t border-white/[0.06]">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <h3 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight mb-3">
-              Direct Feedback from Executives.
-            </h3>
-            <p className="text-white/50 text-xs sm:text-sm font-mono">
-              Unfiltered notes from founders who engaged Aether Studio.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {SOCIAL_PROOF.map((proof, i) => (
-              <motion.div
-                key={proof.author}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="glass-panel rounded-2xl p-7 flex flex-col justify-between"
-              >
-                <div>
-                  <Quote className="w-6 h-6 text-[#d0ab86]/40 mb-4" />
-                  <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light mb-6 italic">
-                    &ldquo;{proof.quote}&rdquo;
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden border border-white/[0.1] bg-[#1a1d28]">
-                    <Image
-                      src={proof.avatar}
-                      alt={proof.author}
-                      fill
-                      sizes="40px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-white">{proof.author}</div>
-                    <div className="text-[11px] text-white/50">{proof.title}, {proof.company}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

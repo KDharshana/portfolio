@@ -4,63 +4,94 @@
 
 @layer base {
   :root {
-    --background: #08090d;
-    --foreground: #f4f4f6;
+    --border-radius-8px: 8px;
+    --field-border: 2px;
+    --accessible-components--dark-grey: #9b9b9b;
+    --white: #ffffff;
+    --black: #000000;
   }
 
   body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--white);
+    color: var(--black);
+    font-family: var(--font-heebo), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 300;
+    line-height: 1.35;
+    letter-spacing: 0.32px;
     overflow-x: hidden;
-    selection-background-color: #d0ab86;
-    selection-color: #08090d;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-titan), cursive, sans-serif;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 0;
   }
 
   ::selection {
-    background-color: #d0ab86;
-    color: #08090d;
+    background-color: #000000;
+    color: #ffffff;
   }
 }
 
-/* Custom subtle scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #08090d;
-}
-::-webkit-scrollbar-thumb {
-  background: #1c202e;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #272c3f;
+/* Tactile Neo-Brutalist / Alternative Aesthetics UI components */
+.aa-card {
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  box-shadow: 4px 4px 0px 0px #000000;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Glassmorphism utility */
-.glass-panel {
-  background: rgba(13, 15, 21, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+.aa-card:hover {
+  box-shadow: 6px 6px 0px 0px #000000;
+  transform: translate(-1px, -1px);
 }
 
-.glass-panel-hover {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+.aa-button-primary {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0px 0px #424242;
+  transition: all 0.15s ease-out;
 }
-.glass-panel-hover:hover {
-  border-color: rgba(208, 171, 134, 0.3);
-  background: rgba(19, 22, 32, 0.85);
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(208, 171, 134, 0.1);
+.aa-button-primary:hover {
+  background-color: #424242;
+  box-shadow: 4px 4px 0px 0px #000000;
+  transform: translate(-1px, -1px);
+}
+.aa-button-primary:active {
+  box-shadow: 1px 1px 0px 0px #000000;
+  transform: translate(1px, 1px);
 }
 
-.gold-gradient-text {
-  background: linear-gradient(135deg, #ffffff 30%, #e2c5a8 70%, #d0ab86 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.aa-button-secondary {
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0px 0px #000000;
+  transition: all 0.15s ease-out;
+}
+.aa-button-secondary:hover {
+  background-color: #f5f5f5;
+  box-shadow: 4px 4px 0px 0px #000000;
+  transform: translate(-1px, -1px);
+}
+.aa-button-secondary:active {
+  box-shadow: 1px 1px 0px 0px #000000;
+  transform: translate(1px, 1px);
 }
 
-.subtle-border {
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.aa-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: #ffffff;
+  box-shadow: 2px 2px 0px 0px #000000;
 }

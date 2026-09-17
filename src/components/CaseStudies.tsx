@@ -1,238 +1,293 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CASE_STUDIES, CaseStudy } from '@/lib/data';
-import { ArrowUpRight, X, CheckCircle, Cpu, Layers, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, ArrowUpRight, CheckCircle } from 'lucide-react';
 
 interface CaseStudiesProps {
-  onOpenApplication: () => void;
+  onOpenApplication: (preselectedTier?: string) => void;
 }
 
+interface PortfolioItem {
+  id: string;
+  title: string;
+  client: string;
+  category: '2D' | '3D' | 'Animation' | 'Murals';
+  image: string;
+  tagline: string;
+  description: string;
+  deliverables: string[];
+  impact: string;
+}
+
+const PORTFOLIO_ITEMS: PortfolioItem[] = [
+  {
+    id: 'stay-strange-mural',
+    title: 'Stay Strange Flagship Mural',
+    client: 'Cardiff Creative Quarter',
+    category: 'Murals',
+    image: '/images/work-1-mural.png',
+    tagline: 'Large-scale hand-painted brick mural celebrating counter-culture and creative resilience.',
+    description: 'Commissioned to transform a blank industrial brick wall into a vibrant landmark for the Cardiff creative district. Painted entirely freehand with high-durability weather-resistant acrylics.',
+    deliverables: ['12m x 5m Exterior Mural', 'Behind-The-Scenes Video', 'Limited Screenprint Run'],
+    impact: '+250k organic social impressions, official tourist photography landmark'
+  },
+  {
+    id: 'doodle-bottle',
+    title: 'Repeating Character Bottle',
+    client: 'Alternative Aesthetics Shop',
+    category: '2D',
+    image: '/images/work-2-bottle.png',
+    tagline: '360° seamless monster doodle pattern wrapped around matte-black insulated stainless steel.',
+    description: 'Engineered a seamless repeating pattern of Colin Kersley’s signature dungeon characters, vectorised and laser-etched directly onto high-performance drinkware.',
+    deliverables: ['Seamless 360° Pattern Vector', 'Packaging Box Design', 'Product Mockup Photography'],
+    impact: 'Sold out 3 limited batches in under 48 hours'
+  },
+  {
+    id: 'look-up-campaign',
+    title: 'LOOK UP — Hygiene Poverty',
+    client: 'National Hygiene Week',
+    category: '2D',
+    image: '/images/work-3-lookup.png',
+    tagline: 'High-impact awareness campaign poster blending raw kinetic lettering with purposeful messaging.',
+    description: 'Created an eye-catching campaign key visual combining bespoke bubble lettering with hand-drawn daily hygiene item icons to encourage donations across universities and public centers.',
+    deliverables: ['National A1 Poster Series', 'Social Media Asset Pack', 'Bus Stop Outdoor Billboards'],
+    impact: 'Raised £45,000+ in corporate hygiene supplies'
+  },
+  {
+    id: 'nice-character',
+    title: 'NICE! Laptop Tech Mascot',
+    client: 'Game On Digital',
+    category: 'Animation',
+    image: '/images/work-4-character.png',
+    tagline: 'Animated mischievous retro game console character built for digital dev agency branding.',
+    description: 'Designed a lively brand mascot with expressive rubber-hose limbs, holding an 8-bit laptop while accidentally spilling coffee. Rigged for 2D animated stickers and onboarding states.',
+    deliverables: ['Character Model Sheets', 'Lottie UI Animations', 'Slack & Discord Sticker Pack'],
+    impact: '+64% user onboarding completion for partner dev-tool'
+  },
+  {
+    id: 'where-you-to-cymru',
+    title: 'Where You To? (Cymru)',
+    client: 'Welsh Cultural Council',
+    category: '2D',
+    image: '/images/work-5-cymru.png',
+    tagline: 'Iconic Welsh phrase translated into a skate-punk character wearing a dragon helmet and flat cap.',
+    description: 'A celebration of modern Welsh street culture and colloquial tongue. Blends Cardiff streetwear sensibilities with classic cartoon illustration.',
+    deliverables: ['Screenprinted T-Shirts & Hoodies', 'Skate Deck Graphic', 'Risograph Prints'],
+    impact: 'Featured in Welsh National Gallery store'
+  },
+  {
+    id: 'snoopy-sculpture',
+    title: 'A Dog’s Trail Snoopy Sculpture',
+    client: 'Dogs Trust UK & Peanuts',
+    category: '3D',
+    image: '/images/work-6-snoopy.png',
+    tagline: 'Life-sized custom Snoopy sculpture painted with gold lightning bolts and intricate black lineart.',
+    description: 'Selected as one of the featured UK artists to paint a life-size fiberglass Snoopy statue displayed prominently on Cardiff High Street. Featured a black-and-gold lightning mask with hidden doodle creatures.',
+    deliverables: ['Custom Hand-Painted Fiberglass Sculpture', 'Charity Auction Piece', 'Public Trail Map Art'],
+    impact: 'Auctioned for £12,500 with 100% of proceeds to rescue dogs'
+  },
+  {
+    id: 'winner-takes-all',
+    title: 'WINNER TAKES ALL! Arcade Installation',
+    client: 'Kong Arcade & Bar',
+    category: 'Murals',
+    image: '/images/work-7-arcade.png',
+    tagline: 'Immersive arcade room graphics featuring hand-drawn brush lettering and ultraviolet reactive lineart.',
+    description: 'Hand-lettered bold typographic phrases combined with illustrated bone and arcade silhouettes, illuminated by UV and warm neon lighting.',
+    deliverables: ['Interior UV Murals', 'Menu Board Lettering', 'VIP Token Coin Designs'],
+    impact: 'Key visual driver for venue opening weekend'
+  },
+  {
+    id: 'black-screen-records',
+    title: 'Black Screen Records Packaging',
+    client: 'Black Screen Records (Germany)',
+    category: '2D',
+    image: '/images/work-8-records.png',
+    tagline: 'Limited edition illustrated mailer boxes, enamel pins, slipmats, and vinyl art sleeves.',
+    description: 'Created a full merchandise and shipping unboxing experience for one of Europe’s premier video game vinyl soundtrack labels, covered in video game doodling Easter eggs.',
+    deliverables: ['Custom Kraft Mailer Box Art', 'Enamel Pin Sets', 'Collectible Holographic Stickers'],
+    impact: 'Over 50,000 collectors received the custom unboxing experience'
+  }
+];
+
 export default function CaseStudies({ onOpenApplication }: CaseStudiesProps) {
-  const [activeStudy, setActiveStudy] = useState<CaseStudy | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [activeItem, setActiveItem] = useState<PortfolioItem | null>(null);
+
+  const categories = ['All', '2D', '3D', 'Animation', 'Murals'];
+
+  const filteredItems = selectedCategory === 'All'
+    ? PORTFOLIO_ITEMS
+    : PORTFOLIO_ITEMS.filter((item) => item.category === selectedCategory);
 
   return (
-    <section id="work" className="py-32 relative">
-      {/* Background illumination */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#d0ab86]/[0.02] rounded-full blur-[140px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div>
-            <div className="flex items-center gap-2 font-mono text-xs text-[#d0ab86] tracking-widest uppercase mb-3">
-              <span>02 // FLAGSHIP PROOF</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-white">
-              Selected Engagements.
-            </h2>
-          </div>
-          <p className="text-white/60 text-sm sm:text-base max-w-md font-light">
-            Exhaustive product and AI builds engineered for high-concurrency scale, category leadership, and venture outcomes.
-          </p>
+    <section id="work" className="w-full bg-white pt-12 pb-24 border-t border-black/10">
+      {/* Category Tabs with Crossed Pencils */}
+      <div className="flex flex-col items-center justify-center mb-12 px-4">
+        {/* Crossed Pencils Icon */}
+        <div className="relative w-12 h-12 mb-4">
+          <Image
+            src="/images/crossed-pencils.png"
+            alt="Crossed Pencils"
+            fill
+            className="object-contain"
+          />
         </div>
 
-        {/* Case Study Grid */}
-        <div className="space-y-14">
-          {CASE_STUDIES.map((study, index) => (
-            <motion.article
-              key={study.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="glass-panel rounded-3xl overflow-hidden group hover:border-[#d0ab86]/40 transition-all duration-500"
+        {/* Categories Bar */}
+        <div className="flex items-center gap-6 sm:gap-10 font-sans text-sm sm:text-base font-medium">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`transition-colors cursor-pointer ${
+                selectedCategory === cat
+                  ? 'text-black font-bold underline underline-offset-8 decoration-2'
+                  : 'text-black/50 hover:text-black'
+              }`}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-                {/* Visual Imagery Tile */}
-                <div className="lg:col-span-7 relative min-h-[340px] sm:min-h-[440px] overflow-hidden bg-[#0c0e15]">
-                  <Image
-                    src={study.image}
-                    alt={study.title}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 60vw"
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out opacity-85 group-hover:opacity-100"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#08090d] via-transparent to-transparent opacity-80" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#08090d]/80 hidden lg:block" />
-
-                  {/* Badges on image */}
-                  <div className="absolute top-6 left-6 flex flex-wrap gap-2">
-                    <span className="px-3 py-1 rounded-full bg-[#08090d]/80 backdrop-blur-md border border-white/[0.1] text-xs font-mono text-white/90">
-                      {study.category}
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-[#08090d]/80 backdrop-blur-md border border-white/[0.1] text-xs font-mono text-[#d0ab86]">
-                      {study.year}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Narrative & Metrics Column */}
-                <div className="lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between bg-[#0b0d13]/70">
-                  <div>
-                    <div className="font-mono text-xs text-[#d0ab86] tracking-wider uppercase mb-2">
-                      {study.client}
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight mb-3">
-                      {study.title}
-                    </h3>
-                    <p className="text-white/60 text-sm leading-relaxed mb-8 font-light">
-                      {study.tagline}
-                    </p>
-
-                    {/* Quantifiable Metrics Strip */}
-                    <div className="grid grid-cols-3 gap-3 py-5 border-y border-white/[0.08] mb-8">
-                      {study.metrics.map((metric) => (
-                        <div key={metric.label} className="flex flex-col">
-                          <span className="font-mono text-xl sm:text-2xl font-bold text-white group-hover:text-[#e2c5a8] transition-colors">
-                            {metric.value}
-                          </span>
-                          <span className="text-[11px] text-white/50 tracking-tight mt-0.5">
-                            {metric.label}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Tech stack tags */}
-                    <div className="flex flex-wrap gap-1.5 mb-8">
-                      {study.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-[11px] font-mono px-2.5 py-1 rounded bg-white/[0.03] text-white/60 border border-white/[0.05]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex items-center justify-between pt-4">
-                    <button
-                      onClick={() => setActiveStudy(study)}
-                      className="inline-flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#d0ab86] hover:text-white transition-colors group/btn"
-                    >
-                      <span>Architectural Breakdown</span>
-                      <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                    </button>
-
-                    <button
-                      onClick={onOpenApplication}
-                      className="text-xs font-mono text-white/40 hover:text-white transition-colors"
-                    >
-                      Inquire Similar Build
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </motion.article>
+              {cat}
+            </button>
           ))}
         </div>
       </div>
 
-      {/* Deep-Dive Architectural Breakdown Drawer / Modal */}
+      {/* Seamless Edge-to-Edge Bento Grid */}
+      <div className="w-full max-w-[1440px] mx-auto px-2 sm:px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          {filteredItems.map((item) => (
+            <motion.div
+              key={item.id}
+              layout
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setActiveItem(item)}
+              className="group relative aspect-square bg-[#f5f5f5] overflow-hidden cursor-pointer rounded-sm border border-black/10 hover:border-black transition-all"
+            >
+              {/* Image */}
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-black/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-between text-white">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono uppercase tracking-widest text-[#bcbcbc]">
+                    {item.client}
+                  </span>
+                  <span className="px-2 py-0.5 rounded bg-white text-black text-[11px] font-bold">
+                    {item.category}
+                  </span>
+                </div>
+
+                <div>
+                  <h4 className="font-display text-xl text-white mb-2 leading-tight">
+                    {item.title}
+                  </h4>
+                  <p className="text-xs text-[#bcbcbc] line-clamp-2 leading-relaxed font-light mb-4">
+                    {item.tagline}
+                  </p>
+                  <div className="inline-flex items-center gap-1 text-xs font-bold text-white underline underline-offset-4">
+                    <span>View Case Study</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Case Study Deep Dive Modal */}
       <AnimatePresence>
-        {activeStudy && (
+        {activeItem && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setActiveStudy(null)}
-              className="fixed inset-0 bg-black/85 backdrop-blur-md"
+              onClick={() => setActiveItem(null)}
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm"
             />
 
-            {/* Modal Dialog */}
+            {/* Modal Box */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.96, y: 20 }}
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.96, y: 20 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-3xl bg-[#0d0f17] border border-white/[0.12] rounded-3xl p-6 sm:p-10 shadow-2xl z-10 my-8 max-h-[90vh] overflow-y-auto"
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              className="relative w-full max-w-2xl bg-white border-2 border-black rounded-[8px] p-6 sm:p-8 shadow-[8px_8px_0px_0px_#000000] z-10 my-8 overflow-hidden max-h-[90vh] overflow-y-auto"
             >
               {/* Close Button */}
               <button
-                onClick={() => setActiveStudy(null)}
-                className="absolute top-6 right-6 p-2 rounded-full bg-white/[0.05] hover:bg-white/[0.1] text-white/60 hover:text-white transition-colors"
-                aria-label="Close modal"
+                onClick={() => setActiveItem(null)}
+                className="absolute top-5 right-5 p-2 rounded-[8px] border-2 border-black bg-white hover:bg-[#f5f5f5] text-black shadow-[2px_2px_0px_0px_#000000]"
+                aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="flex items-center gap-2 font-mono text-xs text-[#d0ab86] uppercase mb-2">
-                <span>{activeStudy.client}</span>
-                <span>•</span>
-                <span>{activeStudy.year}</span>
+              <div className="inline-block border-2 border-black rounded-[8px] px-3 py-1 text-xs font-bold bg-[#f5f5f5] mb-4">
+                {activeItem.client} • {activeItem.category}
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-4">
-                {activeStudy.title}
+              <h3 className="font-display text-2xl sm:text-3xl text-black mb-3">
+                {activeItem.title}
               </h3>
 
-              <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-8">
-                {activeStudy.overview}
+              {/* Image Preview */}
+              <div className="relative w-full h-64 sm:h-80 rounded-[8px] border-2 border-black overflow-hidden mb-6 bg-[#f0f0f0]">
+                <Image
+                  src={activeItem.image}
+                  alt={activeItem.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              <p className="text-sm sm:text-base text-[#424242] leading-relaxed mb-6 font-light">
+                {activeItem.description}
               </p>
 
-              {/* Detailed Metrics */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-5 rounded-2xl bg-[#131622] border border-white/[0.06] mb-8">
-                {activeStudy.metrics.map((m) => (
-                  <div key={m.label}>
-                    <div className="font-mono text-2xl font-bold text-[#d0ab86]">{m.value}</div>
-                    <div className="text-xs font-semibold text-white/90">{m.label}</div>
-                    <div className="text-[11px] text-white/50 mt-1">{m.detail}</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Architecture & Engineering Highlights */}
-              <div className="mb-8">
-                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white/50 mb-3">
-                  <Cpu className="w-4 h-4 text-[#d0ab86]" />
-                  <span>Systems & Architecture Decisions</span>
-                </div>
-                <div className="space-y-2.5">
-                  {activeStudy.architecture.map((item, i) => (
-                    <div key={i} className="flex items-start gap-3 text-xs sm:text-sm text-white/80">
-                      <span className="font-mono text-xs text-[#d0ab86] mt-0.5">0{i + 1}</span>
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Shipped Deliverables */}
-              <div className="mb-8">
-                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white/50 mb-3">
-                  <Layers className="w-4 h-4 text-[#d0ab86]" />
-                  <span>Shipped Artifacts</span>
+              {/* Shipped deliverables */}
+              <div className="mb-6">
+                <div className="font-bold text-xs uppercase tracking-wider text-black mb-2">
+                  Scope of Delivery:
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {activeStudy.deliverables.map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-white/70 bg-white/[0.02] p-2.5 rounded-lg border border-white/[0.04]">
-                      <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span>{item}</span>
+                  {activeItem.deliverables.map((d, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs text-black bg-[#fafafa] p-2 rounded-[6px] border border-black/10">
+                      <CheckCircle className="w-3.5 h-3.5 text-black shrink-0" />
+                      <span>{d}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Modal footer CTA */}
-              <div className="pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span className="text-xs text-white/50 font-mono">
-                  Ready to engineer similar velocity?
-                </span>
+              {/* Impact callout */}
+              <div className="p-4 rounded-[8px] bg-[#f5f5f5] border-2 border-black mb-6">
+                <div className="text-[11px] font-mono font-bold uppercase text-[#7f7f7f]">Verified Outcome</div>
+                <div className="text-sm font-bold text-black mt-1">{activeItem.impact}</div>
+              </div>
+
+              {/* CTA */}
+              <div className="pt-4 border-t-2 border-black/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <span className="text-xs text-[#7f7f7f]">Commission a similar engagement</span>
                 <button
                   onClick={() => {
-                    setActiveStudy(null);
+                    setActiveItem(null);
                     onOpenApplication();
                   }}
-                  className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#d0ab86] text-black font-semibold text-xs uppercase tracking-wider hover:bg-[#e2c5a8] transition-colors"
+                  className="bg-black text-white px-6 py-2.5 rounded-[8px] font-bold text-xs uppercase tracking-wider -rotate-1 hover:rotate-0 transition-transform shadow-[3px_3px_0px_0px_#424242]"
                 >
-                  Initiate Partner Intake
+                  Let&apos;s Play!
                 </button>
               </div>
             </motion.div>
