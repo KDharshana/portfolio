@@ -1,10 +1,73 @@
 'use client';
 
+import { useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Terminal, FileCode2 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const heroArtRef = useRef<HTMLDivElement>(null);
+  const hookRef = useRef<HTMLParagraphElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
+  const handRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      tl.from(
+        heroArtRef.current,
+        {
+          opacity: 0,
+          scale: 0.95,
+          y: 25,
+          duration: 0.9,
+          ease: 'power2.out',
+        }
+      )
+        .from(
+          hookRef.current,
+          {
+            opacity: 0,
+            y: 18,
+            duration: 0.6,
+          },
+          '-=0.4'
+        )
+        .from(
+          buttonsRef.current ? Array.from(buttonsRef.current.children) : [],
+          {
+            opacity: 0,
+            y: 16,
+            duration: 0.5,
+            stagger: 0.12,
+          },
+          '-=0.3'
+        )
+        .from(
+          handRef.current,
+          {
+            opacity: 0,
+            y: 10,
+            duration: 0.5,
+          },
+          '-=0.2'
+        );
+
+      // Continuous pointing hand float indicator
+      gsap.to(handRef.current, {
+        y: 7,
+        duration: 0.85,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+      });
+    },
+    { scope: containerRef }
+  );
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -13,30 +76,19 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative w-full min-h-[calc(100vh-80px)] flex flex-col justify-between items-center bg-white px-4 pt-6 pb-8 overflow-hidden select-none scroll-mt-20">
-      {/* Top Status Pill */}
-      <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-        <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-black text-white text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_#424242]">
-          <Terminal className="w-3.5 h-3.5" />
-          <span>3rd Year CS Undergrad • Salem, Tamil Nadu</span>
-        </div>
-
-        <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-[#f5f5f5] text-black text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_#000000]">
-          <span className="w-2 h-2 rounded-full bg-black animate-pulse"></span>
-          <span>Published on F-Droid • Seeking SWE Internships</span>
-        </div>
-      </div>
-
+    <section
+      id="home"
+      ref={containerRef}
+      className="relative w-full min-h-[calc(100vh-80px)] flex flex-col justify-between items-center bg-white px-4 pt-4 pb-8 overflow-hidden select-none scroll-mt-20"
+    >
       {/* Main Hero Custom Hand-Drawn Artwork: DHARSHANA */}
       <div className="w-full max-w-[1020px] mx-auto flex flex-col items-center justify-center my-auto px-4 py-2">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        <div
+          ref={heroArtRef}
           className="w-full flex items-center justify-center pointer-events-none select-none"
         >
           <Image
-            src="/images/dharshana-hero-art.jpg"
+            src="/images/dharshana-hero-art.png"
             alt="DHARSHANA - 3rd Year Computer Science Student & Software Engineer"
             width={1020}
             height={574}
@@ -44,23 +96,19 @@ export default function Hero() {
             priority
             draggable={false}
           />
-        </motion.div>
+        </div>
 
         {/* Short Personal Hook */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+        <p
+          ref={hookRef}
           className="mt-4 text-center text-sm sm:text-base md:text-lg text-[#424242] font-light max-w-2xl leading-relaxed"
         >
           Creator of Tonarc (published on F-Droid), architect of Bun 1.3 &amp; React 19 web platforms, and builder of local GraphRAG AI agents. Rigorous CS fundamentals meets real-world open source.
-        </motion.p>
+        </p>
 
         {/* Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+        <div
+          ref={buttonsRef}
           className="flex flex-wrap items-center justify-center gap-4 mt-6"
         >
           <button
@@ -76,19 +124,16 @@ export default function Hero() {
           >
             Get In Touch / Hire Me
           </button>
-        </motion.div>
+        </div>
       </div>
 
       {/* Pointing Hand at the Bottom */}
       <div
+        ref={handRef}
         className="flex flex-col items-center justify-center pt-2 pb-1 cursor-pointer group"
         onClick={() => scrollTo('about')}
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-          className="transition-transform group-hover:scale-115"
-        >
+        <div className="transition-transform group-hover:scale-115">
           <Image
             src="/images/pointing-hand.png"
             alt="Scroll down to About"
@@ -97,7 +142,7 @@ export default function Hero() {
             className="w-9 h-auto object-contain"
             priority
           />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef } from 'react';
 import Image from 'next/image';
 import { ACADEMIC_STATS, EDUCATION_DETAILS } from '@/lib/data';
 import {
@@ -9,11 +10,25 @@ import {
   CheckCircle,
   Terminal,
   BookOpen,
-  Award,
   Cpu
 } from 'lucide-react';
+import DraggableSticker from '@/components/DraggableSticker';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function AboutSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const narrativeRef = useRef<HTMLDivElement>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const expListRef = useRef<HTMLDivElement>(null);
+
   const experiences = [
     {
       year: '2025 - Present',
@@ -41,14 +56,119 @@ export default function AboutSection() {
     }
   ];
 
+  useGSAP(
+    () => {
+      // Header entrance
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 90%',
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Narrative & Sidebar
+      const narrativeTargets = [narrativeRef.current, sidebarRef.current].filter(Boolean);
+      if (narrativeTargets.length > 0) {
+        gsap.fromTo(
+          narrativeTargets,
+          { opacity: 0, y: 35 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.18,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: narrativeRef.current,
+              start: 'top 88%',
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Metric Stats Cards
+      if (statsRef.current) {
+        gsap.fromTo(
+          Array.from(statsRef.current.children),
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: statsRef.current,
+              start: 'top 90%',
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Experience timeline items
+      if (expListRef.current) {
+        gsap.fromTo(
+          Array.from(expListRef.current.children),
+          { opacity: 0, x: -22 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.65,
+            stagger: 0.12,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: expListRef.current,
+              start: 'top 90%',
+              once: true,
+            },
+          }
+        );
+      }
+    },
+    { scope: sectionRef }
+  );
+
   return (
-    <section id="about" className="w-full py-24 bg-[#fafafa] border-b border-black/10 scroll-mt-20">
+    <section
+      id="about"
+      ref={sectionRef}
+      className="w-full py-24 bg-[#fafafa] border-b border-black/10 scroll-mt-20"
+    >
       <div className="max-w-[1224px] mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="mb-14">
-          <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-white text-black text-xs font-bold uppercase tracking-wider mb-4 shadow-[2px_2px_0px_0px_#000000]">
+        <div ref={headerRef} className="w-full max-w-[1020px] mx-auto flex flex-col items-center justify-center mb-16 text-center">
+          <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-white text-black text-xs font-bold uppercase tracking-wider mb-6 shadow-[2px_2px_0px_0px_#000000]">
             <Sparkles className="w-3.5 h-3.5" />
             <span>01 // Scraped Profile &amp; Engineering Background</span>
+          </div>
+
+          <div className="w-full flex items-center justify-center pointer-events-none select-none mb-6">
+            <Image
+              src="/images/about-graffiti-art.png"
+              alt="ABOUT - First Principles Graffiti"
+              width={1020}
+              height={574}
+              className="w-full max-w-[960px] h-auto max-h-[58vh] object-contain pointer-events-none select-none"
+              priority
+              draggable={false}
+            />
           </div>
 
           <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-black leading-tight mb-6 max-w-4xl">
@@ -59,7 +179,7 @@ export default function AboutSection() {
             Undergraduate Computer Science engineer based in Salem, Tamil Nadu, India. Specializing in modern Android engineering with Kotlin &amp; Jetpack Compose, high-performance web systems with Bun &amp; React 19, local AI GraphRAG architectures, and systems tooling in Rust.
           </p>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <div className="flex items-center gap-2 text-xs sm:text-sm font-bold border-2 border-black rounded-[8px] px-3.5 py-2 bg-white shadow-[2px_2px_0px_0px_#000000]">
               <GraduationCap className="w-4 h-4 text-black" />
               <span>B.E. in Computer Science — Class of 2026 (Year 3)</span>
@@ -74,7 +194,10 @@ export default function AboutSection() {
         {/* 2-Column Bento: Story & Academic Standings */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
           {/* Main Narrative Card */}
-          <div className="lg:col-span-8 bg-white border-2 border-black rounded-[8px] p-8 sm:p-10 shadow-[5px_5px_0px_0px_#000000]">
+          <div
+            ref={narrativeRef}
+            className="lg:col-span-8 bg-white border-2 border-black rounded-[8px] p-8 sm:p-10 shadow-[5px_5px_0px_0px_#000000]"
+          >
             <div className="inline-block border-2 border-black rounded-[8px] px-3 py-1 text-xs font-bold bg-[#f5f5f5] mb-5 shadow-[2px_2px_0px_0px_#000000]">
               ENGINEERING PHILOSOPHY &amp; BACKGROUND
             </div>
@@ -119,7 +242,7 @@ export default function AboutSection() {
           </div>
 
           {/* Side Column: Education & Coursework */}
-          <div className="lg:col-span-4 space-y-6">
+          <div ref={sidebarRef} className="lg:col-span-4 space-y-6">
             {/* Degree & Standing Card */}
             <div className="bg-white border-2 border-black rounded-[8px] p-6 shadow-[4px_4px_0px_0px_#000000]">
               <div className="flex items-center gap-2 mb-3">
@@ -150,22 +273,27 @@ export default function AboutSection() {
               </div>
             </div>
 
-            {/* Doodles Card */}
-            <div className="bg-white border-2 border-black rounded-[8px] p-6 shadow-[4px_4px_0px_0px_#000000] text-center">
-              <div className="flex items-center justify-center gap-6 mb-3">
-                <Image
+            {/* Interactive Doodles Card */}
+            <div className="bg-white border-2 border-black rounded-[8px] p-6 shadow-[4px_4px_0px_0px_#000000] text-center relative">
+              <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#7f7f7f] mb-3 flex items-center justify-center gap-1">
+                <span>[ Draggable Stickers // Grab &amp; Peel ]</span>
+              </div>
+              <div className="flex items-center justify-center gap-8 mb-4 py-2">
+                <DraggableSticker
                   src="/images/art-breathe.png"
                   alt="Breathe plant doodle"
-                  width={90}
-                  height={110}
-                  className="w-20 h-auto object-contain hover:scale-105 transition-transform"
+                  width={85}
+                  height={105}
+                  initialRotate={-4}
+                  badgeText="PEEL ME"
                 />
-                <Image
+                <DraggableSticker
                   src="/images/art-hot-damn.png"
                   alt="Hot damn doodle"
-                  width={90}
-                  height={110}
-                  className="w-20 h-auto object-contain hover:scale-105 transition-transform"
+                  width={85}
+                  height={105}
+                  initialRotate={5}
+                  badgeText="DRAG ME"
                 />
               </div>
               <div className="font-display text-base text-black mb-1">
@@ -179,7 +307,7 @@ export default function AboutSection() {
         </div>
 
         {/* Academic Stats Bento Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div ref={statsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {ACADEMIC_STATS.map((stat, idx) => (
             <div
               key={stat.label}
@@ -214,7 +342,7 @@ export default function AboutSection() {
             </h3>
           </div>
 
-          <div className="space-y-4">
+          <div ref={expListRef} className="space-y-4">
             {experiences.map((exp, i) => (
               <div
                 key={i}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import confetti from 'canvas-confetti';
 import {
@@ -15,45 +15,31 @@ import {
   FileText,
   Terminal
 } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import DraggableSticker from '@/components/DraggableSticker';
+import SharpieCanvas from '@/components/SharpieCanvas';
 
-interface ContactSectionProps {
-  preselectedTier?: string;
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
 }
 
-export default function ContactSection({ preselectedTier }: ContactSectionProps) {
+export default function ContactSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const leftColRef = useRef<HTMLDivElement>(null);
+  const rightColRef = useRef<HTMLDivElement>(null);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
-    website: '',
-    roleType: preselectedTier || 'Summer Software Engineering Internship',
-    focusArea: 'Backend & Distributed Systems',
-    timeline: 'Summer 2025/2026',
-    notes: ''
+    subject: '',
+    message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const roleOptions = [
-    'Summer Software Engineering Internship',
-    'Part-Time Co-Op / Student SWE',
-    'Full-Stack / Mobile App Development',
-    'AI & GraphRAG Collaboration'
-  ];
-
-  const focusOptions = [
-    'Android Engineering (Kotlin / Compose)',
-    'Full-Stack Web (Bun / React 19 / Next.js)',
-    'Applied AI & Local LLMs (Ollama / Neo4j)',
-    'Systems Tooling & Rust Programming'
-  ];
-
-  const timelineOptions = [
-    'Immediate (Next 7–14 Days)',
-    'Within 30 Days',
-    'Summer 2025/2026',
-    'Flexible / Exploring'
-  ];
 
   const faqs = [
     {
@@ -74,6 +60,51 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
     }
   ];
 
+  useGSAP(
+    () => {
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 90%',
+              once: true,
+            },
+          }
+        );
+      }
+
+      const columns = [leftColRef.current, rightColRef.current].filter(Boolean);
+      if (columns.length > 0) {
+        gsap.fromTo(
+          columns,
+          { opacity: 0, y: 35 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.16,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: leftColRef.current,
+              start: 'top 88%',
+              once: true,
+            },
+          }
+        );
+      }
+    },
+    { scope: sectionRef }
+  );
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -91,16 +122,32 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
   };
 
   return (
-    <section id="contact" className="w-full py-24 bg-[#fafafa] border-b border-black/10 scroll-mt-20">
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="w-full py-24 bg-[#fafafa] border-b border-black/10 scroll-mt-20"
+    >
       <div className="max-w-[1224px] mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="mb-14">
-          <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-white text-black text-xs font-bold uppercase tracking-wider mb-4 shadow-[2px_2px_0px_0px_#000000]">
+        <div ref={headerRef} className="w-full max-w-[1020px] mx-auto flex flex-col items-center justify-center mb-16 text-center">
+          <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-white text-black text-xs font-bold uppercase tracking-wider mb-6 shadow-[2px_2px_0px_0px_#000000]">
             <Sparkles className="w-3.5 h-3.5" />
             <span>04 // Connect &amp; Opportunities</span>
           </div>
 
-          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-black leading-tight mb-6 max-w-4xl">
+          <div className="w-full flex items-center justify-center pointer-events-none select-none mb-6">
+            <Image
+              src="/images/contact-graffiti-art.png"
+              alt="CONNECT - Let's Build Graffiti"
+              width={1020}
+              height={574}
+              className="w-full max-w-[960px] h-auto max-h-[58vh] object-contain pointer-events-none select-none"
+              priority
+              draggable={false}
+            />
+          </div>
+
+          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-black leading-tight mb-4 max-w-4xl">
             Let&apos;s Build Something Great Together.
           </h2>
 
@@ -112,7 +159,7 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
         {/* 2-Column Bento Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Direct Info, Resume & FAQs */}
-          <div className="lg:col-span-5 space-y-6">
+          <div ref={leftColRef} className="lg:col-span-5 space-y-6">
             {/* Student Contact Card */}
             <div className="bg-white border-2 border-black rounded-[8px] p-6 sm:p-7 shadow-[4px_4px_0px_0px_#000000]">
               <div className="flex items-center gap-2 mb-4">
@@ -170,13 +217,14 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
 
             {/* Social Doodles Card */}
             <div className="bg-white border-2 border-black rounded-[8px] p-6 shadow-[4px_4px_0px_0px_#000000] text-center">
-              <div className="w-[220px] max-w-full h-auto mx-auto mb-3">
-                <Image
+              <div className="w-[220px] max-w-full h-auto mx-auto mb-3 flex items-center justify-center">
+                <DraggableSticker
                   src="/images/social-doodles.png"
                   alt="Social doodles"
                   width={220}
                   height={54}
-                  className="w-full h-auto object-contain mx-auto"
+                  initialRotate={-1}
+                  badgeText="DRAG"
                 />
               </div>
               <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-mono font-bold">
@@ -231,7 +279,8 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
           </div>
 
           {/* Right Column: Contact & Recruiter Form */}
-          <div className="lg:col-span-7 bg-white border-2 border-black rounded-[8px] p-6 sm:p-10 shadow-[6px_6px_0px_0px_#000000]">
+          <div ref={rightColRef} className="lg:col-span-7 space-y-8">
+            <div className="bg-white border-2 border-black rounded-[8px] p-6 sm:p-10 shadow-[6px_6px_0px_0px_#000000]">
             {!isSubmitted ? (
               <div>
                 <div className="mb-8">
@@ -294,96 +343,28 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-black uppercase mb-1.5">
-                        Company / Job Post URL
+                        Subject / Topic
                       </label>
                       <input
-                        type="url"
-                        value={formData.website}
-                        onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                        placeholder="https://company.com/careers"
+                        type="text"
+                        value={formData.subject}
+                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                        placeholder="SWE Internship 2025/2026, Open Source, or Collaboration..."
                         className="w-full px-4 py-3 rounded-[8px] border-2 border-black focus:bg-[#fafafa] text-black text-sm font-medium focus:outline-none shadow-[2px_2px_0px_0px_#000000]"
                       />
                     </div>
                   </div>
 
-                  {/* Role Type Selector */}
+                  {/* Your Message Field */}
                   <div>
                     <label className="block text-xs font-bold text-black uppercase mb-1.5">
-                      Opportunity / Inquiry Type
-                    </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {roleOptions.map((opt) => (
-                        <button
-                          type="button"
-                          key={opt}
-                          onClick={() => setFormData({ ...formData, roleType: opt })}
-                          className={`text-left px-3.5 py-2.5 rounded-[8px] text-xs font-bold transition-all border-2 border-black cursor-pointer ${
-                            formData.roleType === opt
-                              ? 'bg-black text-white shadow-[2px_2px_0px_0px_#424242]'
-                              : 'bg-white text-black hover:bg-[#f5f5f5] shadow-[2px_2px_0px_0px_#000000]'
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Primary Focus Area */}
-                  <div>
-                    <label className="block text-xs font-bold text-black uppercase mb-1.5">
-                      Primary Engineering Focus Area
-                    </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {focusOptions.map((opt) => (
-                        <button
-                          type="button"
-                          key={opt}
-                          onClick={() => setFormData({ ...formData, focusArea: opt })}
-                          className={`text-left px-3.5 py-2.5 rounded-[8px] text-xs font-bold font-mono transition-all border-2 border-black cursor-pointer ${
-                            formData.focusArea === opt
-                              ? 'bg-black text-white shadow-[2px_2px_0px_0px_#424242]'
-                              : 'bg-white text-black hover:bg-[#f5f5f5] shadow-[2px_2px_0px_0px_#000000]'
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Timeline */}
-                  <div>
-                    <label className="block text-xs font-bold text-black uppercase mb-1.5">
-                      Target Start Date / Timeline
-                    </label>
-                    <div className="flex flex-wrap gap-2">
-                      {timelineOptions.map((opt) => (
-                        <button
-                          type="button"
-                          key={opt}
-                          onClick={() => setFormData({ ...formData, timeline: opt })}
-                          className={`px-3 py-1.5 rounded-[8px] text-xs font-bold border-2 border-black cursor-pointer ${
-                            formData.timeline === opt
-                              ? 'bg-black text-white'
-                              : 'bg-white text-black hover:bg-[#f5f5f5]'
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Message Notes */}
-                  <div>
-                    <label className="block text-xs font-bold text-black uppercase mb-1.5">
-                      Details / Job Description / Note
+                      Your Message *
                     </label>
                     <textarea
-                      rows={3}
-                      value={formData.notes}
-                      onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                      required
+                      rows={5}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Tell Dharshana about your team, tech stack, open roles, or project requirements..."
                       className="w-full px-4 py-3 rounded-[8px] border-2 border-black text-black text-sm font-medium focus:outline-none shadow-[2px_2px_0px_0px_#000000] resize-none"
                     />
@@ -429,15 +410,13 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
                 </h3>
 
                 <p className="text-[#424242] text-sm max-w-md mx-auto leading-relaxed mb-8">
-                  Dharshana will review your message regarding{' '}
-                  <span className="font-bold text-black">{formData.roleType}</span> and reply to{' '}
+                  Dharshana will review your message and reply to{' '}
                   <span className="font-bold text-black">{formData.email}</span> within 24 hours.
                 </p>
 
                 <div className="p-4 rounded-[8px] bg-[#f5f5f5] border-2 border-black max-w-sm mx-auto text-left mb-8 font-mono text-xs text-[#424242] space-y-1.5 shadow-[2px_2px_0px_0px_#000000]">
                   <div>Organization: <span className="text-black font-bold">{formData.company}</span></div>
-                  <div>Focus Area: <span className="text-black font-bold">{formData.focusArea}</span></div>
-                  <div>Target Start: <span className="text-black font-bold">{formData.timeline}</span></div>
+                  <div>Subject: <span className="text-black font-bold">{formData.subject || 'Direct Inquiry'}</span></div>
                 </div>
 
                 <button
@@ -448,6 +427,10 @@ export default function ContactSection({ preselectedTier }: ContactSectionProps)
                 </button>
               </div>
             )}
+            </div>
+
+            {/* Interactive Sharpie Desk Canvas */}
+            <SharpieCanvas />
           </div>
         </div>
       </div>

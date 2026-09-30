@@ -1,13 +1,25 @@
 'use client';
 
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Check, ArrowRight, Sparkles, Briefcase, Calendar, Code2 } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface EngagementModelProps {
   onSelectTier?: (tierName: string) => void;
 }
 
 export default function EngagementModel({ onSelectTier }: EngagementModelProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const rolesRef = useRef<HTMLDivElement>(null);
+
   const roles = [
     {
       name: 'Summer Software Engineering Internship',
@@ -56,6 +68,50 @@ export default function EngagementModel({ onSelectTier }: EngagementModelProps) 
     }
   ];
 
+  useGSAP(
+    () => {
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 90%',
+              once: true,
+            },
+          }
+        );
+      }
+
+      if (rolesRef.current) {
+        gsap.fromTo(
+          Array.from(rolesRef.current.children),
+          { opacity: 0, y: 35 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+            stagger: 0.14,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: rolesRef.current,
+              start: 'top 88%',
+              once: true,
+            },
+          }
+        );
+      }
+    },
+    { scope: sectionRef }
+  );
+
   const handleSelectTier = (roleName: string) => {
     if (onSelectTier) {
       onSelectTier(roleName);
@@ -67,10 +123,14 @@ export default function EngagementModel({ onSelectTier }: EngagementModelProps) 
   };
 
   return (
-    <section id="commissions" className="w-full bg-white py-24 border-b border-black/10 scroll-mt-20">
+    <section
+      id="commissions"
+      ref={sectionRef}
+      className="w-full bg-white py-24 border-b border-black/10 scroll-mt-20"
+    >
       <div className="max-w-[1224px] mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div ref={headerRef} className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-block border-2 border-black rounded-[8px] px-3 py-1 text-xs font-bold bg-[#f5f5f5] mb-3 shadow-[2px_2px_0px_0px_#000000]">
             WHAT I&apos;M LOOKING FOR // OPEN ROLES
           </div>
@@ -83,7 +143,7 @@ export default function EngagementModel({ onSelectTier }: EngagementModelProps) 
         </div>
 
         {/* Roles Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div ref={rolesRef} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {roles.map((role) => (
             <div
               key={role.name}

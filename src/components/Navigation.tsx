@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
+import DraggableSticker from '@/components/DraggableSticker';
 
 export default function Navigation() {
   const [activeSection, setActiveSection] = useState('home');
@@ -38,6 +39,8 @@ export default function Navigation() {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.href = `/#${id}`;
     }
     setMobileMenuOpen(false);
   };
@@ -84,22 +87,16 @@ export default function Navigation() {
           </nav>
         </div>
 
-        {/* Center: Rock-on Hand with Lightning Bolts */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-3.5 hidden md:block">
-          <button
-            onClick={() => scrollTo('home')}
-            className="block transition-transform hover:-translate-y-1 hover:rotate-3 cursor-pointer bg-transparent border-none p-0"
-            aria-label="Scroll to top"
-          >
-            <Image
-              src="/images/rock-hand.png"
-              alt="Rock on Hand"
-              width={36}
-              height={56}
-              className="w-auto h-11 object-contain"
-              priority
-            />
-          </button>
+        {/* Center: Rock-on Hand Sticker */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-2 hidden md:block">
+          <DraggableSticker
+            src="/images/rock-hand.png"
+            alt="Rock on Hand"
+            width={34}
+            height={52}
+            initialRotate={2}
+            badgeText="DRAG"
+          />
         </div>
 
         {/* Right: "Hire Me!" Pill Button */}

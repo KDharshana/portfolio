@@ -1,18 +1,31 @@
 'use client';
 
+import { useRef } from 'react';
+import Image from 'next/image';
 import {
   Sparkles,
   Smartphone,
   Globe,
   Bot,
   Terminal,
-  CheckCircle,
-  Cpu,
-  Layers
+  CheckCircle
 } from 'lucide-react';
 import { CS_SKILLS } from '@/lib/data';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function SkillsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const pillarsRef = useRef<HTMLDivElement>(null);
+  const matrixRef = useRef<HTMLDivElement>(null);
+  const workflowRef = useRef<HTMLDivElement>(null);
+
   const icons = [Smartphone, Globe, Bot, Terminal];
 
   const toolsMatrix = [
@@ -57,14 +70,118 @@ export default function SkillsSection() {
     }
   ];
 
+  useGSAP(
+    () => {
+      // Header entrance
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 90%',
+              once: true,
+            },
+          }
+        );
+      }
+
+      // 4 Specialization cards
+      if (pillarsRef.current) {
+        gsap.fromTo(
+          Array.from(pillarsRef.current.children),
+          { opacity: 0, y: 35 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+            stagger: 0.14,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: pillarsRef.current,
+              start: 'top 88%',
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Tools matrix items
+      if (matrixRef.current) {
+        gsap.fromTo(
+          Array.from(matrixRef.current.children),
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.12,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: matrixRef.current,
+              start: 'top 88%',
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Workflow approach cards
+      if (workflowRef.current) {
+        gsap.fromTo(
+          Array.from(workflowRef.current.children),
+          { opacity: 0, y: 25 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+            stagger: 0.12,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: workflowRef.current,
+              start: 'top 90%',
+              once: true,
+            },
+          }
+        );
+      }
+    },
+    { scope: sectionRef }
+  );
+
   return (
-    <section id="skills" className="w-full py-24 bg-white border-b border-black/10 scroll-mt-20">
+    <section
+      id="skills"
+      ref={sectionRef}
+      className="w-full py-24 bg-white border-b border-black/10 scroll-mt-20"
+    >
       <div className="max-w-[1224px] mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="mb-14">
-          <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-[#f5f5f5] text-black text-xs font-bold uppercase tracking-wider mb-4 shadow-[2px_2px_0px_0px_#000000]">
+        <div ref={headerRef} className="w-full max-w-[1020px] mx-auto flex flex-col items-center justify-center mb-16 text-center">
+          <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-[#f5f5f5] text-black text-xs font-bold uppercase tracking-wider mb-6 shadow-[2px_2px_0px_0px_#000000]">
             <Sparkles className="w-3.5 h-3.5" />
             <span>02 // Scraped Technical Skills &amp; Stack</span>
+          </div>
+
+          <div className="w-full flex items-center justify-center pointer-events-none select-none mb-6">
+            <Image
+              src="/images/skills-graffiti-art.png"
+              alt="SKILLS - Arsenal Graffiti"
+              width={1020}
+              height={574}
+              className="w-full max-w-[960px] h-auto max-h-[58vh] object-contain pointer-events-none select-none"
+              priority
+              draggable={false}
+            />
           </div>
 
           <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-black leading-tight mb-6 max-w-4xl">
@@ -77,7 +194,7 @@ export default function SkillsSection() {
         </div>
 
         {/* 4 Core Specializations Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div ref={pillarsRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {CS_SKILLS.map((d, idx) => {
             const Icon = icons[idx % icons.length];
             return (
@@ -151,7 +268,7 @@ export default function SkillsSection() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div ref={matrixRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {toolsMatrix.map((matrix) => (
               <div
                 key={matrix.category}
@@ -187,7 +304,7 @@ export default function SkillsSection() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div ref={workflowRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {devWorkflow.map((step) => (
               <div
                 key={step.step}

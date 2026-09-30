@@ -1,14 +1,27 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowUpRight, CheckCircle, Sparkles, Code, ExternalLink, Terminal } from 'lucide-react';
+import { X, ArrowUpRight, CheckCircle, Sparkles, Code, ExternalLink } from 'lucide-react';
 import { CS_PROJECTS, ProjectItem } from '@/lib/data';
+import TiltCard from '@/components/TiltCard';
+import DraggableSticker from '@/components/DraggableSticker';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function ProjectsSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeItem, setActiveItem] = useState<ProjectItem | null>(null);
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const categories = [
     'All',
@@ -22,6 +35,79 @@ export default function ProjectsSection() {
     ? CS_PROJECTS
     : CS_PROJECTS.filter((item) => item.category === selectedCategory);
 
+  const isInitialMount = useRef(true);
+
+  useGSAP(
+    () => {
+      // Header entrance
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 90%',
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Projects bento grid cards stagger
+      if (gridRef.current) {
+        gsap.fromTo(
+          Array.from(gridRef.current.children),
+          { opacity: 0, y: 35 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+            stagger: 0.12,
+            ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: 'top 88%',
+              once: true,
+            },
+          }
+        );
+      }
+    },
+    { scope: sectionRef }
+  );
+
+  // Subtle refresh on category tab change (guarded against initial mount)
+  useGSAP(
+    () => {
+      if (isInitialMount.current) {
+        isInitialMount.current = false;
+        return;
+      }
+      if (gridRef.current) {
+        gsap.fromTo(
+          Array.from(gridRef.current.children),
+          { opacity: 0, y: 18 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.45,
+            stagger: 0.08,
+            ease: 'power2.out',
+            clearProps: 'all',
+          }
+        );
+      }
+    },
+    { dependencies: [selectedCategory], scope: sectionRef }
+  );
+
   const scrollToContact = () => {
     setActiveItem(null);
     const el = document.getElementById('contact');
@@ -31,16 +117,32 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section id="project" className="w-full py-24 bg-[#fafafa] border-b border-black/10 scroll-mt-20">
+    <section
+      id="project"
+      ref={sectionRef}
+      className="w-full py-24 bg-[#fafafa] border-b border-black/10 scroll-mt-20"
+    >
       <div className="max-w-[1224px] mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="mb-14">
-          <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-white text-black text-xs font-bold uppercase tracking-wider mb-4 shadow-[2px_2px_0px_0px_#000000]">
+        <div ref={headerRef} className="w-full max-w-[1020px] mx-auto flex flex-col items-center justify-center mb-16 text-center">
+          <div className="inline-flex items-center gap-2 border-2 border-black rounded-[8px] px-3.5 py-1.5 bg-white text-black text-xs font-bold uppercase tracking-wider mb-6 shadow-[2px_2px_0px_0px_#000000]">
             <Sparkles className="w-3.5 h-3.5" />
             <span>03 // Scraped &amp; Verified CS Projects</span>
           </div>
 
-          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-black leading-tight mb-6 max-w-4xl">
+          <div className="w-full flex items-center justify-center pointer-events-none select-none mb-6">
+            <Image
+              src="/images/projects-graffiti-art.png"
+              alt="PROJECTS - Ship It Graffiti"
+              width={1020}
+              height={574}
+              className="w-full max-w-[960px] h-auto max-h-[58vh] object-contain pointer-events-none select-none"
+              priority
+              draggable={false}
+            />
+          </div>
+
+          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl text-black leading-tight mb-4 max-w-4xl">
             Featured Engineering Projects.
           </h2>
 
@@ -49,18 +151,19 @@ export default function ProjectsSection() {
           </p>
 
           {/* Category Tabs with Crossed Pencils */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-2">
-            <div className="w-10 h-10 flex items-center justify-center shrink-0">
-              <Image
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <div className="flex items-center justify-center shrink-0">
+              <DraggableSticker
                 src="/images/crossed-pencils.png"
                 alt="Crossed Pencils"
-                width={40}
-                height={40}
-                className="w-10 h-10 object-contain"
+                width={42}
+                height={42}
+                initialRotate={-6}
+                badgeText="DRAG"
               />
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap justify-center gap-2">
               {categories.map((cat) => {
                 const isActive = selectedCategory === cat;
                 return (
@@ -69,8 +172,8 @@ export default function ProjectsSection() {
                     onClick={() => setSelectedCategory(cat)}
                     className={`px-4 py-2 rounded-[8px] font-sans font-bold text-xs uppercase tracking-wider transition-all border-2 border-black cursor-pointer ${
                       isActive
-                        ? 'bg-black text-white shadow-[2px_2px_0px_0px_#424242]'
-                        : 'bg-white text-black hover:bg-[#f5f5f5] shadow-[2px_2px_0px_0px_#000000]'
+                        ? 'bg-black text-white shadow-[2px_2px_0px_0px_#424242] translate-x-[1px] translate-y-[1px]'
+                        : 'bg-white text-black hover:bg-[#f5f5f5] shadow-[2px_2px_0px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none'
                     }`}
                   >
                     {cat}
@@ -82,12 +185,12 @@ export default function ProjectsSection() {
         </div>
 
         {/* Projects Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredItems.map((item) => (
-            <div
+            <TiltCard
               key={item.id}
               onClick={() => setActiveItem(item)}
-              className="group bg-white border-2 border-black rounded-[8px] overflow-hidden shadow-[5px_5px_0px_0px_#000000] hover:shadow-[8px_8px_0px_0px_#000000] hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between cursor-pointer"
+              maxTilt={5}
             >
               {/* Visual Image Container */}
               <div className="relative w-full h-64 sm:h-72 bg-[#f0f0f0] border-b-2 border-black overflow-hidden">
@@ -142,7 +245,7 @@ export default function ProjectsSection() {
                   </span>
                 </div>
               </div>
-            </div>
+            </TiltCard>
           ))}
         </div>
       </div>
